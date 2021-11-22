@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const sequelize = require('../database/connection')
 
 
 module.exports = sequelize.define("User", {
@@ -14,7 +15,9 @@ module.exports = sequelize.define("User", {
         unique: true
     },
     password:{
-        type: Sequelize.STRING(20),
+        type: Sequelize.STRING(100),
         allowNull: false
     }
-})
+    
+}
+)

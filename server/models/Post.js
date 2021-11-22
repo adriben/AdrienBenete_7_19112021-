@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 
 
+
 module.exports = sequelize.define("Post", {
     id: {
     type: Sequelize.INTEGER(11),
@@ -9,5 +10,4 @@ module.exports = sequelize.define("Post", {
     primaryKey: true,
     },
     content: Sequelize.STRING(500),
-
 })
