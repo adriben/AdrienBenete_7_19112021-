@@ -1,5 +1,5 @@
 const express = require('express');
-const mysql = require('mysql2');
+
 const cors = require('cors');
 const helmet = require('helmet');
 const dotenv = require('dotenv');
@@ -15,7 +15,8 @@ app.use(cors());
 app.use(express.json());
 
 
-db.sequelize.sync().then((req))
+//db conection
+require('./database/connection')
 
 app.get('/api/auth', userRoutes);
 
