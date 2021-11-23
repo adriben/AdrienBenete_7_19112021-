@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../database/connection')
+const db = require('../database/connection')
 
 
 
-module.exports = sequelize.define("Post", {
+const Post = db.define('Post',{
     id: {
     type: Sequelize.INTEGER(11),
     allowNull: false,
@@ -12,3 +12,9 @@ module.exports = sequelize.define("Post", {
     },
     content: Sequelize.STRING(500),
 })
+
+
+Post.sync().then(() => {
+  console.log('table created');
+});
+module.exports = Post;

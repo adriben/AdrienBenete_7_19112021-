@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../database/connection')
+const db = require('../database/connection')
 
 
-module.exports = sequelize.define("User", {
+const User = db.define("User", {
     id: {
     type: Sequelize.INTEGER(11),
     allowNull: false,
@@ -21,3 +21,7 @@ module.exports = sequelize.define("User", {
     
 }
 )
+User.sync().then(() => {
+  console.log('table created');
+});
+module.exports = User;
