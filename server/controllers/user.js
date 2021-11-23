@@ -12,7 +12,6 @@ exports.signup = async (req, res) => {
         username: req.body.username,
         password: await bcrypt.hash(req.body.password, salt)
    })
-   .then((user) => console.log(user.password))
    .then(()=>  res.status(201).json({ message: "user successfully created"}))
    .catch(err => res.status(400).json({ err }))
     
