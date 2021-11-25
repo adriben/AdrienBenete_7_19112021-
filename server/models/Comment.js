@@ -3,7 +3,7 @@ const db = require('../database/connection')
 
 
 
-const Post = db.define('Post',{
+const Comment = db.define('Comment',{
     id: {
     type: Sequelize.INTEGER(11),
     allowNull: false,
@@ -14,7 +14,8 @@ const Post = db.define('Post',{
 })
 
 
-Post.sync().then(() => {
-  console.log('Post table created');
+Comment.sync().then(() => {
+  console.log('Comment table created');
 });
-module.exports = Post;
+
+module.exports = Comment;

@@ -14,6 +14,11 @@ const User = db.define("User", {
         allowNull: false,
         unique: true
     },
+    email:{
+        type: Sequelize.STRING(50),
+        allowNull: false,
+        unique: true
+    },
     password:{
         type: Sequelize.STRING(100),
         allowNull: false
@@ -22,6 +27,6 @@ const User = db.define("User", {
 }
 )
 User.sync().then(() => {
-  console.log('table created');
+  console.log('User table created');
 });
 module.exports = User;
