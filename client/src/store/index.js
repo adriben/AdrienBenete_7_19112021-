@@ -1,4 +1,9 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
+
+const axios = require('axios');
+const instance = axios.create({
+  baseURL: 'http://localhost:5000/api'
+})
 
 export default createStore({
   state: {
@@ -6,11 +11,26 @@ export default createStore({
   mutations: {
   },
   actions: {
-    createAccount: ( { commit }, userInfos) =>{
+    createAccount: async ({ commit }, userInfos) => {
       commit;
-      console.log(userInfos);
-    }
+      instance.post("/user/register", userInfos)
+      .then((response) => {
+        response.data.bpi
+      })
+      .catch(err => console.log(err))
+    
+  },
+   loginAccount: async ({ commit }, userInfos) => {
+     commit;
+      instance.post("/user/login", userInfos)
+     .then((response) => {
+       console.log(response);
+     })
+     .catch(err => console.log(err))
+
+   }
   },
   modules: {
   }
 })
+

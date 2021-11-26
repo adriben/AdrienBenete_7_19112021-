@@ -32,12 +32,12 @@ export default {
   methods: {
     signIn: function(event){
       event.preventDefault();
-      console.log(this.email, this.username, this.password, this.confirmedPassword);
       this.$store.dispatch('createAccount',{
         email: this.email,
         username: this.username, 
         password: this.password
       })
+
 
     }
   }
@@ -57,6 +57,8 @@ export default {
     align-items: center;
 
    border: solid 2px rgba(0, 0, 0, 0.356);
+   border-radius: 20px;
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.192);
     form{
       display: flex;
       flex-direction: column;
