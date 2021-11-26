@@ -7,28 +7,51 @@ const instance = axios.create({
 
 export default createStore({
   state: {
+    status: '',
+    user: {
+      userId: -1,
+      username: '',
+      token:''
+    }
   },
   mutations: {
+    setStatus: function(state, status) {
+      state.status = status;
+    },
+    logUser: function (state, user) {
+      // instance.defaults.headers.common['Authorization'] = user.token;
+      state.user.userId = user.id
+      state.user.username = user.username
+    }
   },
   actions: {
     createAccount: async ({ commit }, userInfos) => {
       commit;
       instance.post("/user/register", userInfos)
       .then((response) => {
+        commit('setStatus', 'created' )
         response.data.bpi
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        commit('setStatus', 'error_login' )
+        console.log(err)})
     
   },
    loginAccount: async ({ commit }, userInfos) => {
-     commit;
-      instance.post("/user/login", userInfos)
+     commit('setStatus', 'loading')
+      await instance.post("/user/login", userInfos)
      .then((response) => {
-       console.log(response);
+       commit('setStatus', 'connected' )
+       commit('logUser', response.data)
+       console.log(response.data.username);
+      response.data.bpi
      })
-     .catch(err => console.log(err))
-
-   }
+     .catch(err => {
+      commit('setStatus', 'error_login' ) 
+      console.log(err)})
+   },
+   
+   
   },
   modules: {
   }

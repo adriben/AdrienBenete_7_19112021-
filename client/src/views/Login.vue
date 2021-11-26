@@ -7,6 +7,7 @@
       <input type="text" placeholder="Username" v-model="username">
       <input type="password" placeholder="Password" v-model="password">
       <button @click="login">Login</button>
+      <!-- <p v-if="status == 'error_login'">Erreur</p> -->
 
     </form>
       <router-link to="/signUp" class="link">No account yet? Click here to sign up </router-link>
@@ -14,6 +15,8 @@
 </template>
 
 <script>
+
+
 
 export default {
   name: "Login",
@@ -29,15 +32,31 @@ export default {
        this.$store.dispatch('loginAccount',{
         username: this.username, 
         password: this.password
+        
       })
-     }
+      .then(() => {
+      
+         if(this.$store.state.user.userId  != -1){
+      this.$router.push('/main');
+      return
+    }
+    
 
+      })
+      
+     
+    
+      
+     }
   }
+
   
 }
 </script>
 <style lang="scss" scoped>
+
 .home{
+  
   margin-top: 8rem;
   padding-top: 1rem;
   background-color: white;

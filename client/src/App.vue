@@ -1,9 +1,9 @@
 <template>
-  <div id="nav">
+  
     
     <router-view/>
     
-  </div>
+
   
 </template>
 
@@ -29,8 +29,7 @@ export default ({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-color: #f9d29d;
-  background-image: linear-gradient(315deg, #f9d29d 0%, #ffd8cb 74%);
+
   display: flex;
  padding-bottom: 17rem;
   justify-content: center;
