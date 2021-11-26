@@ -40,13 +40,7 @@ export default {
       this.$router.push('/main');
       return
     }
-    
-
       })
-      
-     
-    
-      
      }
   }
 

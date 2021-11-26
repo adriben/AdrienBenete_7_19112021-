@@ -12,7 +12,7 @@ app.use(cors());
 
 app.use(express.json());
 //path to the folder where to stock files entering the application
-app.use('/images', express.static(path.join(__dirname, 'images'))); 
+app.use('./images', express.static(path.join(__dirname, 'images'))); 
 //db conection
 require('./database/connection');
 //ROUTES

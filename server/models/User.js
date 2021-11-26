@@ -22,6 +22,9 @@ const User = db.define("User", {
     password:{
         type: Sequelize.STRING(100),
         allowNull: false
+    },
+    image: {
+        type: Sequelize.BLOB
     }
     
 }

@@ -7,8 +7,15 @@
             <ul>
             
                
-                <li><img src="../assets/anonymous.png" alt="" class="profil-picture">{{ user.username }}</li>
-                 <li><i class="fas fa-power-off"></i></li>
+                <router-link to="/userinfos" class="link">
+
+                    <li><img src="../assets/anonymous.png" alt="" class="profil-picture">{{ user.username }}</li>
+                </router-link>
+                
+                <router-link to="/" class="link">
+                    <li><i class="fas fa-power-off"></i></li>
+                </router-link>
+                
             </ul>
         </nav>
 
@@ -40,7 +47,10 @@ header{
    width: 100%;
    font-size: 2rem;
    height: 8rem;
-   
+   .link{
+       text-decoration: none;
+       color:#2c3e50 ;
+  }
 
     img{
         width: 200px;

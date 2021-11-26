@@ -56,6 +56,16 @@ exports.login = (req, res) => {
     });
 };
 
+exports.changeInfo= (req, res) => {
+  const userId = req.body.userId
+  const image = req.file ? {
+    ...JSON.parse(req.body.sauce),
+    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`  
+} : {...req.body}
+  // const imageUrl =`${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+  console.log(image);  
+}
+
 
 exports.getall = async (req, res) => {
   const users = await User.findAll();

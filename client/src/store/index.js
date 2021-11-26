@@ -50,6 +50,12 @@ export default createStore({
       commit('setStatus', 'error_login' ) 
       console.log(err)})
    },
+   changeInfos: async ({ commit }, userInfos) => {
+     commit;
+     console.log(userInfos.image);
+     await instance.put("/user/userInfo", userInfos)
+    
+   }
    
    
   },
