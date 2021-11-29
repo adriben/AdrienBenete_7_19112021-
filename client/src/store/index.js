@@ -11,7 +11,8 @@ export default createStore({
     user: {
       userId: -1,
       username: '',
-      token:''
+      token:'',
+      imageProfile: ''
     }
   },
   mutations: {
@@ -22,6 +23,7 @@ export default createStore({
       // instance.defaults.headers.common['Authorization'] = user.token;
       state.user.userId = user.id
       state.user.username = user.username
+      state.user.imageProfile = user.imageUrl
     }
   },
   actions: {
@@ -43,7 +45,7 @@ export default createStore({
      .then((response) => {
        commit('setStatus', 'connected' )
        commit('logUser', response.data)
-       console.log(response.data.username);
+      
       response.data.bpi
      })
      .catch(err => {
@@ -51,9 +53,21 @@ export default createStore({
       console.log(err)})
    },
    changeInfos: async ({ commit }, userInfos) => {
+    
      commit;
-     console.log(userInfos.image);
-     await instance.put("/user/userInfo", userInfos)
+     const formData = new FormData();
+     let userId = userInfos.userId
+     let imageFile = userInfos.image
+     formData.append('image', imageFile)
+     formData.append('userId', userId)
+     console.log(Array.from(formData));
+     await instance.put("/user/userInfo", formData)
+     .then((response) => {
+     
+      response.data.bpi
+    })
+    .catch(err => {
+      console.log(err)})
     
    }
    

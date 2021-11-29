@@ -24,7 +24,7 @@ const User = db.define("User", {
         allowNull: false
     },
     image: {
-        type: Sequelize.BLOB
+        type: Sequelize.STRING(500)
     }
     
 }

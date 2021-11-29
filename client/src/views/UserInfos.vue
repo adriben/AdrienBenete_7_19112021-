@@ -1,7 +1,7 @@
 <template>
 
     <div class="user-infos">
-        <the-header></the-header>
+        <TheHeader userName="$user.username"></TheHeader>
         <form action="">
    <label for="avatar">Choose a profile picture:</label>
 
@@ -21,6 +21,11 @@ import  TheHeader  from '../components/TheHeader.vue';
 import { mapState } from 'vuex';
 
 export default {
+    data(){
+       return{
+           image: ''
+       }
+    },
     components: {
       "TheHeader": TheHeader
     },
@@ -30,12 +35,13 @@ export default {
     methods: {
         changeImage: function(event){
        event.preventDefault()
+
        this.$store.dispatch('changeInfos',{
         userId: this.$store.state.user.userId,
-        image: document.querySelector('input[type=file]').files[0]
+        image:document.querySelector('input[type=file]').files[0]
        
         
-      })
+      }) 
       
      }
 

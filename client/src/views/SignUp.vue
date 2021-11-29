@@ -69,6 +69,7 @@ export default {
       button{
        margin-top: 1rem;
        background-color: #fdc6b5b6 ;
+       border-radius: 30px;
        
      }
 

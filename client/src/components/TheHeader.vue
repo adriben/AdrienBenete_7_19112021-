@@ -1,7 +1,9 @@
 <template>
     <header>
         <div>
+        <router-link to="/main" class="link">
             <img src="../assets/icon-left-font-monochrome-black.png" alt="logo groupamia">
+             </router-link>
         </div>
         <nav>
             <ul>
@@ -9,7 +11,8 @@
                
                 <router-link to="/userinfos" class="link">
 
-                    <li><img src="../assets/anonymous.png" alt="" class="profil-picture">{{ user.username }}</li>
+                    <li v-if=" user.imageProfile "><img :src="user.imageProfile" alt="" class="profil-picture" ></li>
+                     <li v-else><img src="../assets/anonymous.png" alt="" class="profil-picture" ></li>
                 </router-link>
                 
                 <router-link to="/" class="link">
@@ -38,12 +41,12 @@ export default{
 
 <style lang="scss" scoped>
 header{
-   background-color: #f9d29d;
-   background-image: linear-gradient(315deg, #f9d29d 0%, #ffd8cb 74%);
+   
+   background-color: rgba(38, 166, 91, 1  ) ;
    display: flex;
    flex-direction: row;
    justify-content: space-between;
-   background-color: rgb(43, 41, 41);
+//    background-color: rgb(43, 41, 41);
    width: 100%;
    font-size: 2rem;
    height: 8rem;

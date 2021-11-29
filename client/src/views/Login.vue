@@ -23,7 +23,7 @@ export default {
   data: function(){
     return{
       username: "",
-      password: ""
+      password: "",
     }
   },
   methods: {
@@ -31,7 +31,8 @@ export default {
        event.preventDefault()
        this.$store.dispatch('loginAccount',{
         username: this.username, 
-        password: this.password
+        password: this.password,
+        imageUrl: this.image
         
       })
       .then(() => {
@@ -74,6 +75,7 @@ export default {
      button{
        margin-top: 1rem;
        background-color: #fdc6b5b6 ;
+       border-radius: 30px;
        
      }
     }

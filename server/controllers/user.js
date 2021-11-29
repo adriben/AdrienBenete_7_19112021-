@@ -48,7 +48,8 @@ exports.login = (req, res) => {
       res.status(200).send({ 
         id: user.id,
         username: user.username,
-        accessToken: token
+        accessToken: token,
+        imageUrl: user.image
       })
     })
     .catch(err => {
@@ -58,13 +59,15 @@ exports.login = (req, res) => {
 
 exports.changeInfo= (req, res) => {
   const userId = req.body.userId
-  const image = req.file ? {
-    ...JSON.parse(req.body.sauce),
-    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`  
-} : {...req.body}
-  // const imageUrl =`${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-  console.log(image);  
-}
+  const imageUrl =`${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+  console.log(imageUrl); 
+  User.update(
+    
+    { image: imageUrl },
+    { where: { id: userId } })
+.then(picture => res.status(200).json({ picture }))
+.catch(err => res.status(400).json({ err }))
+};
 
 
 exports.getall = async (req, res) => {
