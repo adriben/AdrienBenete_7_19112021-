@@ -41,18 +41,21 @@ export default{
 
 <style lang="scss" scoped>
 header{
-   
-   background-color: rgba(38, 166, 91, 1  ) ;
+  
+background-color: #3bb78f;
+background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);
+
+
+
    display: flex;
    flex-direction: row;
    justify-content: space-between;
-//    background-color: rgb(43, 41, 41);
    width: 100%;
    font-size: 2rem;
    height: 8rem;
    .link{
        text-decoration: none;
-       color:#2c3e50 ;
+       color:white ;
   }
 
     img{

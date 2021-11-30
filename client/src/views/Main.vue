@@ -37,11 +37,6 @@
          </div>
 
       </div>
-
-     <aside>
-         Follow
-         <Suggestion></Suggestion>
-     </aside>
      </section>
      
     </div>
@@ -54,12 +49,12 @@
 <script>
 import  TheHeader  from '../components/TheHeader.vue';
 import { mapState } from 'vuex';
-import Suggestion from '../components/Suggestion.vue'
+// import Suggestion from '../components/Suggestion.vue'
 
 export default {
     components: {
       "TheHeader": TheHeader,
-      "Suggestion": Suggestion
+    //   "Suggestion": Suggestion
     },
     mounted: async function (){
         this.getPosts()
@@ -120,13 +115,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+ $color-primary: 	#3bb78f;
+$color-secondary: 	#3bb78f;
 .main-page{
     width: 100%;
     .content{
-    background-color: white;
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    grid-column-gap: 25px;
     width: 100%;
     list-style: none;
     }
@@ -145,7 +138,7 @@ export default {
     i{
         font-size: 250%;
         padding: 1rem 1rem 0 0 ;
-        color: green;
+        color: $color-primary;
         
         
         &:hover{
@@ -163,15 +156,18 @@ export default {
      border-radius: 20px;
      img{
          max-width: 700px;
-         border: 1px solid green;
+         border: 1px solid rgb(41, 39, 39);
          border-top-right-radius: 20px ;
          border-top-left-radius: 20px;
      }
  }
  .post{
      padding-bottom: 3rem;
-     border: solid 1px rgba(40, 94, 38, 0.404);
-     margin: 2rem;
+     border: solid 1px rgba(39, 44, 39, 0.404);
+     margin: auto;
+     margin-top: 1.5rem;
+     background-color: white ;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
      .icones{
          display: flex;
          justify-content: center;
@@ -191,7 +187,7 @@ export default {
      padding-right: 1rem;
  }
  .user-signature{
-     color: rgb(22, 175, 22);
+     color: $color-primary;
      padding-bottom: 2rem;
     
  }

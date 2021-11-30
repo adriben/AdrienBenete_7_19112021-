@@ -1,5 +1,6 @@
 <template>
-  <div class="home">
+  <div class="first-page">
+    <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <h1>Welcome to Groupamia</h1>
     <p>Sign-up</p>
@@ -12,6 +13,10 @@
 
     </form>
       <router-link to="/" class="link">Already an account? Click here to login </router-link>
+      </div>
+      <div class="home-picture">
+         <img src="../assets\Daco_5615604.png" alt="social media png">
+      </div>
   </div>
 </template>
 
@@ -45,7 +50,12 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.first-page{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
 .home{
+  
   margin-top: 8rem;
   padding-top: 1rem;
   background-color: white;
@@ -59,6 +69,10 @@ export default {
    border: solid 2px rgba(0, 0, 0, 0.356);
    border-radius: 20px;
     box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.192);
+    img{
+  width: 80px
+
+}
     form{
       display: flex;
       flex-direction: column;
@@ -69,7 +83,7 @@ export default {
       }
       button{
        margin-top: 1rem;
-       background-color: #fdc6b5b6 ;
+       background-color: #3bb78f ;
        border-radius: 30px;
        height: 2rem;
        
@@ -77,11 +91,16 @@ export default {
 
     }
 }
-
-img{
-  width: 80px
-
+.home-picture{
+  img{
+     width: 550px;
+      margin-top: 10rem;
+  padding-top: 1rem;
+  }
+ 
 }
+
+
 .link{
   padding-top: 1rem;
   padding-bottom: 20rem ;

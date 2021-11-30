@@ -87,18 +87,22 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+ $color-primary: 	#3bb78f;
+$color-secondary: 	#3bb78f;
 .user-infos{
     width: 100%;
 }
 .info-container{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     
     .image-details{
-        background-color: rgba(6, 116, 6, 0.561);
+        
         border-radius: 10px;
         padding: 2rem;
         margin-left: 3rem;
+        background-color: white;
+        
         img{
           max-width: 20rem;
         }
@@ -107,10 +111,10 @@ export default {
         }
     }
     .details{
-        background-color: rgba(6, 116, 6, 0.561);
         border-radius: 10px;
         padding: 2rem;
         margin-right: 5rem;
+        background-color: white;
      #username{
          height: 2rem;
          border-radius: 10px;

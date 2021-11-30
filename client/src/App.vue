@@ -21,15 +21,22 @@ export default ({
 
 
 <style lang="scss">
-
-
+// background-color: ;
+// background-image: linear-gradient(315deg, #fbfbfb 0%, #f9886c 74%);
+$color-primary: 	#3bb78f;
+$color-secondary: 	#3bb78f;
+body{
+  box-sizing:border-box;
+  margin: 0;
+}
 #app {
+
+  background-color: rgba($color: #f3f8ee, $alpha: 1.0);
   font-family: 'Oswald', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  box-sizing: border-box;
   display: flex;
  padding-bottom: 17rem;
   justify-content: center;
@@ -37,17 +44,18 @@ export default ({
         height: 2rem;
         width: 16rem;
         border-radius: 10px;
-        background-color: rgb(224, 116, 116);
+        background-color: $color-primary;
         &:hover{
           cursor: pointer;
           
         }
     }
     .btn-submit2{
+      color: black;
       height: 2rem;
         width: 10rem;
         border-radius: 10px;
-        background-color: rgb(224, 116, 116);
+        background-color: $color-primary;
         &:hover{
           cursor: pointer;
           

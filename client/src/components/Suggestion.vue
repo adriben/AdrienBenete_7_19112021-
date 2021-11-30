@@ -53,8 +53,10 @@
 </script>
 
 <style lang="scss" scoped>
+ $color-primary: 	rgb(255, 177, 167);
+$color-secondary: 	rgb(254, 138, 138);
 .sugestions{
-    background-color: rgb(7, 165, 7);
+    background-color: $color-secondary;
     
    li{
        list-style: none;
