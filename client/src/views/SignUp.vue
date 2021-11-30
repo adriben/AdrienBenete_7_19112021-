@@ -53,7 +53,7 @@ export default {
    display: flex;
    flex-direction: column;
    width: 30rem;
-   height: 30rem;
+   height: 40rem;
     align-items: center;
 
    border: solid 2px rgba(0, 0, 0, 0.356);
@@ -65,11 +65,13 @@ export default {
       input{
         margin-top: 1rem;
         width: 16rem;
+        height: 2rem;
       }
       button{
        margin-top: 1rem;
        background-color: #fdc6b5b6 ;
        border-radius: 30px;
+       height: 2rem;
        
      }
 

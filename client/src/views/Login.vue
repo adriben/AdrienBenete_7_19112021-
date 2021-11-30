@@ -71,11 +71,13 @@ export default {
       input{
         margin-top: 1rem;
         width: 16rem;
+        height: 2rem;
       }
      button{
        margin-top: 1rem;
        background-color: #fdc6b5b6 ;
        border-radius: 30px;
+       height: 2rem;
        
      }
     }
@@ -86,7 +88,7 @@ img{
 
 }
 .link{
-  padding-top: 5rem;
+  padding-top: 4rem;
 }
 
 </style>

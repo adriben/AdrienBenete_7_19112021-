@@ -11,6 +11,11 @@ const Post = db.define('Post',{
     primaryKey: true,
     },
     content: Sequelize.STRING(500),
+    userId: Sequelize.INTEGER(11),
+    username: Sequelize.STRING(100),
+    image: {
+      type: Sequelize.STRING(500)
+  }
 })
 
 

@@ -10,7 +10,7 @@
          <input type="file"
        id="post-picture" name="postPicture"
        accept="image/png, image/jpeg">
-         <input type="submit" @click="postPost" >
+         <input type="submit" @click="postPost" class="btn-submit" >
          
       
          
@@ -19,7 +19,19 @@
          <div>
             <br><br>
              <ul>
-                 <li v-for="post in posts" :key="post.content">{{ post.content }}</li>
+                 <li v-for="post in posts" :key="post.content" class="post"><div>
+                     <img v-if="post.image" :src="post.image" alt=""><p>{{ post.content }} </p>
+                     <div class="icones">
+                         <i class="far fa-comment-dots"></i>
+                         <i class="far fa-heart"></i>
+
+
+
+
+                     </div>
+                     
+                     </div><p class="signature">By <span class="user-signature">{{ post.username }}</span></p>
+                     </li>
              </ul>
          </div>
 
@@ -82,19 +94,32 @@ export default {
   },
      postPost: async function(event){
          event.preventDefault()
-         let Post ={
-             content: this.newPost
-         }
-          fetch ("http://localhost:5000/api/posts",
+         
+         const formData = new FormData()
+         const imageFile = document.querySelector('input[type=file]').files[0]
+         formData.append('content', this.newPost)
+         formData.append('userId', this.$store.state.user.userId)
+         formData.append('username', this.$store.state.user.username)
+         formData.append('image', imageFile)
+         console.log(Array.from(formData));
+        //  let Post ={
+        //      content: this.newPost,
+        //      userId: this.$store.state.user.userId,
+        //      username:  this.$store.state.user.username,
+        //      imageUrl: formData
+        //  }
+        //   console.log(Post);
+          await fetch ("http://localhost:5000/api/posts",
          {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(Post),
-  }) 
+    // headers: {
+    //   "Content-Type": "application/json",
+    // },
+    body: formData,
+  });
      this.newPost = '';
-     setTimeout(this.getPosts(), 1000) 
+     this.getPosts()
+     
      }
      
          
@@ -117,9 +142,44 @@ export default {
  .write-post{
      width: 30rem;
      margin-top: 2rem;
+     height: 2rem;
+     border-radius: 10px;
+     margin-bottom: 1rem;
  }
  li{
      list-style: none;
+     padding: 0;
+     width: 700px;
+     border-radius: 20px;
+     img{
+         max-width: 700px;
+         border: 1px solid green;
+         border-top-right-radius: 20px ;
+         border-top-left-radius: 20px;
+     }
+ }
+ .post{
+     padding-bottom: 3rem;
+     border: solid 1px rgba(40, 94, 38, 0.404);
+     margin: 2rem;
+     .icones{
+         display: flex;
+         justify-content: center;
+        i{
+            padding: 1rem;
+            font-size: 150%;
+
+        }
+     }
+ }
+ .signature{
+     float: right;
+     padding-right: 1rem;
+ }
+ .user-signature{
+     color: rgb(22, 175, 22);
+     padding-bottom: 2rem;
+    
  }
 }
 

@@ -29,10 +29,23 @@ export default ({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-
+  box-sizing: border-box;
   display: flex;
  padding-bottom: 17rem;
   justify-content: center;
+    .btn-submit{
+        height: 2rem;
+        width: 16rem;
+        border-radius: 10px;
+        background-color: rgb(224, 116, 116);
+    }
+    .btn-submit2{
+      height: 2rem;
+        width: 10rem;
+        border-radius: 10px;
+        background-color: rgb(224, 116, 116);
+    }
+    
 }
 
 #nav {
