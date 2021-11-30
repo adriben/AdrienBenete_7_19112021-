@@ -38,12 +38,21 @@ export default ({
         width: 16rem;
         border-radius: 10px;
         background-color: rgb(224, 116, 116);
+        &:hover{
+          cursor: pointer;
+          
+        }
     }
     .btn-submit2{
       height: 2rem;
         width: 10rem;
         border-radius: 10px;
         background-color: rgb(224, 116, 116);
+        &:hover{
+          cursor: pointer;
+          
+        }
+        
     }
     
 }

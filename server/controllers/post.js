@@ -3,17 +3,28 @@ const db = require('../database/connection')
 
 
 exports.create = async (req, res) => {
-    const imageUrl =`${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    console.log(imageUrl)
-
-    const newPost = await Post.create({
+    
+    if (req.file){
+        const imageUrl =`${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        const newPost = await Post.create({
         content: req.body.content,
         userId: req.body.userId, 
         username: req.body.username,
-        image: imageUrl
+        image: imageUrl, 
     })
-    .then(()=>  res.status(201).json({ message: "post successfully created"}))
-    .catch(err => res.status(400).json({ err }))
+    } else{
+        const newPost = await Post.create({
+        content: req.body.content,
+        userId: req.body.userId, 
+        username: req.body.username,
+    })
+    } try{
+         res.status(201).json({ message: "post successfully created"})
+
+    } catch{
+        err => res.status(400).json({ err })
+
+    }
 
 };
 

@@ -7,9 +7,13 @@
          <div class="the-wall">
          <form action="">
          <input type="text" :placeholder="'What\'s up' + ' ' + user.username" class='write-post' v-model="newPost">
+         <label class="custom-button">
          <input type="file"
        id="post-picture" name="postPicture"
        accept="image/png, image/jpeg">
+       <i class="far fa-image"></i>
+       </label>
+       <br>
          <input type="submit" @click="postPost" class="btn-submit" >
          
       
@@ -19,14 +23,11 @@
          <div>
             <br><br>
              <ul>
-                 <li v-for="post in posts" :key="post.content" class="post"><div>
+                 <li v-for="post in posts.slice().reverse()" :key="post.content" class="post"><div>
                      <img v-if="post.image" :src="post.image" alt=""><p>{{ post.content }} </p>
                      <div class="icones">
                          <i class="far fa-comment-dots"></i>
                          <i class="far fa-heart"></i>
-
-
-
 
                      </div>
                      
@@ -39,6 +40,7 @@
 
      <aside>
          Follow
+         <Suggestion></Suggestion>
      </aside>
      </section>
      
@@ -52,10 +54,12 @@
 <script>
 import  TheHeader  from '../components/TheHeader.vue';
 import { mapState } from 'vuex';
+import Suggestion from '../components/Suggestion.vue'
 
 export default {
     components: {
-      "TheHeader": TheHeader
+      "TheHeader": TheHeader,
+      "Suggestion": Suggestion
     },
     mounted: async function (){
         this.getPosts()
@@ -85,6 +89,7 @@ export default {
       return responsehttp.json();
     })
     .then((data) => {
+        console.log(data.posts);
         
         this.posts = data.posts
     })
@@ -94,36 +99,22 @@ export default {
   },
      postPost: async function(event){
          event.preventDefault()
-         
          const formData = new FormData()
          const imageFile = document.querySelector('input[type=file]').files[0]
          formData.append('content', this.newPost)
          formData.append('userId', this.$store.state.user.userId)
          formData.append('username', this.$store.state.user.username)
-         formData.append('image', imageFile)
-         console.log(Array.from(formData));
-        //  let Post ={
-        //      content: this.newPost,
-        //      userId: this.$store.state.user.userId,
-        //      username:  this.$store.state.user.username,
-        //      imageUrl: formData
-        //  }
-        //   console.log(Post);
+         if(imageFile){
+             formData.append('image', imageFile)}
+        
           await fetch ("http://localhost:5000/api/posts",
          {
     method: "POST",
-    // headers: {
-    //   "Content-Type": "application/json",
-    // },
     body: formData,
   });
      this.newPost = '';
      this.getPosts()
-     
      }
-     
-         
-         
          }
 }
 </script>
@@ -140,12 +131,31 @@ export default {
     list-style: none;
     }
  .write-post{
-     width: 30rem;
-     margin-top: 2rem;
-     height: 2rem;
+     width: 35rem;
+     margin-top: 1rem;
+     height: 3rem;
      border-radius: 10px;
      margin-bottom: 1rem;
  }
+ input[type="file"] {
+    display: none;
+}
+.custom-button{
+    
+    i{
+        font-size: 250%;
+        padding: 1rem 1rem 0 0 ;
+        color: green;
+        
+        
+        &:hover{
+          cursor: pointer;
+          
+        }
+        
+    }
+}
+
  li{
      list-style: none;
      padding: 0;
@@ -168,6 +178,10 @@ export default {
         i{
             padding: 1rem;
             font-size: 150%;
+            &:hover{
+          cursor: pointer;
+          
+        }
 
         }
      }
