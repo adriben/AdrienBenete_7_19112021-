@@ -41,6 +41,7 @@ export default{
 
 <style lang="scss" scoped>
 header{
+     position: fixed;
   
 background-color: #3bb78f;
 background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);
@@ -55,11 +56,11 @@ background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);
    height: 8rem;
    .link{
        text-decoration: none;
-       color:white ;
+       color:black ;
   }
 
     img{
-        width: 200px;
+        width: 250px;
         margin-left: 2rem;
         margin-top: -3rem;
         
@@ -75,12 +76,10 @@ background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);
         margin: 0 2.5rem 0 0;
         li{
             padding: 1rem;
-           
             .profil-picture{
                 
-               width: 3rem;
+               width: 5.5rem;
                margin-top: 0;
-               
                border-radius: 40px;
             }
         }

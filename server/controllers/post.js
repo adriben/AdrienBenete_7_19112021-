@@ -1,5 +1,7 @@
 const Post = require('../models/Post');
-const db = require('../database/connection')
+// const db = require('../database/connection');
+const db = require('../models')
+
 
 
 exports.create = async (req, res) => {

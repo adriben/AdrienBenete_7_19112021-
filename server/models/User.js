@@ -29,6 +29,11 @@ const User = db.define("User", {
     
 }
 )
+User.associate = models => {
+    User.hasMany(models.Post, {
+        onDelete: "cascade"
+    })
+}
 User.sync().then(() => {
   console.log('User table created');
 });

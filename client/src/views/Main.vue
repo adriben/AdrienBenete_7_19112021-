@@ -25,6 +25,7 @@
              <ul>
                  <li v-for="post in posts.slice().reverse()" :key="post.content" class="post"><div>
                      <img v-if="post.image" :src="post.image" alt=""><p>{{ post.content }} </p>
+                    
                      <div class="icones">
                          <i class="far fa-comment-dots"></i>
                          <i class="far fa-heart"></i>
@@ -125,7 +126,7 @@ $color-secondary: 	#3bb78f;
     }
  .write-post{
      width: 35rem;
-     margin-top: 1rem;
+     margin-top: 10rem;
      height: 3rem;
      border-radius: 10px;
      margin-bottom: 1rem;
@@ -139,13 +140,9 @@ $color-secondary: 	#3bb78f;
         font-size: 250%;
         padding: 1rem 1rem 0 0 ;
         color: $color-primary;
-        
-        
         &:hover{
           cursor: pointer;
-          
         }
-        
     }
 }
 
@@ -155,8 +152,9 @@ $color-secondary: 	#3bb78f;
      width: 700px;
      border-radius: 20px;
      img{
-         max-width: 700px;
-         border: 1px solid rgb(41, 39, 39);
+         width: 700px;
+         max-height: 500px;
+         object-fit: cover;
          border-top-right-radius: 20px ;
          border-top-left-radius: 20px;
      }
