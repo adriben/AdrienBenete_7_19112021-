@@ -63,7 +63,7 @@ exports.deletePost  = async (req, res) => {
    
         db.Post.destroy({
             where: {
-                id:req.body.id
+                id:req.params.id
             }
         })
    

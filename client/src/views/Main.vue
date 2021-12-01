@@ -38,6 +38,12 @@
                          <i class="far fa-heart"></i>
 
                      </div>
+
+                     {{ post.User.userId }}
+                     <div v-if="this.$store.state.user.userId === post.User.id" class="personal-icone">
+                       <Delete-button :postId="post.id"></Delete-button>
+
+                     </div>
                      
                      </div>
                      </li>
@@ -58,12 +64,14 @@
 import  TheHeader  from '../components/TheHeader.vue';
 import { mapState } from 'vuex';
 import moment from 'moment';
+import DeleteButton from '../components/DeleteButton.vue'
 
 // import Suggestion from '../components/Suggestion.vue'
 
 export default {
     components: {
       "TheHeader": TheHeader,
+      "DeleteButton": DeleteButton
     //   "Suggestion": Suggestion
     },
     mounted: async function (){
@@ -81,6 +89,7 @@ export default {
         return{
             posts: [],
             newPost: '',
+            postId: 0,
             moment: moment
         }
     },

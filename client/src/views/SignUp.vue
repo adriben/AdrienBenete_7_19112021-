@@ -2,7 +2,7 @@
   <div class="first-page">
     <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <h1>Welcome to Groupamia</h1>
+    <h1>Welcome to Groupomania</h1>
     <p>Sign-up</p>
       <form>
       <input type="email" placeholder="Email address" v-model="email">
