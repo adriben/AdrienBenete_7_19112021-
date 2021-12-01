@@ -35,7 +35,7 @@
                     
                      <div class="icones">
                          <i class="far fa-comment-dots"></i>
-                         <i class="far fa-heart"></i>
+                         <Like-button :postId="post.id"></Like-button><span>{{ post.like}}</span>
 
                      </div>
 
@@ -64,14 +64,16 @@
 import  TheHeader  from '../components/TheHeader.vue';
 import { mapState } from 'vuex';
 import moment from 'moment';
-import DeleteButton from '../components/DeleteButton.vue'
+import DeleteButton from '../components/DeleteButton.vue';
+import LikeButton from '../components/LikeButton.vue'
 
 // import Suggestion from '../components/Suggestion.vue'
 
 export default {
     components: {
       "TheHeader": TheHeader,
-      "DeleteButton": DeleteButton
+      "DeleteButton": DeleteButton,
+      "LikeButton": LikeButton,
     //   "Suggestion": Suggestion
     },
     mounted: async function (){

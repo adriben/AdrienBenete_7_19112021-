@@ -13,6 +13,11 @@ module.exports = (sequelize, DataTypes) => {
     username: DataTypes.STRING(100),
     image: {
       type: DataTypes.STRING(500)
+  },
+  like:{
+    type: DataTypes.INTEGER(11),
+    allowNull: false,
+    defaultValue: 0
   }
 })
 
