@@ -3,21 +3,21 @@
     "username": "root",
     "password": "mysqlwebdopenclassroom17",
     "database": "socialnetwork",
-    "host": "localhost",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
     "password": "mysqlwebdopenclassroom17",
     "database": "socialnetwork",
-    "host": "localhost",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
     "password": "mysqlwebdopenclassroom17",
-    "database": "socialnetwork",
-    "host": "localhost",
+    "database": "database_production",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   }
 }

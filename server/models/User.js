@@ -1,40 +1,42 @@
-const Sequelize = require('sequelize');
-const db = require('../database/connection')
+module.exports = (sequelize, DataTypes) =>{
 
-
-const User = db.define("User", {
-    id: {
-    type: Sequelize.INTEGER(11),
-    allowNull: false,
-    autoIncrement: true,
-    primaryKey: true,
-    },
-    username: {
-        type: Sequelize.STRING(50),
+    const User = sequelize.define("User", {
+        id: {
+        type: DataTypes.INTEGER(11),
         allowNull: false,
-        unique: true
-    },
-    email:{
-        type: Sequelize.STRING(50),
-        allowNull: false,
-        unique: true
-    },
-    password:{
-        type: Sequelize.STRING(100),
-        allowNull: false
-    },
-    image: {
-        type: Sequelize.STRING(500)
+        autoIncrement: true,
+        primaryKey: true,
+        },
+        username: {
+            type: DataTypes.STRING(50),
+            allowNull: false,
+            unique: true
+        },
+        email:{
+            type: DataTypes.STRING(50),
+            allowNull: false,
+            unique: true
+        },
+        password:{
+            type: DataTypes.STRING(100),
+            allowNull: false
+        },
+        image: {
+            type: DataTypes.STRING(500)
+        }
+        
     }
+    )
     
+    User.associate = models =>{
+        User.hasMany(models.Post, {
+            onDelete: "cascade"
+        })
+    }
+        
+    
+    User.sync().then(() => {
+      console.log('User table created');
+    });
+return User
 }
-)
-User.associate = models => {
-    User.hasMany(models.Post, {
-        onDelete: "cascade"
-    })
-}
-User.sync().then(() => {
-  console.log('User table created');
-});
-module.exports = User;

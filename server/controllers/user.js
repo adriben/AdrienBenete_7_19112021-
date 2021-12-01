@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
-const db = require('../database/connection')
+const db = require('../models')
 
 
 
@@ -9,7 +9,7 @@ const db = require('../database/connection')
 exports.signup = async (req, res) => {
   const salt = await bcrypt.genSalt(10)
 
-       const user = await User.create({
+       const user = await db.User.create({
         username: req.body.username,
         email: req.body.email,
         password: await bcrypt.hash(req.body.password, salt)
@@ -21,7 +21,7 @@ exports.signup = async (req, res) => {
 
 //USER LOGIN
 exports.login = (req, res) => {
-  User.findOne({
+  db.User.findOne({
     where: {
       username: req.body.username
     }
@@ -61,7 +61,7 @@ exports.changeInfo= (req, res) => {
   const userId = req.body.userId
   const imageUrl =`${req.protocol}://${req.get('host')}/images/${req.file.filename}`
   console.log(imageUrl); 
-  User.update(
+  db.User.update(
     
     { image: imageUrl },
     { where: { id: userId } })
@@ -71,6 +71,8 @@ exports.changeInfo= (req, res) => {
 
 
 exports.getall = async (req, res) => {
-  const users = await User.findAll();
+  const users = await db.User.findAll({
+    include: [db.Post]
+  });
  res.send({ users })
 }

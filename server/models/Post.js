@@ -1,32 +1,30 @@
-const Sequelize = require('sequelize');
-const db = require('../database/connection')
 
+module.exports = (sequelize, DataTypes) => {
 
-
-const Post = db.define('Post',{
+  const Post = sequelize.define('Post',{
     id: {
-    type: Sequelize.INTEGER(11),
+    type: DataTypes.INTEGER(11),
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
     },
-    content: Sequelize.STRING(500),
-    userId: Sequelize.INTEGER(11),
-    username: Sequelize.STRING(100),
+    content: DataTypes.STRING(500),
+    userId: DataTypes.INTEGER(11),
+    username: DataTypes.STRING(100),
     image: {
-      type: Sequelize.STRING(500)
+      type: DataTypes.STRING(500)
   }
 })
 
-Post.associate = models => {
-  Post.belongsTo(models.User, {
-    foreignKey: {
-      allowNull: false
-    }
-  })
+Post.associate = models =>{
+    Post.belongsTo(models.User)
 }
+
 
 Post.sync().then(() => {
   console.log('Post table created');
 });
-module.exports = Post;
+
+return Post
+}
+

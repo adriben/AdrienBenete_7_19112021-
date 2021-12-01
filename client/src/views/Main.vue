@@ -23,7 +23,14 @@
          <div>
             <br><br>
              <ul>
-                 <li v-for="post in posts.slice().reverse()" :key="post.content" class="post"><div>
+                 <li v-for="post in posts.slice().reverse()" :key="post.content" class="post">
+                     <div>
+                         <div class="author">
+                             <div class="author-info">
+                      <img v-if="post.User.image" :src="post.User.image" alt="profile picture" class="profile-pic"><h3> By <span class="user-signature">{{ post.User.username}}</span></h3>
+                        </div>
+                        <p class="date">{{ moment(post.createdAt).fromNow() }}</p>
+                         </div>
                      <img v-if="post.image" :src="post.image" alt=""><p>{{ post.content }} </p>
                     
                      <div class="icones">
@@ -32,7 +39,7 @@
 
                      </div>
                      
-                     </div><p class="signature">By <span class="user-signature">{{ post.username }}</span></p>
+                     </div>
                      </li>
              </ul>
          </div>
@@ -50,6 +57,8 @@
 <script>
 import  TheHeader  from '../components/TheHeader.vue';
 import { mapState } from 'vuex';
+import moment from 'moment';
+
 // import Suggestion from '../components/Suggestion.vue'
 
 export default {
@@ -71,11 +80,13 @@ export default {
     data(){
         return{
             posts: [],
-            newPost: ''
+            newPost: '',
+            moment: moment
         }
     },
     computed: {
         ...mapState(['user']),
+        
     }, 
     methods: {
          getPosts: async function(){
@@ -155,9 +166,8 @@ $color-secondary: 	#3bb78f;
          width: 700px;
          max-height: 500px;
          object-fit: cover;
-         border-top-right-radius: 20px ;
-         border-top-left-radius: 20px;
      }
+     
  }
  .post{
      padding-bottom: 3rem;
@@ -184,6 +194,28 @@ $color-secondary: 	#3bb78f;
      float: right;
      padding-right: 1rem;
  }
+ .author{
+     display: flex;
+     justify-content: space-between;
+    .author-info{
+        display: flex;
+        h3{
+            padding: 1rem;
+        }
+    }
+    .date{
+        font-weight: lighter;
+        padding: 1rem;
+        font-style: italic;
+        font-size: 80%;
+    }
+ }
+ 
+ .profile-pic{
+         width: 80px;
+         border-radius: 60px;
+         padding: .5rem;
+     }
  .user-signature{
      color: $color-primary;
      padding-bottom: 2rem;
@@ -192,3 +224,4 @@ $color-secondary: 	#3bb78f;
 }
 
 </style>
+
