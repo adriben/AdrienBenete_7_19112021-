@@ -80,7 +80,7 @@ background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);
                 
                width: 5.5rem;
                margin-top: 0;
-               border-radius: 40px;
+               border-radius: 60px;
             }
         }
     }

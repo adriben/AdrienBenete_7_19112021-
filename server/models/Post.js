@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     image: {
       type: DataTypes.STRING(500)
   },
-  like:{
+  likes:{
     type: DataTypes.INTEGER(11),
     allowNull: false,
     defaultValue: 0
@@ -23,6 +23,9 @@ module.exports = (sequelize, DataTypes) => {
 
 Post.associate = models =>{
     Post.belongsTo(models.User)
+    Post.hasMany(models.Like, {
+      onDelete: "cascade"
+  })
 }
 
 

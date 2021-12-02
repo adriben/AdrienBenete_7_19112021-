@@ -69,8 +69,18 @@ export default createStore({
     .catch(err => {
       console.log(err)})
     
-   }
-   
+   },
+   likePost: async ({ commit }, likeInfos) => {
+   commit;
+   console.log(likeInfos);
+
+   await instance.post(`http://localhost:5000/api/posts/${likeInfos.postId}/likes`, likeInfos )
+   .then((response) => {
+    response.data.bpi
+  })
+  .catch(err => {
+    console.log(err)})
+  }
    
   },
   modules: {

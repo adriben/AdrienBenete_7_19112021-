@@ -20,6 +20,10 @@
          
          </form>
 
+   <ul>
+  <li v-for="like in likes" :key="like.id">{{ like }}</li>
+</ul>
+
          <div>
             <br><br>
              <ul>
@@ -35,7 +39,7 @@
                     
                      <div class="icones">
                          <i class="far fa-comment-dots"></i>
-                         <Like-button :postId="post.id"></Like-button><span>{{ post.like}}</span>
+                         <Like-button :postId="post.id"></Like-button><span class="like-number">{{ post.likes }}</span>
 
                      </div>
 
@@ -92,7 +96,8 @@ export default {
             posts: [],
             newPost: '',
             postId: 0,
-            moment: moment
+            moment: moment,
+            likes: []
         }
     },
     computed: {
@@ -100,9 +105,10 @@ export default {
         
     }, 
     methods: {
+        
          getPosts: async function(){
              
-            return fetch ("http://localhost:5000/api/posts") 
+            await fetch ("http://localhost:5000/api/posts") 
             .then((responsehttp) => {
       return responsehttp.json();
     })
@@ -110,7 +116,12 @@ export default {
         console.log(data.posts);
         
         this.posts = data.posts
+        
+        
+        
     })
+    .then(() => {
+        console.log(this.posts.Likes)})
     .catch((err) => {
       console.log(err)
     });
@@ -197,7 +208,13 @@ $color-secondary: 	#3bb78f;
           cursor: pointer;
           
         }
+        
 
+        }
+        .like-number{
+            padding-top: 1.5rem;
+            margin-left: -0.9rem;
+            font-size: 75%;
         }
      }
  }

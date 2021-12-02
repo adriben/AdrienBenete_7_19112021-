@@ -4,6 +4,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const userRoutes = require('./routes/user');
 const postRoutes = require('./routes/post');
+const likeRoutes = require('./routes/like')
 // const commentRoutes = require('./routes/comment')
 const db = require('./models')
 const app = express();
@@ -26,7 +27,8 @@ db.sequelize
 //ROUTES
 app.use('/api/user', userRoutes);
 app.use('/api/posts', postRoutes);
-// app.use('/api/comment', commentRoutes);
+app.use('/api/posts', likeRoutes);
+
 
 module.exports = app;
 

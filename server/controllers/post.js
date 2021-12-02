@@ -1,4 +1,6 @@
-const db = require('../models')
+const { Model } = require('sequelize/dist');
+const db = require('../models');
+const User = require('../models/User');
 
 
 
@@ -13,14 +15,14 @@ exports.create = async (req, res) => {
         userId: req.body.userId, 
         username: req.body.username,
         image: imageUrl, 
-        like: 0
+        likes: 0
     })
     } else{
      await db.Post.create({
         content: req.body.content,
         userId: req.body.userId, 
         username: req.body.username,
-        like: 0
+        likes: 0,
     })
     } try{
          res.status(201).json({ message: "post successfully created"})
@@ -33,8 +35,9 @@ exports.create = async (req, res) => {
 };
 
 exports.showAllPosts = async (req, res) => {
+    
     db.Post.findAll({
-        include: [db.User]
+        include: [db.Like, db.User]
       })
     .then((posts) => res.status(200).json({ posts }))
     .catch(err => res.status(400).json({ err }))
@@ -73,14 +76,5 @@ exports.deletePost  = async (req, res) => {
     .catch(err => res.status(400).json({ err }))
 }
 
-exports.likePost = async (req, res) => {
-    console.log('hello');
 
-    db.Post.increment(
-        { like: 1},
-        { where: { id:req.params.id } }
-    )
-        .then(() => res.status(200).json({ message: 'post successfully liked'}))
-    .catch(err => res.status(400).json({ err }))
-}
 
