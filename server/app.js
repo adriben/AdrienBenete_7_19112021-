@@ -27,7 +27,7 @@ db.sequelize
 //ROUTES
 app.use('/api/user', userRoutes);
 app.use('/api/posts', postRoutes);
-app.use('/api/posts', likeRoutes);
+app.use('/api', likeRoutes);
 
 
 module.exports = app;

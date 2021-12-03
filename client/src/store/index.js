@@ -13,7 +13,8 @@ export default createStore({
       username: '',
       token:'',
       imageProfile: ''
-    }
+    },
+    postsLikedByUser: []
   },
   mutations: {
     setStatus: function(state, status) {
@@ -24,6 +25,9 @@ export default createStore({
       state.user.userId = user.id
       state.user.username = user.username
       state.user.imageProfile = user.imageUrl
+    },
+    addLikes: function (state, likes){
+      state.postsLikedByUser = likes
     }
   },
   actions: {
@@ -43,12 +47,14 @@ export default createStore({
      commit('setStatus', 'loading')
       await instance.post("/user/login", userInfos)
      .then((response) => {
+       
        commit('setStatus', 'connected' )
        commit('logUser', response.data)
       
       response.data.bpi
      })
      .catch(err => {
+      this.$router.push('/main');
       commit('setStatus', 'error_login' ) 
       console.log(err)})
    },
@@ -72,7 +78,6 @@ export default createStore({
    },
    likePost: async ({ commit }, likeInfos) => {
    commit;
-   console.log(likeInfos);
 
    await instance.post(`http://localhost:5000/api/posts/${likeInfos.postId}/likes`, likeInfos )
    .then((response) => {
@@ -80,6 +85,17 @@ export default createStore({
   })
   .catch(err => {
     console.log(err)})
+  },
+  getLikesByUser: async({ commit }, userInfos) =>{
+    commit;
+    await instance.get(`http://localhost:5000/api/likes/${userInfos.userId}`)
+    .then((response) => {
+      console.log(response.data.data);
+      commit('addLikes', response.data.data )
+      response.data.bpi; 
+    })
+    .catch(err => {
+      console.log(err)})
   }
    
   },

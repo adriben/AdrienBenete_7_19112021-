@@ -1,7 +1,15 @@
 <template>
 
+<i  @click="likePost(); checkIfLiked()" class="far fa-heart"></i>
 
-    <i @click="likePost" class="far fa-heart"></i>
+
+    
+
+
+
+
+    
+    
     
    
 </template>
@@ -16,24 +24,59 @@ export default{
         postId: Number,
         Likes: Number
     },
-    computed: {
-         ...mapState(['user'])
+    data(){
+        return{
+            posts: this.$parent.posts,
+        }
     },
+    computed: {
+         ...mapState(['user']),
+    },
+    
+    mounted: async function (){
+       this.getLikesByUser()
+        
+        
+         },
     methods: {
     likePost: async function(){
        this.$store.dispatch('likePost',{
         userId: this.$store.state.user.userId,
-        postId: this.postId
-        
+        postId: this.postId 
       }).then(() => {
+           this.getPosts()
+           this.getLikesByUser()
+          this.checkIfLiked()
         
-        this.getPosts()
+         
+         
+         
+         
+
+    
         
     })
-        },
-        getPosts(){
+     },
+     getLikesByUser: async function(){
+
+         this.$store.dispatch('getLikesByUser', {
+             userId: this.$store.state.user.userId
+         })
+          
+     },
+     getPosts(){
             this.$parent.getPosts()
-        }
+        },
+        checkIfLiked(){
+            this.$parent.checkIfLiked()
+        },
+
+    getPostLiked(){
+        
+            
+    }
+
+    
     }
 }
 </script>

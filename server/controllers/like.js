@@ -41,14 +41,17 @@ exports.likePost = async (req, res) => {
         .catch(err => res.status(400).json({ err }))    
                 
     }
-//   else{
-//    
-//     
-//   }try{
-//     res.status(201).json({ message: "post successfully created"})
-
-// } catch{
-//    err => res.status(400).json({ err })
-
-// }
 }
+
+exports.getallLikes = async (req, res) => {
+    console.log('You are in like section' + req.params.userId);
+    db.Like.findAll({
+        where: {
+            
+            userId: req.params.userId
+        }
+    })
+    .then((data) => res.status(200).json({ data }))
+    .catch(err => res.status(400).json({ err }))    
+
+  }

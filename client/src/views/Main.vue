@@ -15,17 +15,11 @@
        </label>
        <br>
          <input type="submit" @click="postPost" class="btn-submit" >
-         
-      
-         
          </form>
-
-   <ul>
-  <li v-for="like in likes" :key="like.id">{{ like }}</li>
-</ul>
-
+ 
          <div>
             <br><br>
+        
              <ul>
                  <li v-for="post in posts.slice().reverse()" :key="post.content" class="post">
                      <div>
@@ -39,7 +33,9 @@
                     
                      <div class="icones">
                          <i class="far fa-comment-dots"></i>
-                         <Like-button :postId="post.id"></Like-button><span class="like-number">{{ post.likes }}</span>
+                         <Like-button v-if="Object.values(this.alreadyLiked).includes(post.id)" :postId="post.id" class="red" @click="checkIfLiked"></Like-button>
+                         <Like-button v-else :postId="post.id"></Like-button>
+                         <span class="like-number">{{ post.likes }}</span>
 
                      </div>
 
@@ -52,15 +48,13 @@
                      </div>
                      </li>
              </ul>
+             
          </div>
 
       </div>
      </section>
      
     </div>
-        
-
-  
     
 </template>
 
@@ -82,13 +76,12 @@ export default {
     },
     mounted: async function (){
         this.getPosts()
+        this.checkIfLiked()   
         
          if(this.$store.state.user.userId === -1){
             this.$router.push('/');
            return
          }
-        
-
     },
     
     data(){
@@ -97,31 +90,27 @@ export default {
             newPost: '',
             postId: 0,
             moment: moment,
-            likes: []
+            postLiked: this.$store.state.postsLikedByUser,
+            alreadyLiked: []
+            
         }
     },
     computed: {
-        ...mapState(['user']),
+        ...mapState(['user', "postsLikedByUser"]),
         
     }, 
     methods: {
         
-         getPosts: async function(){
-             
+         getPosts: async function(){    
             await fetch ("http://localhost:5000/api/posts") 
             .then((responsehttp) => {
       return responsehttp.json();
     })
     .then((data) => {
-        console.log(data.posts);
-        
-        this.posts = data.posts
-        
-        
+        console.log(data.posts);   
+        this.posts = data.posts 
         
     })
-    .then(() => {
-        console.log(this.posts.Likes)})
     .catch((err) => {
       console.log(err)
     });
@@ -143,7 +132,18 @@ export default {
   });
      this.newPost = '';
      this.getPosts()
-     }
+     },
+     checkIfLiked: async function(){
+       
+             for(let i = 0; i< this.postLiked.length; i++ ){
+             this.alreadyLiked.push(this.postLiked[i].postId)
+         }
+         this.getPosts()
+         
+         
+         
+         
+     },
          }
 }
 </script>
@@ -207,9 +207,7 @@ $color-secondary: 	#3bb78f;
             &:hover{
           cursor: pointer;
           
-        }
-        
-
+        } 
         }
         .like-number{
             padding-top: 1.5rem;
@@ -238,7 +236,6 @@ $color-secondary: 	#3bb78f;
         font-size: 80%;
     }
  }
- 
  .profile-pic{
          width: 80px;
          border-radius: 60px;
@@ -246,10 +243,14 @@ $color-secondary: 	#3bb78f;
      }
  .user-signature{
      color: $color-primary;
-     padding-bottom: 2rem;
-    
+     padding-bottom: 2rem;   
+ }
+ .red{
+     background-color: red;
+ }
+ .white{
+     background-color: white;
  }
 }
-
 </style>
 
