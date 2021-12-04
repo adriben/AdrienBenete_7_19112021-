@@ -28,6 +28,9 @@ export default createStore({
     },
     addLikes: function (state, likes){
       state.postsLikedByUser = likes
+    },
+    clearLikes: function(state){
+      state.postsLikedByUser = []
     }
   },
   actions: {
@@ -77,7 +80,7 @@ export default createStore({
     
    },
    likePost: async ({ commit }, likeInfos) => {
-   commit;
+    commit('clearLikes');
 
    await instance.post(`http://localhost:5000/api/posts/${likeInfos.postId}/likes`, likeInfos )
    .then((response) => {
@@ -87,10 +90,10 @@ export default createStore({
     console.log(err)})
   },
   getLikesByUser: async({ commit }, userInfos) =>{
-    commit;
+    
+    commit('clearLikes');
     await instance.get(`http://localhost:5000/api/likes/${userInfos.userId}`)
     .then((response) => {
-      console.log(response.data.data);
       commit('addLikes', response.data.data )
       response.data.bpi; 
     })

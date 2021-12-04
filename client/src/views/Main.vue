@@ -33,8 +33,8 @@
                     
                      <div class="icones">
                          <i class="far fa-comment-dots"></i>
-                         <Like-button v-if="Object.values(this.alreadyLiked).includes(post.id)" :postId="post.id" class="red" @click="checkIfLiked"></Like-button>
-                         <Like-button v-else :postId="post.id"></Like-button>
+                         <Like-button v-if="Object.values(this.alreadyLiked).includes(post.id)" :postId="post.id" class="red far fas" @click="e => e.target.classList.toggle('red')"></Like-button>
+                         <Like-button v-else :postId="post.id" class="fas far" @click="e => e.target.classList.toggle('red', 'fas')"></Like-button>
                          <span class="like-number">{{ post.likes }}</span>
 
                      </div>
@@ -47,6 +47,11 @@
                      
                      </div>
                      </li>
+             </ul>
+             <ul>
+                 <li v-for="like in posts.Likes" :key="like.id">
+                  {{ like.id}}
+                 </li>
              </ul>
              
          </div>
@@ -76,7 +81,6 @@ export default {
     },
     mounted: async function (){
         this.getPosts()
-        this.checkIfLiked()   
         
          if(this.$store.state.user.userId === -1){
             this.$router.push('/');
@@ -91,14 +95,14 @@ export default {
             postId: 0,
             moment: moment,
             postLiked: this.$store.state.postsLikedByUser,
-            alreadyLiked: []
+            alreadyLiked: [],
             
         }
     },
     computed: {
-        ...mapState(['user', "postsLikedByUser"]),
-        
-    }, 
+        ...mapState(['user']), 
+    }
+    ,
     methods: {
         
          getPosts: async function(){    
@@ -134,16 +138,14 @@ export default {
      this.getPosts()
      },
      checkIfLiked: async function(){
-       
-             for(let i = 0; i< this.postLiked.length; i++ ){
+              for(let i = 0; i< this.postLiked.length; i++ ){
              this.alreadyLiked.push(this.postLiked[i].postId)
-         }
-         this.getPosts()
+         } 
+         this.postLiked = []
+console.log(this.alreadyLiked);
+   
          
-         
-         
-         
-     },
+     }
          }
 }
 </script>
@@ -246,7 +248,7 @@ $color-secondary: 	#3bb78f;
      padding-bottom: 2rem;   
  }
  .red{
-     background-color: red;
+    color: red;
  }
  .white{
      background-color: white;

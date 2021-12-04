@@ -1,16 +1,9 @@
 <template>
 
-<i  @click="likePost(); checkIfLiked()" class="far fa-heart"></i>
-
-
-    
+<i @click="likePost()" class=" fa-heart"></i>
 
 
 
-
-    
-    
-    
    
 </template>
 
@@ -27,6 +20,7 @@ export default{
     data(){
         return{
             posts: this.$parent.posts,
+            alreadyLiked: this.$parent.alreadyLiked,
         }
     },
     computed: {
@@ -35,8 +29,10 @@ export default{
     
     mounted: async function (){
        this.getLikesByUser()
-        
-        
+       setTimeout(() => {
+           this.checkIfLiked()  
+       }, 400);
+       
          },
     methods: {
     likePost: async function(){
@@ -44,17 +40,9 @@ export default{
         userId: this.$store.state.user.userId,
         postId: this.postId 
       }).then(() => {
+          this.getLikesByUser()
            this.getPosts()
-           this.getLikesByUser()
-          this.checkIfLiked()
-        
-         
-         
-         
-         
-
-    
-        
+          
     })
      },
      getLikesByUser: async function(){
@@ -62,6 +50,8 @@ export default{
          this.$store.dispatch('getLikesByUser', {
              userId: this.$store.state.user.userId
          })
+            
+      
           
      },
      getPosts(){
@@ -69,18 +59,13 @@ export default{
         },
         checkIfLiked(){
             this.$parent.checkIfLiked()
-        },
-
-    getPostLiked(){
-        
-            
-    }
-
-    
+        }
     }
 }
 </script>
 
 <style scoped>
-
+.far{
+    font-weight: lighter;
+}
 </style>
