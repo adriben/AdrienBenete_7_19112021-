@@ -31,7 +31,7 @@ export default{
        this.getLikesByUser()
        setTimeout(() => {
            this.checkIfLiked()  
-       }, 400);
+       }, 900);
        
          },
     methods: {

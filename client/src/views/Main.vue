@@ -32,7 +32,7 @@
                      <img v-if="post.image" :src="post.image" alt=""><p>{{ post.content }} </p>
                     
                      <div class="icones">
-                         <i class="far fa-comment-dots"></i>
+                         <i class="far fa-comment-dots"  @click="() => isHidden = !isHidden"></i>
                          <Like-button v-if="Object.values(this.alreadyLiked).includes(post.id)" :postId="post.id" class="red far fas" @click="e => e.target.classList.toggle('red')"></Like-button>
                          <Like-button v-else :postId="post.id" class="fas far" @click="e => e.target.classList.toggle('red', 'fas')"></Like-button>
                          <span class="like-number">{{ post.likes }}</span>
@@ -44,14 +44,14 @@
                        <Delete-button :postId="post.id"></Delete-button>
 
                      </div>
+                    
                      
                      </div>
+                     <div class="comment" v-show="!isHidden">
+                       <Comment :postId="post.id"></Comment>
+                     </div>
+                     
                      </li>
-             </ul>
-             <ul>
-                 <li v-for="like in posts.Likes" :key="like.id">
-                  {{ like.id}}
-                 </li>
              </ul>
              
          </div>
@@ -69,7 +69,7 @@ import { mapState } from 'vuex';
 import moment from 'moment';
 import DeleteButton from '../components/DeleteButton.vue';
 import LikeButton from '../components/LikeButton.vue'
-
+import Comment from '../components/Comment.vue'
 // import Suggestion from '../components/Suggestion.vue'
 
 export default {
@@ -77,6 +77,7 @@ export default {
       "TheHeader": TheHeader,
       "DeleteButton": DeleteButton,
       "LikeButton": LikeButton,
+      "Comment": Comment
     //   "Suggestion": Suggestion
     },
     mounted: async function (){
@@ -96,6 +97,7 @@ export default {
             moment: moment,
             postLiked: this.$store.state.postsLikedByUser,
             alreadyLiked: [],
+            isHidden: true
             
         }
     },
@@ -143,8 +145,6 @@ export default {
          } 
          this.postLiked = []
 console.log(this.alreadyLiked);
-   
-         
      }
          }
 }
@@ -253,6 +253,19 @@ $color-secondary: 	#3bb78f;
  .white{
      background-color: white;
  }
+
+ .comment{
+     border: 1px solid $color-primary;
+     margin-top: 3rem;
+     
+     
+
+     
+ }
+ .ishidden{
+   display: none;
+ }
+ 
 }
 </style>
 

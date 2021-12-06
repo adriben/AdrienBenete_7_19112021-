@@ -99,6 +99,10 @@ export default createStore({
     })
     .catch(err => {
       console.log(err)})
+  },
+  postComment: async({ commit }, commentInfos) => {
+    commit;
+    await instance.post(`http://localhost:5000/api/posts/${commentInfos.postId}/comment`, commentInfos)
   }
    
   },

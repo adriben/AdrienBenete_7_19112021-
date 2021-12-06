@@ -1,10 +1,9 @@
-const Comment = require('../models/Comment');
-const db = require('../database/connection')
+const db = require('../models')
 
 
-exports.create = async (req, res) => {
+exports.createComment = async (req, res) => {
 
-   const newComment =  await Comment.create({
+   const newComment =  await db.Comment.create({
         content: req.body.content,
         userId: req.body.userId
     })
