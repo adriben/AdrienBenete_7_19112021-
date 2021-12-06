@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       content: DataTypes.STRING(500),
       userId: DataTypes.INTEGER(11),
+      postId: DataTypes.INTEGER(11)
     
   })
   

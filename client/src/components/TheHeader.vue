@@ -39,9 +39,11 @@ export default{
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 header{
      position: fixed;
+     z-index: 1;
+    
   
 background-color: #3bb78f;
 background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);

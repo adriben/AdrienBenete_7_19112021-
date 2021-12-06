@@ -32,14 +32,18 @@
                      <img v-if="post.image" :src="post.image" alt=""><p>{{ post.content }} </p>
                     
                      <div class="icones">
-                         <i class="far fa-comment-dots"  @click="() => isHidden = !isHidden"></i>
+                         <div class="comment" >
+                       <Comment :postId="post.id"></Comment>
+                       <span class="comment-number">{{ post.comments }}</span>
+                     </div>
+    
                          <Like-button v-if="Object.values(this.alreadyLiked).includes(post.id)" :postId="post.id" class="red far fas" @click="e => e.target.classList.toggle('red')"></Like-button>
                          <Like-button v-else :postId="post.id" class="fas far" @click="e => e.target.classList.toggle('red', 'fas')"></Like-button>
                          <span class="like-number">{{ post.likes }}</span>
 
                      </div>
 
-                     {{ post.User.userId }}
+                     
                      <div v-if="this.$store.state.user.userId === post.User.id" class="personal-icone">
                        <Delete-button :postId="post.id"></Delete-button>
 
@@ -47,9 +51,7 @@
                     
                      
                      </div>
-                     <div class="comment" v-show="!isHidden">
-                       <Comment :postId="post.id"></Comment>
-                     </div>
+                     
                      
                      </li>
              </ul>
@@ -145,7 +147,10 @@ export default {
          } 
          this.postLiked = []
 console.log(this.alreadyLiked);
-     }
+     },
+     getComments () {
+      this.$Comment.getComments();
+    }
          }
 }
 </script>
@@ -200,9 +205,11 @@ $color-secondary: 	#3bb78f;
      margin-top: 1.5rem;
      background-color: white ;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+   
      .icones{
          display: flex;
          justify-content: center;
+         position: relative;
         i{
             padding: 1rem;
             font-size: 150%;
@@ -215,6 +222,16 @@ $color-secondary: 	#3bb78f;
             padding-top: 1.5rem;
             margin-left: -0.9rem;
             font-size: 75%;
+            position: absolute;
+            right: 280px;
+        }
+        .comment-number{
+           padding-top: 1.5rem;
+            margin-left: -0.9rem;
+            font-size: 75%;
+            position: absolute;
+            left: 305px;
+            top: 2px;
         }
      }
  }
@@ -255,8 +272,8 @@ $color-secondary: 	#3bb78f;
  }
 
  .comment{
-     border: 1px solid $color-primary;
      margin-top: 3rem;
+    background: rgba(255, 255, 255, 0.103);
      
      
 

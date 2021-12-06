@@ -14,7 +14,8 @@ export default createStore({
       token:'',
       imageProfile: ''
     },
-    postsLikedByUser: []
+    postsLikedByUser: [],
+    commentFromPost: []
   },
   mutations: {
     setStatus: function(state, status) {
@@ -31,7 +32,11 @@ export default createStore({
     },
     clearLikes: function(state){
       state.postsLikedByUser = []
+    },
+    showComments: function(state, comments){
+      state.commentFromPost = comments
     }
+    
   },
   actions: {
     createAccount: async ({ commit }, userInfos) => {
@@ -94,7 +99,8 @@ export default createStore({
     commit('clearLikes');
     await instance.get(`http://localhost:5000/api/likes/${userInfos.userId}`)
     .then((response) => {
-      commit('addLikes', response.data.data )
+
+      commit('addLikes', response.data.data)
       response.data.bpi; 
     })
     .catch(err => {
@@ -103,10 +109,12 @@ export default createStore({
   postComment: async({ commit }, commentInfos) => {
     commit;
     await instance.post(`http://localhost:5000/api/posts/${commentInfos.postId}/comment`, commentInfos)
-  }
+  },
+  
    
   },
-  modules: {
+  
+    modules: {
   }
 })
 

@@ -67,5 +67,9 @@ export default{
 <style scoped>
 .far{
     font-weight: lighter;
+    position: absolute;
+    top: 0px;
+    right: 270px;
 }
+
 </style>
