@@ -37,8 +37,7 @@
                        <span class="comment-number">{{ post.comments }}</span>
                      </div>
     
-                         <Like-button v-if="Object.values(this.alreadyLiked).includes(post.id)" :postId="post.id" class="red far fas" @click="e => e.target.classList.toggle('red')"></Like-button>
-                         <Like-button v-else :postId="post.id" class="fas far" @click="e => e.target.classList.toggle('red', 'fas')"></Like-button>
+                         <Like-button :postId="post.id"></Like-button>
                          <span class="like-number">{{ post.likes }}</span>
 
                      </div>
@@ -141,13 +140,7 @@ export default {
      this.newPost = '';
      this.getPosts()
      },
-     checkIfLiked: async function(){
-              for(let i = 0; i< this.postLiked.length; i++ ){
-             this.alreadyLiked.push(this.postLiked[i].postId)
-         } 
-         this.postLiked = []
-console.log(this.alreadyLiked);
-     },
+     
      getComments () {
       this.$Comment.getComments();
     }
@@ -264,12 +257,8 @@ $color-secondary: 	#3bb78f;
      color: $color-primary;
      padding-bottom: 2rem;   
  }
- .red{
-    color: red;
- }
- .white{
-     background-color: white;
- }
+
+
 
  .comment{
      margin-top: 3rem;
@@ -278,9 +267,6 @@ $color-secondary: 	#3bb78f;
      
 
      
- }
- .ishidden{
-   display: none;
  }
  
 }

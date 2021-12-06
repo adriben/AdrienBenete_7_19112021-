@@ -1,8 +1,14 @@
 <template>
 
-<i @click="likePost()" class=" fa-heart"></i>
+<div>
+
+<i  class="fas fa-heart red"  @click="likePost()" v-if="Object.values(this.postLikedByUser).includes(postId)"></i>
 
 
+<i v-else @click="likePost()" class="far fa-heart"></i>
+
+
+</div>
 
    
 </template>
@@ -17,10 +23,13 @@ export default{
         postId: Number,
         Likes: Number
     },
+     
     data(){
         return{
             posts: this.$parent.posts,
             alreadyLiked: this.$parent.alreadyLiked,
+            postLikedByUser: []
+            
         }
     },
     computed: {
@@ -29,9 +38,6 @@ export default{
     
     mounted: async function (){
        this.getLikesByUser()
-       setTimeout(() => {
-           this.checkIfLiked()  
-       }, 900);
        
          },
     methods: {
@@ -42,34 +48,62 @@ export default{
       }).then(() => {
           this.getLikesByUser()
            this.getPosts()
+           console.log(this.postLikedByUser);
           
     })
      },
-     getLikesByUser: async function(){
+    
+    getLikesByUser: async function (){
+    
+    this.postLikedByUser = [];
+    
+    await fetch(`http://localhost:5000/api/likes/${this.$store.state.user.userId}`)
+    .then((response) => {
 
-         this.$store.dispatch('getLikesByUser', {
-             userId: this.$store.state.user.userId
-         })
-            
-      
-          
-     },
+     return response.json()
+    })
+    .then((data) => {
+        data.data.forEach(element => {
+            console.log(element.postId)
+            this.postLikedByUser.push(element.postId)
+        });
+
+    }
+        
+        ).then(()=> console.log(this.postLikedByUser))
+    .catch(err => {
+      console.log(err)})
+  },
      getPosts(){
             this.$parent.getPosts()
-        },
-        checkIfLiked(){
-            this.$parent.checkIfLiked()
         }
     }
 }
 </script>
 
 <style scoped>
+.fas{
+     transition: transform 1s;
+    position: absolute;
+    font-size: 150%;
+    top: 18px;
+    right: 288px;
+    cursor: pointer;
+
+}
 .far{
+     transition: transform 4s;
     font-weight: lighter;
     position: absolute;
-    top: 0px;
-    right: 270px;
+    font-size: 150%;
+    top: 18px;
+    right: 288px;
+    cursor: pointer;
+}
+.red{
+    color: #3bb78f;
+   
+    
 }
 
 </style>

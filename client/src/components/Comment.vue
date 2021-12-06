@@ -1,11 +1,12 @@
 <template>
+<div>
     <div class="comment-div">
         <i class="far fa-comment-dots comment-icone" @click="getComments"></i>
-        <div v-show="commentFromPost" class="comment-section">
+        <div v-if="commentFromPost" class="comment-section">
            <ul>
-               <li v-for="comment in commentFromPost" :key="comment.content" class="comment">
+               <li v-for="comment in commentFromPost.slice().reverse()" :key="comment.content" class="comment">
                     <img v-if="comment.User.image" :src="comment.User.image" alt="profile picture" class="profile-pic"><p>
-                         <span> {{ comment.User.username}}  said:  </span></p>
+                         <span class="signature"> {{ comment.User.username}}:</span></p>
                    <p class="italique">  {{ comment.content }}</p>
                </li>
            </ul>
@@ -16,7 +17,7 @@
            <input type="submit" @click="postComment" class="comment-button">
        </form>
        
-       
+       </div>
     </div>
 </template>
 
@@ -81,12 +82,9 @@ $color-secondary: 	#3bb78f;
 .comment-section{
    width: 700px;
    max-height: 200px;
-   overflow-y: scroll;
-   
-   
-
-  
- 
+   overflow-y: auto;
+   margin-top: 1rem;
+   padding-top: 2rem;
    
 }
 .comment-icone{
@@ -96,16 +94,16 @@ $color-secondary: 	#3bb78f;
     font-size: 150%;
     cursor: pointer;
 }
-.notHidden{
-    display: none;
-}
+
 .comment{
+    width: 600px;
     display: flex;
-    padding: .5rem;
-    margin: 0.3rem 0 0 -1rem;
+    margin: 0.3rem 2rem  ;
     border: 1px solid grey;
     background-color: rgba(177, 174, 174, 0.075);
-
+    .signature{
+        color:  $color-primary;
+    }
      
     
     .italique{
@@ -127,11 +125,13 @@ $color-secondary: 	#3bb78f;
         background: $color-primary;
         border-bottom-right-radius: 10px;
         border-top-right-radius: 10px;
+        height: 1.8rem;
         
 
     }
     .comment-input{
         width: 300px;
+        height: 1.5rem;
     }
     }
     
