@@ -1,27 +1,33 @@
 <template>
 <div>
     <div class="comment-div">
-        <i class="far fa-comment-dots comment-icone" @click="getComments"></i>
-        <div v-if="commentFromPost" class="comment-section">
+        <i class="far fa-comment-dots comment-icone " @click="getComments"></i>
+        
+        <div v-if="(commentFromPost.length >=1)" class="comment-section">
            <ul>
                <li v-for="comment in commentFromPost.slice().reverse()" :key="comment.content" class="comment">
                     <img v-if="comment.User.image" :src="comment.User.image" alt="profile picture" class="profile-pic"><p>
                          <span class="signature"> {{ comment.User.username}}:</span></p>
                    <p class="italique">  {{ comment.content }}</p>
+                   <p class="createdAt">{{ moment(comment.createdAt).fromNow() }}</p>
                </li>
            </ul>
-           
+           <div class="spacer"></div>
+       </div>
        </div>
        <form action="" class="type-comment">
            <input type="text" v-model="this.newComment" placeholder='Type your comment...' class="comment-input">
            <input type="submit" @click="postComment" class="comment-button">
        </form>
        
-       </div>
+       
+       
     </div>
 </template>
 
 <script>
+import moment from 'moment';
+
 export default{
     name: "Comment",
     props: {
@@ -31,7 +37,8 @@ export default{
     data(){
         return{
             newComment: "",
-            commentFromPost: []
+            commentFromPost: [],
+            moment: moment
            
         }
     },
@@ -49,7 +56,7 @@ export default{
     
      },
      getComments: async function(){
-        //  e.target.classList.toggle('notHidden')
+         
         await fetch(`http://localhost:5000/api/posts/${this.postId}/comment`)
         .then((response) => {
         return response.json(); }) 
@@ -65,12 +72,7 @@ export default{
         
      }
      
-   
-         
-     
     }
-
-    
 }
 
 
@@ -84,9 +86,15 @@ $color-secondary: 	#3bb78f;
    max-height: 200px;
    overflow-y: auto;
    margin-top: 1rem;
-   padding-top: 2rem;
+   padding-top: 1rem;
+   border: 1px solid rgba(128, 128, 128, 0.281);
+   box-shadow:  0 0 5px rgba(0,0,0,.05), 2px 2px 5px rgba(0,0,0,.1);;
+   animation: slow-display 300ms ease-out;
+   
    
 }
+
+
 .comment-icone{
     position: absolute;
     top: 18px;
@@ -95,17 +103,26 @@ $color-secondary: 	#3bb78f;
     cursor: pointer;
 }
 
+
 .comment{
-    width: 600px;
+    width: 680px;
+    height: 50px;
     display: flex;
-    margin: 0.3rem 2rem  ;
+    margin: 0rem 0 .6rem -2rem ;
+
     border: 1px solid grey;
-    background-color: rgba(177, 174, 174, 0.075);
+    border-radius: 20px;
+    background: #f3f8eeb4;
+    
+  
     .signature{
         color:  $color-primary;
     }
+    .createdAt{
+        font-size: 70%;
+        padding: .6rem 1.5rem;
+    }
      
-    
     .italique{
         font-style: italic;
         font-weight: lighter;
@@ -116,7 +133,9 @@ $color-secondary: 	#3bb78f;
     .profile-pic {
         width: 50px;
         height: 50px;
-        padding-right: 0.5rem;
+        padding:  0 0.2rem 0 0;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
     }
     .type-comment{
         padding-top: 2rem;
@@ -134,6 +153,19 @@ $color-secondary: 	#3bb78f;
         height: 1.5rem;
     }
     }
+    @keyframes slow-display {  /*Animation de l apparition progressive des menus*/
+    0%{
+        transform: translateY(60px);
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+    }
+   100%{
+       transform: translateY(0);
+       opacity: 1;
+   }   
+  }
     
 
 }

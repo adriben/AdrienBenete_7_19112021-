@@ -42,7 +42,7 @@ export default{
 <style lang="scss">
 header{
      position: fixed;
-     z-index: 1;
+     z-index: 5;
     
   
 background-color: #3bb78f;

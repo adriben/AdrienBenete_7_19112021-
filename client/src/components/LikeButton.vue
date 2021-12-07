@@ -16,6 +16,7 @@
 <script>
 import { mapState } from 'vuex';
 
+
 export default{
     
     name: "LikeButton",
@@ -64,13 +65,12 @@ export default{
     })
     .then((data) => {
         data.data.forEach(element => {
-            console.log(element.postId)
             this.postLikedByUser.push(element.postId)
         });
 
     }
         
-        ).then(()=> console.log(this.postLikedByUser))
+        )
     .catch(err => {
       console.log(err)})
   },
@@ -83,7 +83,7 @@ export default{
 
 <style scoped>
 .fas{
-     transition: transform 1s;
+     animation: slow-appearance 600ms ease-out;
     position: absolute;
     font-size: 150%;
     top: 18px;
@@ -92,7 +92,7 @@ export default{
 
 }
 .far{
-     transition: transform 4s;
+ 
     font-weight: lighter;
     position: absolute;
     font-size: 150%;
@@ -105,5 +105,16 @@ export default{
    
     
 }
+@keyframes slow-appearance {  
+    0%{
+        opacity: 0.2;
+    }
+    50%{
+        opacity: 0.5;
+    }
+   100%{
+       opacity: 1;
+   }   
+  }
 
 </style>

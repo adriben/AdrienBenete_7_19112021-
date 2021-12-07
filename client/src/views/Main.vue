@@ -198,11 +198,13 @@ $color-secondary: 	#3bb78f;
      margin-top: 1.5rem;
      background-color: white ;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  
    
      .icones{
          display: flex;
          justify-content: center;
          position: relative;
+         z-index: 2;
         i{
             padding: 1rem;
             font-size: 150%;
