@@ -64,7 +64,8 @@ exports.changeInfo= (req, res) => {
   db.User.update(
     
     { image: imageUrl },
-    { where: { id: userId } })
+    { where: { id: userId },
+   })
 .then(picture => res.status(200).json({ picture }))
 .catch(err => res.status(400).json({ err }))
 };

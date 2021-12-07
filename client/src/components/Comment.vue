@@ -4,15 +4,18 @@
         <i class="far fa-comment-dots comment-icone " @click="getComments"></i>
         
         <div v-if="(commentFromPost.length >=1)" class="comment-section">
+            <h4>Comments</h4>
            <ul>
                <li v-for="comment in commentFromPost.slice().reverse()" :key="comment.content" class="comment">
                     <img v-if="comment.User.image" :src="comment.User.image" alt="profile picture" class="profile-pic"><p>
                          <span class="signature"> {{ comment.User.username}}:</span></p>
                    <p class="italique">  {{ comment.content }}</p>
                    <p class="createdAt">{{ moment(comment.createdAt).fromNow() }}</p>
+                   <i v-if="this.$store.state.user.userId == comment.User.id" class="far fa-times-circle" @click="deleteComment(comment.id)"></i>
+
                </li>
            </ul>
-           <div class="spacer"></div>
+           
        </div>
        </div>
        <form action="" class="type-comment">
@@ -31,14 +34,14 @@ import moment from 'moment';
 export default{
     name: "Comment",
     props: {
-        postId: Number
+        postId: Number,
        
     },
     data(){
         return{
             newComment: "",
             commentFromPost: [],
-            moment: moment
+            moment: moment,
            
         }
     },
@@ -70,7 +73,29 @@ export default{
     })
              
         
-     }
+     },
+     deleteComment: async function (commentId){
+         
+         console.log(commentId);
+         console.log(this.postId);
+            
+        return fetch (`http://localhost:5000/api/posts/${this.postId}/comment/${commentId}`,
+             {
+             method: "DELETE",
+             body: commentId
+             }) 
+            .then((responsehttp) => {
+      return responsehttp.json();
+    })
+    .then(() => {
+        console.log('Post deleted');
+        this.getPosts()
+        
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+        }
      
     }
 }
@@ -86,12 +111,16 @@ $color-secondary: 	#3bb78f;
    max-height: 200px;
    overflow-y: auto;
    margin-top: 1rem;
-   padding-top: 1rem;
+   padding-top: 0.3rem;
    border: 1px solid rgba(128, 128, 128, 0.281);
    box-shadow:  0 0 5px rgba(0,0,0,.05), 2px 2px 5px rgba(0,0,0,.1);;
    animation: slow-display 300ms ease-out;
    
-   
+   h4{
+       padding-top: 0;
+       margin-top: 0;
+   }
+  
 }
 
 
@@ -105,7 +134,7 @@ $color-secondary: 	#3bb78f;
 
 
 .comment{
-    width: 680px;
+    width: 650px;
     height: 50px;
     display: flex;
     margin: 0rem 0 .6rem -2rem ;
@@ -133,6 +162,7 @@ $color-secondary: 	#3bb78f;
     .profile-pic {
         width: 50px;
         height: 50px;
+        object-fit: cover;
         padding:  0 0.2rem 0 0;
         border-top-left-radius: 20px;
         border-bottom-left-radius: 20px;

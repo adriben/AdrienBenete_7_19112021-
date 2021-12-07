@@ -8,7 +8,7 @@
       <input type="text" placeholder="Username" v-model="username">
       <input type="password" placeholder="Password" v-model="password">
       <button @click="login">Login</button>
-      <!-- <p v-if="status == 'error_login'">Erreur</p> -->
+      <p class="incorrect-password">{{ incorrectInfos }}</p>
 
     </form>
       <router-link to="/signUp" class="link">No account yet? Click here to sign up </router-link>
@@ -32,10 +32,13 @@ export default {
     return{
       username: "",
       password: "",
+      incorrectInfos: ''
     }
   },
+
   methods: {
      login: function(event){
+       
        event.preventDefault()
        this.$store.dispatch('loginAccount',{
         username: this.username, 
@@ -44,11 +47,14 @@ export default {
         
       })
       .then(() => {
-      
-         if(this.$store.state.user.userId  != -1){
+  
+         if(this.$store.state.user.userId  !== -1){
+            
       this.$router.push('/main');
       return
     }
+      }).catch(() => {
+        this.incorrectInfos = 'Invalid username/password'
       })
      }
   }
@@ -94,14 +100,19 @@ export default {
        background-color:	#3bb78f;
        border-radius: 30px;
        height: 2rem;
+       cursor: pointer;
        
      }
     }
 }
+.incorrect-password{
+  color: red;
+  font-size: 90%;
+}
 
 
 .link{
-  padding-top: 4rem;
+  padding-top: 1rem;
 }
 .home-picture{
   img{

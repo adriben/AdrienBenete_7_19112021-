@@ -29,9 +29,9 @@ exports.getComment = async (req, res) => {
 }
 
 exports.deleteComment = async (req, res) => {
-    Comment.destroy({
+    db.Comment.destroy({
         where: {
-            id:req.body.id
+            id: req.params.id
         }
     })
     .then(()=>  res.status(201).json({ message: "comment successfully deleted"}))

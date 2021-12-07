@@ -12,6 +12,7 @@
       <button @click="signIn">Sign-up</button>
 
     </form>
+    <p class="errorMessage">{{ errorMessage }}</p>
       <router-link to="/" class="link">Already an account? Click here to login </router-link>
       </div>
       <div class="home-picture">
@@ -31,17 +32,31 @@ export default {
       email: '',
       username: '',
       password: '',
-      confirmedPassword: ''
+      confirmedPassword: '',
+      errorMessage: ''
     }
   },
   methods: {
     signIn: function(event){
       event.preventDefault();
-      this.$store.dispatch('createAccount',{
+      if (
+        this.username != '' &&
+        this.email != '' &&
+        this.password != '' &&
+        this.confirmedPassword === this.password
+      ) {
+        
+        this.$store.dispatch('createAccount',{
         email: this.email,
         username: this.username, 
         password: this.password
       })
+      } else if(this.confirmedPassword != this.password){
+        this.errorMessage = 'Both password must match'
+      } else{
+        this.errorMessage = 'Please fill up all the fields'
+      }
+      
 
 
     }
@@ -55,6 +70,10 @@ export default {
   grid-template-columns: 1fr 1fr;
 }
 .home{
+  .errorMessage{
+       color: red;
+       font-size: 90%;
+     }
   
   margin-top: 8rem;
   padding-top: 1rem;
@@ -88,6 +107,7 @@ export default {
        height: 2rem;
        
      }
+     
 
     }
 }

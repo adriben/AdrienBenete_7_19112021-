@@ -40,8 +40,6 @@
 
      </form>
      <br>
-     <p>Followers: 0</p>
-     <p>Following: 0</p>
      
      
     
@@ -76,13 +74,9 @@ export default {
 
        this.$store.dispatch('changeInfos',{
         userId: this.$store.state.user.userId,
-        image:document.querySelector('input[type=file]').files[0]
-       
-        
-      }) 
-      
+        image:document.querySelector('input[type=file]').files[0]       
+      })       
      }
-
     }
 }
 </script>

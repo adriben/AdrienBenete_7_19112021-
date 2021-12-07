@@ -5,14 +5,32 @@ const instance = axios.create({
   baseURL: 'http://localhost:5000/api'
 })
 
+let user = localStorage.getItem('user');
+if (!user) {
+ user = {
+    userId: -1,
+    token: '',
+  }; 
+} else {
+  try {
+    user = JSON.parse(user);
+    instance.defaults.headers.common['Authorization'] = user.token;
+  } catch (ex) {
+    user = {
+      userId: -1,
+      token: '',
+    };
+  }
+}
+
 export default createStore({
   state: {
     status: '',
     user: {
-      userId: -1,
-      username: '',
-      token:'',
-      imageProfile: ''
+      userId: user.id,
+      username: user.username,
+      token: user.accessToken,
+      imageProfile: user.imageUrl
     },
     postsLikedByUser: [],
     commentFromPost: []
@@ -21,12 +39,32 @@ export default createStore({
     setStatus: function(state, status) {
       state.status = status;
     },
-    logUser: function (state, user) {
-      // instance.defaults.headers.common['Authorization'] = user.token;
-      state.user.userId = user.id
+    logUser: async function (state, user) {
+      state.user = {}
+      instance.defaults.headers.common['Authorization'] = user.token;
+      localStorage.setItem('user', JSON.stringify(user));
+      state.user.userId = user.id;
       state.user.username = user.username
-      state.user.imageProfile = user.imageUrl
+      state.user.token = user.accessToken
+      state.user.imageProfile = user.imageUrl;
+     
     },
+    changeInfo: function(state, infos){
+      state.user.imageProfile = infos
+    },
+    logout:function(state){
+      state.user = {}
+      state.user = {
+      userId: -1,
+      username: '',
+      token: '',
+      imageProfile: ''
+      }
+      localStorage.clear()
+
+
+    },
+
     addLikes: function (state, likes){
       state.postsLikedByUser = likes
     },
@@ -52,13 +90,14 @@ export default createStore({
     
   },
    loginAccount: async ({ commit }, userInfos) => {
-     commit('setStatus', 'loading')
+  
+    
       await instance.post("/user/login", userInfos)
      .then((response) => {
+      commit('setStatus', 'connected' )
        
-       commit('setStatus', 'connected' )
-       commit('logUser', response.data)
-      
+      commit('logUser', response.data)
+      console.log(response.data);
       response.data.bpi
      })
      .catch(err => {
@@ -77,7 +116,8 @@ export default createStore({
      console.log(Array.from(formData));
      await instance.put("/user/userInfo", formData)
      .then((response) => {
-     
+       console.log(response.data);
+      // commit('changeInfo', )
       response.data.bpi
     })
     .catch(err => {

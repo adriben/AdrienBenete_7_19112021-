@@ -15,8 +15,8 @@
                      <li v-else><img src="../assets/anonymous.png" alt="" class="profil-picture" ></li>
                 </router-link>
                 
-                <router-link to="/" class="link">
-                    <li><i class="fas fa-power-off"></i></li>
+                <router-link to="/" class="link" >
+                    <li><i class="fas fa-power-off" @click="clearStorage"></i></li>
                 </router-link>
                 
             </ul>
@@ -33,6 +33,16 @@ export default{
     name: "TheHeader",
     computed: {
          ...mapState(['user'])
+    },
+    props: {
+       imageSrc: String
+    },
+    methods: {
+        clearStorage(){
+            
+            this.$store.commit('logout');
+           
+        }
     }
     
 }
@@ -81,6 +91,8 @@ background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);
             .profil-picture{
                 
                width: 5.5rem;
+               height: 5.5rem;
+               object-fit: cover;
                margin-top: 0;
                border-radius: 60px;
             }

@@ -83,6 +83,7 @@ export default {
     },
     mounted: async function (){
         this.getPosts()
+        console.log(this.$store.state.user);
         
          if(this.$store.state.user.userId === -1){
             this.$router.push('/');
@@ -252,6 +253,8 @@ $color-secondary: 	#3bb78f;
  }
  .profile-pic{
          width: 80px;
+         height: 80px;
+         object-fit: cover;
          border-radius: 60px;
          padding: .5rem;
      }
