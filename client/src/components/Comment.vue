@@ -75,14 +75,20 @@ export default{
         
      },
      deleteComment: async function (commentId){
-         
+         let data = {
+             commentId: commentId,
+             postId: this.postId
+         }
          console.log(commentId);
          console.log(this.postId);
             
         return fetch (`http://localhost:5000/api/posts/${this.postId}/comment/${commentId}`,
              {
              method: "DELETE",
-             body: commentId
+             headers: {
+              'Content-Type': 'application/json',
+             },
+             body: JSON.stringify(data)
              }) 
             .then((responsehttp) => {
       return responsehttp.json();
