@@ -53,9 +53,12 @@ export default{
         userId: this.$store.state.user.userId,
         postId: this.postId,
          
-      })
-      this.newComment = ""
+      }).then(() => {
+          this.newComment = ""
       this.getComments()
+       this.getPosts()
+      })
+      
     
      },
      getComments: async function(){
@@ -63,8 +66,7 @@ export default{
         await fetch(`http://localhost:5000/api/posts/${this.postId}/comment`)
         .then((response) => {
         return response.json(); }) 
-        .then((data) => {
-        console.log(data.comments);   
+        .then((data) => {  
         this.commentFromPost = data.comments 
         
     })
@@ -78,10 +80,7 @@ export default{
          let data = {
              commentId: commentId,
              postId: this.postId
-         }
-         console.log(commentId);
-         console.log(this.postId);
-            
+         }     
         return fetch (`http://localhost:5000/api/posts/${this.postId}/comment/${commentId}`,
              {
              method: "DELETE",
@@ -94,13 +93,16 @@ export default{
       return responsehttp.json();
     })
     .then(() => {
-        console.log('Post deleted');
         this.getPosts()
+        this.getComments()
         
     })
     .catch((err) => {
       console.log(err)
     })
+        },
+        getPosts(){
+            this.$parent.getPosts()
         }
      
     }
@@ -128,8 +130,6 @@ $color-secondary: 	#3bb78f;
    }
   
 }
-
-
 .comment-icone{
     position: absolute;
     top: 18px;
@@ -137,11 +137,9 @@ $color-secondary: 	#3bb78f;
     font-size: 150%;
     cursor: pointer;
 }
-
-
 .comment{
     width: 650px;
-    height: 50px;
+    height: fit-content;
     display: flex;
     margin: 0rem 0 .6rem -2rem ;
 
@@ -149,7 +147,14 @@ $color-secondary: 	#3bb78f;
     border-radius: 20px;
     background: #f3f8eeb4;
     
-  
+    .fa-times-circle{
+        font-size: 140%;
+        float: right;
+        padding-top: 1.2rem;
+        padding-right: 1rem;
+        color: red;
+        cursor: pointer;
+    }
     .signature{
         color:  $color-primary;
     }
@@ -202,7 +207,5 @@ $color-secondary: 	#3bb78f;
        opacity: 1;
    }   
   }
-    
-
 }
 </style>

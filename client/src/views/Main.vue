@@ -83,8 +83,6 @@ export default {
     },
     mounted: async function (){
         this.getPosts()
-        console.log(this.$store.state.user);
-        
          if(this.$store.state.user.userId === -1){
             this.$router.push('/');
            return
@@ -114,8 +112,7 @@ export default {
             .then((responsehttp) => {
       return responsehttp.json();
     })
-    .then((data) => {
-        console.log(data.posts);   
+    .then((data) => {  
         this.posts = data.posts 
         
     })
@@ -268,10 +265,6 @@ $color-secondary: 	#3bb78f;
  .comment{
      margin-top: 3rem;
     background: rgba(255, 255, 255, 0.103);
-     
-     
-
-     
  }
  
 }

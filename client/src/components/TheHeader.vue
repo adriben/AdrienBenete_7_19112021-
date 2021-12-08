@@ -2,11 +2,15 @@
     <header>
         <div>
         <router-link to="/main" class="link">
-            <img src="../assets/icon-left-font-monochrome-black.png" alt="logo groupamia">
+            <img src="../assets/icon-left-font-monochrome-white.png" alt="logo groupamia">
              </router-link>
         </div>
         <nav>
             <ul>
+
+                <router-link to="/team" class="link" >
+                    <li><i class="fas fa-users"></i></li>
+                </router-link>
             
                
                 <router-link to="/userinfos" class="link">
@@ -18,6 +22,10 @@
                 <router-link to="/" class="link" >
                     <li><i class="fas fa-power-off" @click="clearStorage"></i></li>
                 </router-link>
+
+                
+                
+
                 
             </ul>
         </nav>
@@ -34,6 +42,7 @@ export default{
     computed: {
          ...mapState(['user'])
     },
+    
     props: {
        imageSrc: String
     },
@@ -53,13 +62,8 @@ export default{
 header{
      position: fixed;
      z-index: 5;
-    
-  
-background-color: #3bb78f;
-background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);
-
-
-
+   background-color: #3bb78f;
+   background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);
    display: flex;
    flex-direction: row;
    justify-content: space-between;
@@ -68,13 +72,13 @@ background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);
    height: 8rem;
    .link{
        text-decoration: none;
-       color:black ;
+       color:white ;
   }
 
     img{
-        width: 250px;
+        width: 300px;
         margin-left: 2rem;
-        margin-top: -3rem;
+        margin-top: -4.5rem;
         
     }
     ul{
@@ -85,16 +89,22 @@ background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);
         align-items: center;
         justify-content: center;
         list-style: none;
-        margin: 0 2.5rem 0 0;
+        margin: 0 2rem 0 0;
         li{
             padding: 1rem;
+            transition: transform .3s;   
+            &:hover{
+                transform: scale(1.3);
+                transition: transform .3s;   
+            }
             .profil-picture{
                 
                width: 5.5rem;
                height: 5.5rem;
                object-fit: cover;
                margin-top: 0;
-               border-radius: 60px;
+               margin-right: 1rem;
+              border-radius: 50px;
             }
         }
     }

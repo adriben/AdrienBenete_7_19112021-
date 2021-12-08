@@ -98,6 +98,7 @@ export default {
      button{
        margin-top: 1rem;
        background-color:	#3bb78f;
+       color: white;
        border-radius: 30px;
        height: 2rem;
        cursor: pointer;
