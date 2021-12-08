@@ -32,9 +32,11 @@
      </form>
      <br>
      <form action="" class="bio">
-  <label for="#username">Bio </label>
+  <label for="#username" class="bio-title">Bio </label>
   <br>
-    <textarea name="bio" id="" cols="40" rows="10" v-model="bio" :placeholder="user.bio"> </textarea>
+  <p>{{ this.$store.state.user.bio }}</p>
+    <textarea name="bio" id="" cols="50" rows="10"  v-model="bio" > </textarea>
+    
     
     <br>
      <input type="submit"  class="btn btn-submit2" value="Change" @click="changeImage">
@@ -69,11 +71,11 @@ export default {
     methods: {
         changeImage: function(event){
        event.preventDefault()
-        console.log(this.bio);
+        
        this.$store.dispatch('changeInfos',{
         userId: this.$store.state.user.userId,
         image:document.querySelector('input[type=file]').files[0],
-        bio: this.bio       
+        bio: this.bio || this.$store.state.user.bio  
       }).then(() => {
           this.getUserInfo()
       })      
@@ -123,6 +125,10 @@ $color-secondary: 	#3bb78f;
      }
      .bio{
          padding-top: 2rem;
+         
+     }
+     .bio-title{
+         color: $color-primary ;
      }
     }
    
