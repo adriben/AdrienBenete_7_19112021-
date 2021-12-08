@@ -143,7 +143,7 @@ $color-secondary: 	#3bb78f;
     display: flex;
     margin: 0rem 0 .6rem -2rem ;
 
-    border: 1px solid grey;
+   
     border-radius: 20px;
     background: #f3f8eeb4;
     
