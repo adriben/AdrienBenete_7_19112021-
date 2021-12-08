@@ -113,6 +113,7 @@ export default {
       return responsehttp.json();
     })
     .then((data) => {  
+        console.log(data.posts);
         this.posts = data.posts 
         
     })

@@ -23,6 +23,10 @@ module.exports = (sequelize, DataTypes) =>{
         },
         image: {
             type: DataTypes.STRING(500)
+        },
+        bio: {
+            type: DataTypes.STRING(500),
+
         }
         
     }

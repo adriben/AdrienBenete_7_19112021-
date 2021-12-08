@@ -59,11 +59,16 @@ exports.login = (req, res) => {
 
 exports.changeInfo= (req, res) => {
   const userId = req.body.userId
-  const imageUrl =`${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-  console.log(imageUrl); 
+  console.log(req.body);
+  if(req.file){
+    const imageUrl =`${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    db.User.update(
+      { image: imageUrl },
+      { where: { id: userId },
+     })
+  } 
   db.User.update(
-    
-    { image: imageUrl },
+    { bio: req.body.bio },
     { where: { id: userId },
    })
 .then(picture => res.status(200).json({ picture }))
@@ -76,4 +81,14 @@ exports.getall = async (req, res) => {
     include: [db.Post]
   });
  res.send({ users })
+}
+
+exports.getOneUser = async(req, res) => {
+  console.log(req.params);
+  db.User.findOne({
+    where: {
+      id: req.params.id
+    }
+  }).then(user => res.status(200).json({ user }))
+  .catch(err => res.status(400).json({ err }))
 }

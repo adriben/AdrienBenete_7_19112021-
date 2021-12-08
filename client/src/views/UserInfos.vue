@@ -34,22 +34,16 @@
      <form action="" class="bio">
   <label for="#username">Bio </label>
   <br>
-    <textarea name="" id="" cols="40" rows="10"></textarea>
+    <textarea name="bio" id="" cols="40" rows="10" v-model="bio" :placeholder="user.bio"> </textarea>
+    
     <br>
-     <input type="submit"  class="btn btn-submit2" value="Change">
+     <input type="submit"  class="btn btn-submit2" value="Change" @click="changeImage">
 
      </form>
      <br>
-     
-     
-    
-
  </div>
  </div>
     </div>
-
-
-    
 </template>
 
 <script>
@@ -59,7 +53,8 @@ import { mapState } from 'vuex';
 export default {
     data(){
        return{
-           image: ''
+           image: '',
+           bio: ''
        }
     },
     components: {
@@ -68,15 +63,26 @@ export default {
     computed: {
         ...mapState(['user'])
     },
+    mounted: function (){
+            this.getUserInfo()
+    },
     methods: {
         changeImage: function(event){
        event.preventDefault()
-
+        console.log(this.bio);
        this.$store.dispatch('changeInfos',{
         userId: this.$store.state.user.userId,
-        image:document.querySelector('input[type=file]').files[0]       
-      })       
-     }
+        image:document.querySelector('input[type=file]').files[0],
+        bio: this.bio       
+      }).then(() => {
+          this.getUserInfo()
+      })      
+     },
+       getUserInfo: async function(){
+           console.log('nous allons recuperer les infos');
+           let userId = this.$store.state.user.userId;
+           this.$store.dispatch('getOneUserInfos', userId)
+       }
     }
 }
 </script>

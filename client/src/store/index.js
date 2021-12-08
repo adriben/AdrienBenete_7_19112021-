@@ -30,7 +30,8 @@ export default createStore({
       userId: user.id,
       username: user.username,
       token: user.accessToken,
-      imageProfile: user.imageUrl
+      imageProfile: user.imageUrl,
+      bio: user.bio
     },
     postsLikedByUser: [],
     commentFromPost: []
@@ -50,7 +51,9 @@ export default createStore({
      
     },
     changeInfo: function(state, infos){
-      state.user.imageProfile = infos
+      console.log(infos);
+      state.user.imageProfile = infos.image
+      state.user.bio = infos.bio
     },
     logout:function(state){
       state.user = {}
@@ -90,8 +93,7 @@ export default createStore({
     
   },
    loginAccount: async ({ commit }, userInfos) => {
-  
-    
+
       await instance.post("/user/login", userInfos)
      .then((response) => {
       commit('setStatus', 'connected' )
@@ -111,13 +113,16 @@ export default createStore({
      const formData = new FormData();
      let userId = userInfos.userId
      let imageFile = userInfos.image
-     formData.append('image', imageFile)
+     let bio = userInfos.bio
+     if(imageFile){
+      formData.append('image', imageFile)
+     }
      formData.append('userId', userId)
-     console.log(Array.from(formData));
+     formData.append('bio', bio)
      await instance.put("/user/userInfo", formData)
      .then((response) => {
        console.log(response.data);
-      // commit('changeInfo', )
+      // commit('changeInfo', response.data)
       response.data.bpi
     })
     .catch(err => {
@@ -127,7 +132,7 @@ export default createStore({
    likePost: async ({ commit }, likeInfos) => {
     commit('clearLikes');
 
-   await instance.post(`http://localhost:5000/api/posts/${likeInfos.postId}/likes`, likeInfos )
+   await instance.post(`/posts/${likeInfos.postId}/likes`, likeInfos )
    .then((response) => {
     response.data.bpi
   })
@@ -137,8 +142,18 @@ export default createStore({
   
   postComment: async({ commit }, commentInfos) => {
     commit;
-    await instance.post(`http://localhost:5000/api/posts/${commentInfos.postId}/comment`, commentInfos)
+    await instance.post(`/posts/${commentInfos.postId}/comment`, commentInfos)
   },
+
+  getOneUserInfos: async({ commit }, userId) => {
+    console.log(userId);
+    commit;
+    await instance.get(`/user/userInfo/${userId}`)
+    .then((response) => {
+      commit("changeInfo", response.data.user)
+      console.log(response.data.user);
+    })
+  }
   
    
   },
