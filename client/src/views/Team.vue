@@ -8,7 +8,8 @@
          <li v-for="user in users" :key="user.username" class="user">
              <img v-if="user.image" :src="user.image" alt="">
              <img v-else src="../assets/anonymous.png" alt="" class="profil-picture" >
-             <p class="username">{{ user.username }}</p>
+             <h3 class="username">{{ user.username }}</h3>
+             <p>{{ user.role }}</p>
            
 
          </li>
@@ -81,10 +82,11 @@ export default {
      li{
        list-style: none;
        display: flex;
+       width: 200px;
        flex-direction: column;
        align-items: center;
        padding: 3rem;
-       background-color: #3bb78f;
+       background-color: white;
        border-radius: 20px;
        margin: 1rem;
 

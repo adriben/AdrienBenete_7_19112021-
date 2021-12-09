@@ -68,7 +68,8 @@ exports.changeInfo= (req, res) => {
      })
   } 
   db.User.update(
-    { bio: req.body.bio },
+    { bio: req.body.bio,
+      role: req.body.role },
     { where: { id: userId },
    })
 .then(picture => res.status(200).json({ picture }))

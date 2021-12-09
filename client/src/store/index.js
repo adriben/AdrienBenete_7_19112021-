@@ -31,7 +31,8 @@ export default createStore({
       username: user.username,
       token: user.accessToken,
       imageProfile: user.imageUrl,
-      bio: user.bio
+      bio: user.bio,
+      role: user.role
     },
     postsLikedByUser: [],
     commentFromPost: []
@@ -54,6 +55,7 @@ export default createStore({
       console.log(infos);
       state.user.imageProfile = infos.image
       state.user.bio = infos.bio
+      state.user.role = infos.role
     },
     logout:function(state){
       state.user = {}
@@ -114,11 +116,13 @@ export default createStore({
      let userId = userInfos.userId
      let imageFile = userInfos.image
      let bio = userInfos.bio
+     let role = userInfos.role
      if(imageFile){
       formData.append('image', imageFile)
      }
      formData.append('userId', userId)
      formData.append('bio', bio)
+     formData.append('role', role)
      await instance.put("/user/userInfo", formData)
      .then((response) => {
        console.log(response.data);
