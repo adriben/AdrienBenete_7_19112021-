@@ -4,17 +4,22 @@
         <TheHeader userName="$user.username"></TheHeader>
         <h1>The Team</h1>
 
+      <input type="text" v-model="search" class="search-bar" placeholder="Search by Username...">
+
+
         <ul>
-         <li v-for="user in users" :key="user.username" class="user">
+            
+         <li v-for="user in filteredList" :key="user.username" class="user">
+             <router-link to="/profil/:id" class="link">
              <img v-if="user.image" :src="user.image" alt="">
              <img v-else src="../assets/anonymous.png" alt="" class="profil-picture" >
              <h3 class="username">{{ user.username }}</h3>
              <p>{{ user.role }}</p>
-           
-
+             </router-link>
          </li>
          
      </ul>
+     
       
     </div>
 
@@ -34,11 +39,17 @@ export default {
     data (){
         return {
             users: [],
+            search: ''
         }
     } ,
     
     computed: {
         ...mapState(['user']),
+        filteredList() {
+            return this.users.filter(user => {
+                return user.username.toLowerCase().includes(this.search.toLowerCase())
+            })
+        }
     },
      mounted: async function (){
         this.getUsers()
@@ -68,7 +79,17 @@ export default {
 <style lang="scss" scoped>
 
 .team{
+    a{
+        text-decoration: none;
+        color: black;
+    }
     width: 100%;
+    .search-bar{
+        width: 400px;
+        height: 2rem;
+        border-radius: 10px;
+        font-size: 110%
+    }
     h1{
         padding-top: 7rem;
     }
@@ -80,9 +101,11 @@ export default {
        
     }
      li{
+       box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
        list-style: none;
        display: flex;
-       width: 200px;
+       width: 250px;
+       height: 260px;
        flex-direction: column;
        align-items: center;
        padding: 3rem;
@@ -91,13 +114,14 @@ export default {
        margin: 1rem;
 
        .username{
+           color: #3bb78f;
            padding: 0 0 1rem 0;
        }
 
    }
     img{
-        width: 170px;
-        height: 170px;
+        width: 160px;
+        height: 160px;
         object-fit: cover;
 
     }
