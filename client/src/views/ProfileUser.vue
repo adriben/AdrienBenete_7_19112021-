@@ -2,12 +2,18 @@
 
     <div class="user-profile">
         <TheHeader userName="$user.username"></TheHeader>
-        <h1>PROFILE DE </h1>
+        <h1> {{ this.user.username }}'s details</h1>
+
+    <div class="details-container">
+       <img :src="this.user.image" alt="profile picture">
+       <h2>{{ user.role }}</h2>
+       <h3>{{ user.email }}</h3>
+       <p>{{ user.bio}}</p>
+
+    </div>
       
     </div>
-
-
-    
+ 
 </template>
 
 <script>
@@ -21,33 +27,26 @@ export default {
     },
     data (){
         return {
-            users: [],
-            search: ''
+            user: {},
         }
     } ,
     
     computed: {
         ...mapState(['user']),
-        filteredList() {
-            return this.users.filter(user => {
-                return user.username.toLowerCase().includes(this.search.toLowerCase())
-            })
-        }
+       
     },
      mounted: async function (){
-        this.getUsers()
+        this.getUserInfo()
     },
     methods: {
-        getUsers: async function(){
+         getUserInfo: async function(){
              
-            return fetch ("http://localhost:5000/api/user") 
+            return fetch (`http://localhost:5000/api/user/userInfo/${this.$route.params.userId}`) 
             .then((responsehttp) => {
       return responsehttp.json();
     })
     .then((data) => {
-        console.log(data);
-        
-        this.users = data.users
+        this.user = data.user
     })
     .catch((err) => {
       console.log(err)
@@ -65,6 +64,20 @@ export default {
     width: 100%;
     h1{
         padding-top: 7rem;
+    }
+    .details-container{
+        width: auto;
+        justify-content: center;
+        align-items: center;
+        
+        p{
+            padding: 0 3rem ;
+        }
+      img{
+          width: 400px;
+          height: 400px;
+          object-fit: cover;
+      }
     }
 }
 

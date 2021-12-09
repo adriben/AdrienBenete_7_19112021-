@@ -11,7 +11,11 @@
                 <router-link to="/team" class="link" >
                     <li><i class="fas fa-users"></i></li>
                 </router-link>
-            
+
+                <router-link to="" class="link" >
+                <li><i class="fas fa-bell"></i></li>
+
+                </router-link>
                
                 <router-link to="/userinfos" class="link">
 
@@ -103,7 +107,8 @@ header{
                height: 5.5rem;
                object-fit: cover;
                margin-top: 0;
-               margin-right: 1rem;
+               margin-right: 2rem;
+               margin-left: 0;
               border-radius: 50px;
             }
         }

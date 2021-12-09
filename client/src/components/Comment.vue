@@ -142,10 +142,8 @@ $color-secondary: 	#3bb78f;
     height: fit-content;
     display: flex;
     margin: 0rem 0 .6rem -2rem ;
-
-   
     border-radius: 20px;
-    background: #f3f8eeb4;
+   
     
     .fa-times-circle{
         font-size: 140%;
@@ -166,7 +164,7 @@ $color-secondary: 	#3bb78f;
     .italique{
         font-style: italic;
         font-weight: lighter;
-        padding: .2rem;
+        padding: .2rem .7rem;
         color: black;
         font-size: 90%;
     }
@@ -175,8 +173,7 @@ $color-secondary: 	#3bb78f;
         height: 50px;
         object-fit: cover;
         padding:  0 0.2rem 0 0;
-        border-top-left-radius: 20px;
-        border-bottom-left-radius: 20px;
+        border-radius: 60px;
     }
     .type-comment{
         padding-top: 2rem;
@@ -194,7 +191,7 @@ $color-secondary: 	#3bb78f;
         height: 1.5rem;
     }
     }
-    @keyframes slow-display {  /*Animation de l apparition progressive des menus*/
+    @keyframes slow-display { 
     0%{
         transform: translateY(60px);
         opacity: 0;

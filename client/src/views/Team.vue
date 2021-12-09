@@ -10,7 +10,7 @@
         <ul>
             
          <li v-for="user in filteredList" :key="user.username" class="user">
-             <router-link to="/profil/:id" class="link">
+             <router-link :to="{ name: 'ProfileUser', params: { userId: user.id } }" >
              <img v-if="user.image" :src="user.image" alt="">
              <img v-else src="../assets/anonymous.png" alt="" class="profil-picture" >
              <h3 class="username">{{ user.username }}</h3>
@@ -101,6 +101,7 @@ export default {
        
     }
      li{
+       animation: arriving-from-left 1s ease-out;
        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
        list-style: none;
        display: flex;
@@ -126,6 +127,20 @@ export default {
 
     }
 }
+
+ @keyframes arriving-from-left { 
+    0%{
+        transform: translateX(-1000px);
+        opacity: 0;
+    }
+    50%{
+        opacity: 0.5;
+    }
+   100%{
+       transform: translateX(0);
+       opacity: 1;
+   }   
+  }
 
 
 
