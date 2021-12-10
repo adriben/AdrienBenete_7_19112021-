@@ -35,7 +35,7 @@ export default {
     }
   },
   methods: {
-    signIn: function(event){
+    signIn: async function (event){
       event.preventDefault();
       if (
         this.username != '' &&
@@ -48,13 +48,19 @@ export default {
         email: this.email,
         username: this.username, 
         password: this.password
+      }).then(()=> {
+        this.$router.push('/main')
       })
       } else if(this.confirmedPassword != this.password){
         this.errorMessage = 'Both password must match'
       } else{
         this.errorMessage = 'Please fill up all the fields'
       }
+      
+    
+     
     }
+    
   }
   
 }

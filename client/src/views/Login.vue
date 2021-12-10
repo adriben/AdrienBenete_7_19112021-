@@ -43,12 +43,13 @@ export default {
       })
       .then(() => {
   
-         if(this.$store.state.user.userId  !== -1){
+         if(this.$store.state.user.userId  !== -1 || !this.store.state.user.userId){
             
       this.$router.push('/main');
       return
     }
       }).catch(() => {
+        console.log('error');
         this.incorrectInfos = 'Invalid username/password'
       })
      }

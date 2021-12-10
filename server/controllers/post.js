@@ -1,6 +1,6 @@
-const { Model } = require('sequelize/dist');
+
 const db = require('../models');
-const User = require('../models/User');
+
 
 
 

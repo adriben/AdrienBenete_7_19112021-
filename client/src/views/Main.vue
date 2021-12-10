@@ -12,6 +12,7 @@
        id="post-picture" name="postPicture"
        accept="image/png, image/jpeg">
        <i class="far fa-image"></i>
+       
        </label>
        <br>
          <input type="submit" @click="postPost" class="btn-submit" >

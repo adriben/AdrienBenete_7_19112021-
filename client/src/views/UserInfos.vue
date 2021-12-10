@@ -48,7 +48,7 @@
      <form action="" class="bio">
   <label for="#username" class="bio-title">Bio </label>
   <br>
-  <p>{{ this.$store.state.user.bio }}</p>
+  <p v-if="this.$store.state.user.bio != 'null'">{{ this.$store.state.user.bio }}</p>
     <textarea name="bio" id="" cols="55" rows="7"  v-model="bio" > </textarea>
     <br>
      <input type="submit"  class="btn btn-submit2" value="Change" @click="changeImage">

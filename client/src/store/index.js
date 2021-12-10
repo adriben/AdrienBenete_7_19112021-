@@ -92,8 +92,18 @@ export default createStore({
       commit;
       instance.post("/user/register", userInfos)
       .then((response) => {
-        commit('setStatus', 'created' )
+        commit('setStatus', 'connected' )
         response.data.bpi
+        
+      }).then(()=> {
+       instance.post("/user/login", userInfos)
+     .then((response) => {
+      commit('setStatus', 'connected' )
+       
+      commit('logUser', response.data)
+      console.log(response.data);
+      response.data.bpi
+     })
       })
       .catch(err => {
         commit('setStatus', 'error_login' )
@@ -110,7 +120,7 @@ export default createStore({
       response.data.bpi
      })
      .catch(err => {
-      this.$router.push('/main');
+      this.$router.push('/');
       commit('setStatus', 'error_login' ) 
       console.log(err)})
    },
@@ -131,7 +141,6 @@ export default createStore({
      await instance.put("/user/userInfo", formData)
      .then((response) => {
        console.log(response.data);
-      // commit('changeInfo', response.data)
       response.data.bpi
     })
     .catch(err => {
