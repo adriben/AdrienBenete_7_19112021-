@@ -9,7 +9,6 @@
        <h2>{{ user.role }}</h2>
        <h3>{{ user.email }}</h3>
        <p>{{ user.bio}}</p>
-
     </div>
       
     </div>
@@ -20,8 +19,7 @@
 import  TheHeader  from '../components/TheHeader.vue';
 import { mapState } from 'vuex';
 
-export default {
-    
+export default { 
     components: {
       "TheHeader": TheHeader
     },
@@ -29,11 +27,9 @@ export default {
         return {
             user: {},
         }
-    } ,
-    
+    } ,    
     computed: {
-        ...mapState(['user']),
-       
+        ...mapState(['user']),    
     },
      mounted: async function (){
         this.getUserInfo()
@@ -52,9 +48,7 @@ export default {
       console.log(err)
     });
   }
-         
-    }
-   
+  }
     }
 
 </script>
@@ -80,7 +74,4 @@ export default {
       }
     }
 }
-
-
-
 </style>

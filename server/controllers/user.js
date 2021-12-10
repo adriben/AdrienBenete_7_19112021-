@@ -93,3 +93,26 @@ exports.getOneUser = async(req, res) => {
   }).then(user => res.status(200).json({ user }))
   .catch(err => res.status(400).json({ err }))
 }
+
+exports.deleteAccount = async(req, res) => {
+  db.User.destroy({
+    where: {
+        id:req.params.id
+    }
+})
+db.Post.destroy({ 
+  where: {
+    userId: req.params.id
+  }
+  
+})
+db.Comment.destroy({ 
+  where: {
+    userId: req.params.id
+  }
+  
+})
+.then(() => res.status(200).json({ message: "user post and comment successfully deleted" }))
+  .catch(err => res.status(400).json({ err }))
+
+}

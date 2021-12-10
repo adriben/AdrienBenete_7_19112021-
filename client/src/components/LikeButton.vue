@@ -1,21 +1,14 @@
 <template>
 
 <div>
-
 <i  class="fas fa-heart red"  @click="likePost()" v-if="Object.values(this.postLikedByUser).includes(postId)"></i>
-
-
 <i v-else @click="likePost()" class="far fa-heart"></i>
-
-
 </div>
-
-   
+  
 </template>
 
 <script>
 import { mapState } from 'vuex';
-
 
 export default{
     

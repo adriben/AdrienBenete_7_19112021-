@@ -50,13 +50,12 @@
   <br>
   <p>{{ this.$store.state.user.bio }}</p>
     <textarea name="bio" id="" cols="55" rows="7"  v-model="bio" > </textarea>
-    
-    
     <br>
      <input type="submit"  class="btn btn-submit2" value="Change" @click="changeImage">
 
      </form>
      <br>
+     <button class="danger" @click="deleteAccount">Delete this Account</button>
  </div>
  </div>
     </div>
@@ -101,6 +100,16 @@ export default {
            console.log('nous allons recuperer les infos');
            let userId = this.$store.state.user.userId;
            this.$store.dispatch('getOneUserInfos', userId)
+       },
+       deleteAccount: async function(){
+          let confirmation= confirm("Are you sure you want to delete this account? All your posts, pictures and information will be deleted")
+           
+           if(confirmation){let userId = this.$store.state.user.userId;
+           this.$store.dispatch('deleteAccount', userId)
+           .then( this.$store.commit('logout'))
+           .then(this.$router.push('/'))
+           
+           }
        }
     }
 }
@@ -174,7 +183,13 @@ $color-secondary: 	#3bb78f;
          color: $color-primary ;
      }
     }
-   
+   .danger{
+       background-color: red;
+       height: 2rem;
+       border-radius: 20px;
+       float: right;
+       color: white;
+   }
 }
 
 

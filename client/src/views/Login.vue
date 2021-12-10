@@ -16,15 +16,11 @@
       <div class="home-picture">
          <img src="../assets\Daco_5615604.png" alt="social media png">
       </div>
-      
- 
   </div>
   
 </template>
 
 <script>
-
-
 
 export default {
   name: "Login",

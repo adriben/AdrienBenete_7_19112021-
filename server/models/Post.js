@@ -33,11 +33,8 @@ Post.associate = models =>{
   })
 }
 
-
 Post.sync().then(() => {
   console.log('Post table created');
 });
-
 return Post
 }
-

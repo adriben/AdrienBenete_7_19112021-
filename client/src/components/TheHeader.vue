@@ -12,8 +12,8 @@
                     <li><i class="fas fa-users"></i></li>
                 </router-link>
 
-                <router-link to="" class="link" >
-                <li><i class="fas fa-bell"></i></li>
+                <router-link to="/notifications" class="link" >
+               <li><i class="fas fa-bell"></i></li>
 
                 </router-link>
                
@@ -25,12 +25,7 @@
                 
                 <router-link to="/" class="link" >
                     <li><i class="fas fa-power-off" @click="clearStorage"></i></li>
-                </router-link>
-
-                
-                
-
-                
+                </router-link>        
             </ul>
         </nav>
 
@@ -41,12 +36,12 @@
 
 import { mapState } from 'vuex';
 
+
 export default{
     name: "TheHeader",
     computed: {
          ...mapState(['user'])
     },
-    
     props: {
        imageSrc: String
     },

@@ -6,7 +6,6 @@ const userRoutes = require('./routes/user');
 const postRoutes = require('./routes/post');
 const likeRoutes = require('./routes/like')
 const commentRoutes = require('./routes/comment')
-// const commentRoutes = require('./routes/comment')
 const db = require('./models')
 const app = express();
 

@@ -29,7 +29,7 @@ exports.getComment = async (req, res) => {
 }
 
 exports.deleteComment = async (req, res) => {
-    console.log(req.body);
+
     db.Post.decrement(
         { comments: 1},
         { where: { id:req.body.postId } }

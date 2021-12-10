@@ -29,17 +29,18 @@ module.exports = (sequelize, DataTypes) =>{
         },
         role: {
             type: DataTypes.STRING(100)
-        }
-        
+        }   
     }
     )
     
     User.associate = models =>{
         User.hasMany(models.Post, {
-            onDelete: "cascade"
+            onDelete: "CASCADE",
+            hooks:true 
         })
     }
         
+
     
     User.sync().then(() => {
       console.log('User table created');

@@ -23,8 +23,6 @@
 
 <script>
 
-
-
 export default {
   name: "Signup",
   data: function (){
@@ -56,9 +54,6 @@ export default {
       } else{
         this.errorMessage = 'Please fill up all the fields'
       }
-      
-
-
     }
   }
   
@@ -74,17 +69,14 @@ export default {
        color: red;
        font-size: 90%;
      }
-  
-  margin-top: 8rem;
-  padding-top: 1rem;
-  background-color: white;
-
+   margin-top: 8rem;
+   padding-top: 1rem;
+   background-color: white;
    display: flex;
    flex-direction: column;
    width: 30rem;
    height: 40rem;
-    align-items: center;
-
+   align-items: center;
    border: solid 2px rgba(0, 0, 0, 0.356);
    border-radius: 20px;
     box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.192);
@@ -104,11 +96,8 @@ export default {
        margin-top: 1rem;
        background-color: #3bb78f ;
        border-radius: 30px;
-       height: 2rem;
-       
+       height: 2rem; 
      }
-     
-
     }
 }
 .home-picture{
@@ -117,10 +106,7 @@ export default {
       margin-top: 10rem;
   padding-top: 1rem;
   }
- 
 }
-
-
 .link{
   padding-top: 1rem;
   padding-bottom: 20rem ;

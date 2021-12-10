@@ -36,30 +36,22 @@
                        <Comment :postId="post.id"></Comment>
                        <span class="comment-number">{{ post.comments }}</span>
                      </div>
-    
                          <Like-button :postId="post.id"></Like-button>
                          <span class="like-number">{{ post.likes }}</span>
 
-                     </div>
-
-                     
+                     </div>                   
                      <div v-if="this.$store.state.user.userId === post.User.id" class="personal-icone">
                        <Delete-button :postId="post.id"></Delete-button>
 
+                     </div>       
                      </div>
-                    
-                     
-                     </div>
-                     
-                     
                      </li>
              </ul>
              
          </div>
 
       </div>
-     </section>
-     
+     </section> 
     </div>
     
 </template>
@@ -260,8 +252,6 @@ $color-secondary: 	#3bb78f;
      color: $color-primary;
      padding-bottom: 2rem;   
  }
-
-
 
  .comment{
      margin-top: 3rem;

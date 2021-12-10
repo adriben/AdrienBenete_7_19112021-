@@ -5,10 +5,7 @@
         <h1>The Team</h1>
 
       <input type="text" v-model="search" class="search-bar" placeholder="Search by Username...">
-
-
-        <ul>
-            
+        <ul>         
          <li v-for="user in filteredList" :key="user.username" class="user">
              <router-link :to="{ name: 'ProfileUser', params: { userId: user.id } }" >
              <img v-if="user.image" :src="user.image" alt="">
@@ -16,15 +13,10 @@
              <h3 class="username">{{ user.username }}</h3>
              <p>{{ user.role }}</p>
              </router-link>
-         </li>
-         
-     </ul>
-     
-      
+         </li>        
+     </ul>     
     </div>
 
-
-    
 </template>
 
 <script>
@@ -101,7 +93,7 @@ export default {
        
     }
      li{
-       animation: arriving-from-left 1s ease-out;
+       animation: arriving-from-left 500ms ease-out;
        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
        list-style: none;
        display: flex;

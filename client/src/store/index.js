@@ -58,6 +58,7 @@ export default createStore({
       state.user.role = infos.role
     },
     logout:function(state){
+      
       state.user = {}
       state.user = {
       userId: -1,
@@ -157,7 +158,19 @@ export default createStore({
       commit("changeInfo", response.data.user)
       console.log(response.data.user);
     })
-  }
+  },
+
+   deleteAccount: async({ commit }, userId) => {
+     console.log(userId);
+     commit
+     await instance.delete(`/user/userInfo/${userId}`)
+     .then( () => {
+      console.log('deleting acont');
+     
+     })
+     
+
+   }
   
    
   },
