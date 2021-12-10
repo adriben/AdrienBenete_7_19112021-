@@ -10,6 +10,7 @@ if (!user) {
  user = {
     userId: -1,
     token: '',
+    
   }; 
 } else {
   try {
@@ -19,6 +20,7 @@ if (!user) {
     user = {
       userId: -1,
       token: '',
+      
     };
   }
 }
@@ -32,7 +34,8 @@ export default createStore({
       token: user.accessToken,
       imageProfile: user.imageUrl,
       bio: user.bio,
-      role: user.role
+      role: user.role,
+      isAdmin: false
     },
     postsLikedByUser: [],
     commentFromPost: []
@@ -43,12 +46,14 @@ export default createStore({
     },
     logUser: async function (state, user) {
       state.user = {}
+      console.log(user);
       instance.defaults.headers.common['Authorization'] = user.token;
       localStorage.setItem('user', JSON.stringify(user));
       state.user.userId = user.id;
       state.user.username = user.username
       state.user.token = user.accessToken
       state.user.imageProfile = user.imageUrl;
+      state.user.isAdmin = user.isAdmin
      
     },
     changeInfo: function(state, infos){
@@ -96,7 +101,6 @@ export default createStore({
     
   },
    loginAccount: async ({ commit }, userInfos) => {
-
       await instance.post("/user/login", userInfos)
      .then((response) => {
       commit('setStatus', 'connected' )
@@ -164,10 +168,6 @@ export default createStore({
      console.log(userId);
      commit
      await instance.delete(`/user/userInfo/${userId}`)
-     .then( () => {
-      console.log('deleting acont');
-     
-     })
      
 
    }

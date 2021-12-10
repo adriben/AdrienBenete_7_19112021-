@@ -11,20 +11,16 @@
                          <span class="signature"> {{ comment.User.username}}:</span></p>
                    <p class="italique">  {{ comment.content }}</p>
                    <p class="createdAt">{{ moment(comment.createdAt).fromNow() }}</p>
-                   <i v-if="this.$store.state.user.userId == comment.User.id" class="far fa-times-circle" @click="deleteComment(comment.id)"></i>
+                   <i v-if="this.$store.state.user.userId == comment.User.id || this.$store.state.user.isAdmin" class="far fa-times-circle" @click="deleteComment(comment.id)"></i>
 
                </li>
-           </ul>
-           
+           </ul>  
        </div>
        </div>
        <form action="" class="type-comment">
            <input type="text" v-model="this.newComment" placeholder='Type your comment...' class="comment-input">
            <input type="submit" @click="postComment" class="comment-button">
        </form>
-       
-       
-       
     </div>
 </template>
 

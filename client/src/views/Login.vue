@@ -39,7 +39,6 @@ export default {
        this.$store.dispatch('loginAccount',{
         username: this.username, 
         password: this.password,
-        imageUrl: this.image
         
       })
       .then(() => {

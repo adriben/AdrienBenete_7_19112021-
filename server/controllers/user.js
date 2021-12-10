@@ -49,7 +49,8 @@ exports.login = (req, res) => {
         id: user.id,
         username: user.username,
         accessToken: token,
-        imageUrl: user.image
+        imageUrl: user.image,
+        isAdmin: user.isAdmin
       })
     })
     .catch(err => {

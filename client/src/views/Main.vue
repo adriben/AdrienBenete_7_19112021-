@@ -40,7 +40,7 @@
                          <span class="like-number">{{ post.likes }}</span>
 
                      </div>                   
-                     <div v-if="this.$store.state.user.userId === post.User.id" class="personal-icone">
+                     <div v-if="this.$store.state.user.userId === post.User.id || this.$store.state.user.isAdmin" class="personal-icone">
                        <Delete-button :postId="post.id"></Delete-button>
 
                      </div>       
