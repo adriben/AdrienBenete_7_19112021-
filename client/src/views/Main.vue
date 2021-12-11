@@ -17,6 +17,7 @@
        <br>
          <input type="submit" @click="postPost" class="btn-submit" >
          </form>
+         <p class="error-message">{{ errorMessage }}</p>
  
          <div>
             <br><br>
@@ -90,7 +91,8 @@ export default {
             moment: moment,
             postLiked: this.$store.state.postsLikedByUser,
             alreadyLiked: [],
-            isHidden: true
+            isHidden: true,
+            errorMessage: ''
             
         }
     },
@@ -115,9 +117,11 @@ export default {
     });
   },
      postPost: async function(event){
-         event.preventDefault()
-         const formData = new FormData()
+          event.preventDefault()
          const imageFile = document.querySelector('input[type=file]').files[0]
+         if(this.newPost != "" || imageFile){
+              const formData = new FormData()
+         
          formData.append('content', this.newPost)
          formData.append('userId', this.$store.state.user.userId)
          formData.append('username', this.$store.state.user.username)
@@ -129,6 +133,16 @@ export default {
     method: "POST",
     body: formData,
   });
+             
+         } else{
+             this.errorMessage = 'A post cannot be empty';
+            setTimeout(() => {
+                this.errorMessage = ""
+                
+            }, 3000);
+         }
+        
+        
      this.newPost = '';
      this.getPosts()
      },
@@ -149,6 +163,10 @@ $color-secondary: 	#3bb78f;
     width: 100%;
     list-style: none;
     }
+
+.error-message{
+    color: red;
+}
  .write-post{
      width: 35rem;
      margin-top: 10rem;
