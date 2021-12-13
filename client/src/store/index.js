@@ -15,7 +15,7 @@ if (!user) {
 } else {
   try {
     user = JSON.parse(user);
-    instance.defaults.headers.common['Authorization'] = user.token;
+    instance.defaults.headers.common['Authorization'] = user.accessToken;
   } catch (ex) {
     user = {
       userId: -1,
@@ -47,7 +47,7 @@ export default createStore({
     logUser: async function (state, user) {
       state.user = {}
       console.log(user);
-      instance.defaults.headers.common['Authorization'] = user.token;
+      instance.defaults.headers.common['Authorization'] = user.accessToken;
       localStorage.setItem('user', JSON.stringify(user));
       state.user.userId = user.id;
       state.user.username = user.username
@@ -138,7 +138,9 @@ export default createStore({
      formData.append('userId', userId)
      formData.append('bio', bio)
      formData.append('role', role)
-     await instance.put("/user/userInfo", formData)
+     await instance.put("/user/userInfo", formData, { headers:{
+      "Authorization": "Bearer " + user.accessToken 
+  }})
      .then((response) => {
        console.log(response.data);
       response.data.bpi
@@ -160,7 +162,12 @@ export default createStore({
   
   postComment: async({ commit }, commentInfos) => {
     commit;
-    await instance.post(`/posts/${commentInfos.postId}/comment`, commentInfos)
+    console.log(user.accessToken);
+    await instance.post(`/posts/${commentInfos.postId}/comment`, commentInfos, {
+      headers:{
+          "Authorization": "Bearer " + user.accessToken 
+      }
+    })
     .then((response) => {
       response.data.bpi
     })
@@ -183,7 +190,9 @@ export default createStore({
    deleteAccount: async({ commit }, userId) => {
 
      commit
-     await instance.delete(`/user/userInfo/${userId}`)
+     await instance.delete(`/user/userInfo/${userId}`, { headers:{
+      "Authorization": "Bearer " + user.accessToken 
+  }})
      .then((response) => {
       response.data.bpi
     })
@@ -206,7 +215,10 @@ export default createStore({
      formData.append('postId', postId)
      formData.append('content', content)
      
-     await instance.put(`/posts/${postInfos.postId}`, formData) 
+     await instance.put(`/posts/${postInfos.postId}`, formData,
+    { headers:{
+      "Authorization": "Bearer " + user.accessToken 
+  }}) 
      .then((response) => {
        console.log(response);
      })

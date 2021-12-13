@@ -21,7 +21,10 @@ export default{
             
             if(ok){return fetch (`http://localhost:5000/api/posts/${this.postId}`,
              {
-             method: "DELETE"
+             method: "DELETE",
+             headers: {
+               Authorization: "Bearer " + this.$store.state.user.token,
+            }
              }) 
             .then((responsehttp) => {
       return responsehttp.json();

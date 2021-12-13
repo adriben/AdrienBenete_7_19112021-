@@ -1,4 +1,5 @@
 const db = require('../models');
+const fs = require('fs')
 
 
 exports.create = async (req, res) => {
@@ -51,7 +52,8 @@ exports.showOnePost =  (req, res) => {
 }
 
 exports.updateOnePost =  (req, res) => {
-    console.log('you are in post modify section');
+    console.log(req.body);
+
     if(req.file){
         const imageUrl =`${req.protocol}://${req.get('host')}/images/${req.file.filename}`
         db.Post.update(
@@ -68,11 +70,34 @@ db.Post.update(
 };
 
 exports.deletePost  = async (req, res) => {
+    db.Post.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then((post) => {
+        console.log(post);
+        if(post.image){
+            const filename = post.image.split('/images/')[1];
+        fs.unlink(`images/${filename}`, () => {
    
-        db.Post.destroy({
-            where: {
-                id:req.params.id
-            }
+            db.Post.destroy({
+                where: {
+                    id:req.params.id
+                }
+            })
+
+    })
+            
+        } else{
+            db.Post.destroy({
+                where: {
+                    id:req.params.id
+                }
+            })
+
+        }
+        
+    
         })
    
     .then(() => res.status(200).json({ message: 'post successfully deleted'}))

@@ -82,6 +82,7 @@ export default{
              method: "DELETE",
              headers: {
               'Content-Type': 'application/json',
+               'Authorization': "Bearer " + this.$store.state.user.token,
              },
              body: JSON.stringify(data)
              }) 

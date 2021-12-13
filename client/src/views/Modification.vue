@@ -2,9 +2,9 @@
 <div class="modifications">
 <The-header></The-header>
     <div class="post" >
-        <form action="" v-if="this.$store.state.user.userId == this.post.userId">
+        <form action="" v-if="this.$store.state.user.userId == this.post.userId || this.$store.state.user.isAdmin">
         
-       <img :src="this.post.image" alt="profile picture">
+       <img :src="this.post.image" alt="profile picture" v-if="this.post.image">
        <br>
        <label for="changePicture">Change picture</label>
        <input type="file"

@@ -136,6 +136,9 @@ export default {
          {
     method: "POST",
     body: formData,
+    headers: {
+               Authorization: "Bearer " + this.$store.state.user.token,
+            }
   });
              
          } else{
@@ -206,6 +209,7 @@ $color-secondary: 	#3bb78f;
      
  }
  .post{
+     position: relative;
      padding-bottom: 3rem;
      border: solid 1px rgba(39, 44, 39, 0.404);
      margin: auto;
@@ -283,7 +287,7 @@ $color-secondary: 	#3bb78f;
  .button-pencil{
     position: absolute;
     padding-top: .7rem;
-     right: 510px;
+     right: 50px;
       color: $color-primary;
  }
  
