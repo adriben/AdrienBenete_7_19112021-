@@ -43,6 +43,10 @@
 
                      </div>                   
                      <div v-if="this.$store.state.user.userId === post.User.id || this.$store.state.user.isAdmin" class="personal-icone">
+                        
+                    <router-link :to="{ name: 'Modification', params: { postId: post.id } }" class="link button-pencil">
+                    <i class="fas fa-pencil-alt"></i>
+                      </router-link>
                        <Delete-button :postId="post.id"></Delete-button>
 
                      </div>       
@@ -275,6 +279,12 @@ $color-secondary: 	#3bb78f;
  .comment{
      margin-top: 3rem;
     background: rgba(255, 255, 255, 0.103);
+ }
+ .button-pencil{
+    position: absolute;
+    padding-top: .7rem;
+     right: 360px;
+      color: $color-primary;
  }
  
 }

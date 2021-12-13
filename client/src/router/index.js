@@ -44,6 +44,12 @@ const routes = [
     name: 'Notification',
     
     component: () => import(/* webpackChunkName: "about" */ '../views/Notification.vue')
+  },
+  {
+    path: '/modification/:postId',
+    name: 'Modification',
+    
+    component: () => import(/* webpackChunkName: "about" */ '../views/Modification.vue')
   }
 ]
 

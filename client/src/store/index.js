@@ -161,6 +161,12 @@ export default createStore({
   postComment: async({ commit }, commentInfos) => {
     commit;
     await instance.post(`/posts/${commentInfos.postId}/comment`, commentInfos)
+    .then((response) => {
+      response.data.bpi
+    })
+    .catch(err => {
+      console.log(err)})
+    
   },
 
   getOneUserInfos: async({ commit }, userId) => {
@@ -169,15 +175,41 @@ export default createStore({
     await instance.get(`/user/userInfo/${userId}`)
     .then((response) => {
       commit("changeInfo", response.data.user)
-      console.log(response.data.user);
     })
+    .catch(err => {
+      console.log(err)})
   },
 
    deleteAccount: async({ commit }, userId) => {
-     console.log(userId);
+
      commit
      await instance.delete(`/user/userInfo/${userId}`)
+     .then((response) => {
+      response.data.bpi
+    })
+    .catch(err => {
+      console.log(err)})
      
+
+   },
+
+   changePost: async({ commit }, postInfos) => {
+     commit
+     const formData = new FormData();
+     let postId = postInfos.postId
+     let imageFile = postInfos.image
+     let content = postInfos.content
+    
+     if(imageFile){
+      formData.append('image', imageFile)
+     }
+     formData.append('postId', postId)
+     formData.append('content', content)
+     
+     await instance.put(`/posts/${postInfos.postId}`, formData) 
+     .then((response) => {
+       console.log(response);
+     })
 
    }
   

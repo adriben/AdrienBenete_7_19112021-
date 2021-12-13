@@ -1,9 +1,4 @@
-
 const db = require('../models');
-
-
-
-
 
 
 exports.create = async (req, res) => {
@@ -44,7 +39,7 @@ exports.showAllPosts = async (req, res) => {
 };
 
 exports.showOnePost =  (req, res) => {
-    db.Post.findAll({
+    db.Post.findOne({
         where: {
             id: req.params.id
         }
@@ -56,10 +51,18 @@ exports.showOnePost =  (req, res) => {
 }
 
 exports.updateOnePost =  (req, res) => {
+    console.log('you are in post modify section');
+    if(req.file){
+        const imageUrl =`${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        db.Post.update(
+          { image: imageUrl },
+          { where: { id: req.params.id },
+         })
+      } 
 
 db.Post.update(
           { content: req.body.content},
-          { where: { id: req.body.id } })
+          { where: { id: req.params.id } })
       .then(post => res.status(200).json({ post }))
       .catch(err => res.status(400).json({ err }))
 };
