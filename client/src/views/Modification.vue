@@ -1,8 +1,8 @@
 <template>
 <div class="modifications">
 <The-header></The-header>
-    <div class="post">
-        <form action="">
+    <div class="post" >
+        <form action="" v-if="this.$store.state.user.userId == this.post.userId">
         
        <img :src="this.post.image" alt="profile picture">
        <br>
@@ -17,9 +17,11 @@
        <br>
        <input type="submit"  class="btn btn-submit2" value="Change" @click="changePost">
        </form>
-    
+
+    <p v-else class="error-message">You can only modify your own posts</p>
 
     </div>
+    
     </div>
 </template>
 
@@ -94,6 +96,10 @@ export default {
             font-size: 110%;
             margin-top: 1.5rem;
         }
+    }
+    .error-message{
+        color: red;
+        font-size: 140%;
     }
 
 }

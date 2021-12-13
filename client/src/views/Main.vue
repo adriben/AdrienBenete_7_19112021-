@@ -283,7 +283,7 @@ $color-secondary: 	#3bb78f;
  .button-pencil{
     position: absolute;
     padding-top: .7rem;
-     right: 360px;
+     right: 510px;
       color: $color-primary;
  }
  

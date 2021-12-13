@@ -35,7 +35,7 @@ export default createStore({
       imageProfile: user.imageUrl,
       bio: user.bio,
       role: user.role,
-      isAdmin: false
+      isAdmin: user.isAdmin
     },
     postsLikedByUser: [],
     commentFromPost: []
