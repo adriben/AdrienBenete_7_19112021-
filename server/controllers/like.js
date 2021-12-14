@@ -44,7 +44,6 @@ exports.likePost = async (req, res) => {
 }
 
 exports.getallLikes = async (req, res) => {
-    console.log('You are in like section' + req.params.userId);
     db.Like.findAll({
         include: [ db.Post ],
         where: {

@@ -45,7 +45,6 @@ export default {
     },
      mounted: async function (){
         this.getPostInfo()
-        console.log(this.post);
     },
     methods: {
          getPostInfo: async function(){
@@ -55,7 +54,6 @@ export default {
       return responsehttp.json();
     })
     .then((data) => {
-        console.log(data.post);
         this.post = data.post
     })
     .catch((err) => {

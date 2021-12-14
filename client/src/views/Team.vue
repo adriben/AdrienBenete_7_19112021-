@@ -54,8 +54,6 @@ export default {
       return responsehttp.json();
     })
     .then((data) => {
-        console.log(data);
-        
         this.users = data.users
     })
     .catch((err) => {

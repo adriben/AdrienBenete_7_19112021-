@@ -10,7 +10,6 @@ module.exports = (req, res, next) =>{
         const decodedToken = jwt.verify(token,'ghuf342fkoy78gderlokA6');
         
         const userId = decodedToken.id;
-        console.log(userId);
 
         if(req.body.userId && req.body.userId !== userId){
             throw 'This user id is not available'

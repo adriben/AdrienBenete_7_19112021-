@@ -21,6 +21,7 @@
            
            <input type="text" v-model="this.newComment" placeholder='Type your comment...' class="comment-input" aria-label="Comment">
            <input type="submit" @click="postComment" class="comment-button" value="Submit">
+           <p class="error-message">{{ errorMessage }}</p>
        </form>
     </div>
 </template>
@@ -39,12 +40,14 @@ export default{
             newComment: "",
             commentFromPost: [],
             moment: moment,
+            errorMessage: ''
            
         }
     },
     methods: {
         postComment: async function(event){
          event.preventDefault()
+         if(this.newComment){
         this.$store.dispatch('postComment',{
         content: this.newComment,
         userId: this.$store.state.user.userId,
@@ -55,6 +58,13 @@ export default{
       this.getComments()
        this.getPosts()
       })
+         } else{
+             this.errorMessage = "A comment cannot be empty"
+             setTimeout(() => {
+                 this.errorMessage = ''
+                 
+             }, 2000);
+         }
       
     
      },
@@ -181,12 +191,16 @@ $color-secondary: 	#3bb78f;
         border-bottom-right-radius: 10px;
         border-top-right-radius: 10px;
         height: 1.8rem;
+        cursor: pointer;
         
 
     }
     .comment-input{
         width: 300px;
         height: 1.5rem;
+    }
+    .error-message{
+        color: red;
     }
     }
     @keyframes slow-display { 

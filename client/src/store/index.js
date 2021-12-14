@@ -46,7 +46,6 @@ export default createStore({
     },
     logUser: async function (state, user) {
       state.user = {}
-      console.log(user);
       instance.defaults.headers.common['Authorization'] = user.accessToken;
       localStorage.setItem('user', JSON.stringify(user));
       state.user.userId = user.id;
@@ -57,7 +56,6 @@ export default createStore({
      
     },
     changeInfo: function(state, infos){
-      console.log(infos);
       state.user.imageProfile = infos.image
       state.user.bio = infos.bio
       state.user.role = infos.role
@@ -101,7 +99,6 @@ export default createStore({
       commit('setStatus', 'connected' )
        
       commit('logUser', response.data)
-      console.log(response.data);
       response.data.bpi
      })
       })
@@ -116,7 +113,6 @@ export default createStore({
       commit('setStatus', 'connected' )
        
       commit('logUser', response.data)
-      console.log(response.data);
       response.data.bpi
      })
      .catch(err => {
@@ -142,7 +138,6 @@ export default createStore({
       "Authorization": "Bearer " + user.accessToken 
   }})
      .then((response) => {
-       console.log(response.data);
       response.data.bpi
     })
     .catch(err => {
@@ -162,7 +157,6 @@ export default createStore({
   
   postComment: async({ commit }, commentInfos) => {
     commit;
-    console.log(user.accessToken);
     await instance.post(`/posts/${commentInfos.postId}/comment`, commentInfos, {
       headers:{
           "Authorization": "Bearer " + user.accessToken 
@@ -177,7 +171,6 @@ export default createStore({
   },
 
   getOneUserInfos: async({ commit }, userId) => {
-    console.log(userId);
     commit;
     await instance.get(`/user/userInfo/${userId}`)
     .then((response) => {
@@ -220,7 +213,7 @@ export default createStore({
       "Authorization": "Bearer " + user.accessToken 
   }}) 
      .then((response) => {
-       console.log(response);
+      response.data.bpi
      })
 
    }

@@ -86,8 +86,6 @@ export default {
     methods: {
         changeImage: function(event){
        event.preventDefault()
-       console.log(this.role);
-        
        this.$store.dispatch('changeInfos',{
         userId: this.$store.state.user.userId,
         image:document.querySelector('input[type=file]').files[0],

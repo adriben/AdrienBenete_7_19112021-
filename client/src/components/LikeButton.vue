@@ -42,7 +42,6 @@ export default{
       }).then(() => {
           this.getLikesByUser()
            this.getPosts()
-           console.log(this.postLikedByUser);
           
     })
      },

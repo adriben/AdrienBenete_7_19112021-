@@ -30,7 +30,6 @@ export default{
       return responsehttp.json();
     })
     .then(() => {
-        console.log('Post deleted');
         this.getPosts()
         
     })

@@ -52,7 +52,6 @@ exports.showOnePost =  (req, res) => {
 }
 
 exports.updateOnePost =  (req, res) => {
-    console.log(req.body);
 
     if(req.file){
         const imageUrl =`${req.protocol}://${req.get('host')}/images/${req.file.filename}`
@@ -75,7 +74,7 @@ exports.deletePost  = async (req, res) => {
             id: req.params.id
         }
     }).then((post) => {
-        console.log(post);
+
         if(post.image){
             const filename = post.image.split('/images/')[1];
         fs.unlink(`images/${filename}`, () => {

@@ -60,7 +60,7 @@ exports.login = (req, res) => {
 
 exports.changeInfo= (req, res) => {
   const userId = req.body.userId
-  console.log(req.body);
+
   if(req.file){
     const imageUrl =`${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     db.User.update(
@@ -86,7 +86,7 @@ exports.getall = async (req, res) => {
 }
 
 exports.getOneUser = async(req, res) => {
-  console.log(req.params);
+
   db.User.findOne({
     where: {
       id: req.params.id

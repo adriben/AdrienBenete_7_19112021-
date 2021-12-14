@@ -9,12 +9,13 @@
 
          <input type="text" :placeholder="'What\'s up' + ' ' + user.username" class='write-post' v-model="newPost" id="post" aria-label="post">
          
-           <div class="custom-button">
+           <label class="custom-button">
+              <p>Add an Image</p>
          <input type="file" 
        id="post-picture" name="postPicture"
        accept="image/png, image/jpeg" aria-label="post">
        <i class="far fa-image"></i>
-       </div>
+           </label>
       
        <br>
          <input type="submit" @click="postPost" class="btn-submit" value="Submit">
@@ -115,7 +116,6 @@ export default {
       return responsehttp.json();
     })
     .then((data) => {  
-        console.log(data.posts);
         this.posts = data.posts 
         
     })
@@ -188,10 +188,14 @@ $color-secondary: 	#3bb78f;
     display: none;
 }
 .custom-button{
+    p{
+        margin-top: -1rem;
+    }
     
     i{
         font-size: 250%;
-        // padding: 1rem 1rem 0 0 ;
+        margin-top: -2rem;
+        margin-bottom: 1.5rem;
         color: $color-primary;
         &:hover{
           cursor: pointer;
