@@ -4,7 +4,7 @@
         <TheHeader userName="$user.username"></TheHeader>
         <h1>The Team</h1>
 
-      <input type="text" v-model="search" class="search-bar" placeholder="Search by Username...">
+      <input type="text" v-model="search" class="search-bar" placeholder="Search by Username..." aria-label="searchbar">
         <ul>         
          <li v-for="user in filteredList" :key="user.username" class="user">
              <router-link :to="{ name: 'ProfileUser', params: { userId: user.id } }" >
@@ -107,7 +107,7 @@ export default {
        margin: 1rem;
 
        .username{
-           color: #3bb78f;
+           color: #29a17b;
            padding: 0 0 1rem 0;
        }
 

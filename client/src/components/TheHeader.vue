@@ -8,18 +8,20 @@
         <nav>
             <ul>
 
-                <router-link to="/team" class="link" >
-                    <li><i class="fas fa-users"></i></li>
+                <router-link to="/team" class="link header-link" >
+                    <li class="header-link"><i class="fas fa-users"></i><span class="legende">Team</span></li>
                 </router-link>
                
                 <router-link to="/userinfos" class="link">
 
-                    <li v-if=" user.imageProfile "><img :src="user.imageProfile" alt="" class="profil-picture" ></li>
-                     <li v-else><img src="../assets/anonymous.png" alt="" class="profil-picture" ></li>
+                    <li v-if=" user.imageProfile "><img :src="user.imageProfile" alt="profile picture" class="profil-picture" ></li>
+                     <li v-else><img src="../assets/anonymous.png" alt="anonymous profile picture" class="profil-picture" ></li>
                 </router-link>
                 
-                <router-link to="/" class="link" >
-                    <li><i class="fas fa-power-off" @click="clearStorage"></i></li>
+                <router-link to="/" class="link header-link" >
+                    <li class="header-link"><i class="fas fa-power-off" @click="clearStorage"></i><span class="legende">Logout</span></li>
+                    
+                
                 </router-link>        
             </ul>
         </nav>
@@ -68,6 +70,12 @@ header{
        text-decoration: none;
        color:white ;
   }
+  .header-link{
+       display: flex;
+       flex-direction: column;
+       
+
+  }
 
     img{
         width: 300px;
@@ -87,9 +95,19 @@ header{
         li{
             padding: 1rem;
             transition: transform .3s;   
+            
+            .legende{
+                font-size: 50%;
+                display: none;
+                margin-top: 0rem;
+                
+            }
             &:hover{
                 transform: scale(1.3);
-                transition: transform .3s;   
+                transition: transform .3s; 
+                .legende{
+                    display: flex;
+                }  
             }
             .profil-picture{
                 
