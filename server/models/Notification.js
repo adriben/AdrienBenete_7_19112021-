@@ -23,8 +23,7 @@ module.exports = (sequelize, DataTypes) => {
 
     Notification.associate = models => {
         
-    
-        Notification.belongsTo(models.User);
+    Notification.belongsTo(models.User);
       };
       
         Notification.sync().then(() => {

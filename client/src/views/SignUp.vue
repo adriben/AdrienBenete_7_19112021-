@@ -3,12 +3,16 @@
     <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <h1>Welcome to Groupomania</h1>
-    <p>Sign-up</p>
+    <h2>Sign-up</h2>
       <form>
-      <input type="email" placeholder="Email address" v-model="email">
-      <input type="text" placeholder="Username" v-model="username">
-      <input type="password" placeholder="Password" v-model="password">
-      <input type="password" placeholder="Confirm password" v-model="confirmedPassword">
+        <label for="email">Your email</label>
+      <input type="email" placeholder="Email address" v-model="email" name="email" id="email">
+      <label for="usernameSignup">Your username</label>
+      <input type="text" placeholder="Username" v-model="username" name="usernameSignup" id="usernameSignup">
+      <label for="passwordSignup">Password</label>
+      <input type="password" placeholder="Password" v-model="password" name="passwordSignup" id="passwordSignup" >
+      <label for="confirmePassword">Confirm password</label>
+      <input type="password" placeholder="Confirm password" v-model="confirmedPassword" name="confirmePassword" id="confirmePassword">
       <button @click="signIn">Sign-up</button>
 
     </form>
@@ -72,7 +76,7 @@ export default {
 }
 .home{
   .errorMessage{
-       color: red;
+       color: rgb(196, 26, 26);
        font-size: 90%;
      }
    margin-top: 8rem;
@@ -81,7 +85,7 @@ export default {
    display: flex;
    flex-direction: column;
    width: 30rem;
-   height: 40rem;
+   height: 45rem;
    align-items: center;
    border: solid 2px rgba(0, 0, 0, 0.356);
    border-radius: 20px;

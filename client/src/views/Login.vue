@@ -3,10 +3,12 @@
     <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <h1>Welcome to Groupomania</h1>
-    <p>Login</p>
+    <h2>Login</h2>
       <form>
-      <input type="text" placeholder="Username" v-model="username">
-      <input type="password" placeholder="Password" v-model="password">
+      <label for="username">Username</label>
+      <input type="text" placeholder="Username" v-model="username" name="username" id="username" >
+      <label for="password">Password</label>
+      <input type="password" placeholder="Password" v-model="password" name="password" id="password">
       <button @click="login">Login</button>
       <p class="incorrect-password">{{ incorrectInfos }}</p>
 
@@ -76,7 +78,7 @@ export default {
    display: flex;
    flex-direction: column;
    width: 30rem;
-   height: 30rem;
+   height: 35rem;
     align-items: center;
 
    border: solid 2px rgba(0, 0, 0, 0.356);
@@ -86,7 +88,7 @@ export default {
       display: flex;
       flex-direction: column;
       input{
-        margin-top: 1rem;
+       
         width: 16rem;
         height: 2rem;
       }
@@ -94,7 +96,6 @@ export default {
      button{
        margin-top: 1rem;
        background-color:	#3bb78f;
-       color: white;
        border-radius: 30px;
        height: 2rem;
        cursor: pointer;
@@ -103,14 +104,10 @@ export default {
     }
 }
 .incorrect-password{
-  color: red;
+  color: rgb(196, 26, 26);
   font-size: 90%;
 }
 
-
-.link{
-  padding-top: 1rem;
-}
 .home-picture{
   img{
      width: 550px;

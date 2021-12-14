@@ -19,15 +19,15 @@
        id="avatar" name="avatar"
        accept="image/png, image/jpeg" class="btn">
        <br><br>
-       <input type="submit" @click="changeImage" class="btn btn-submit">
+       <input type="submit" @click="changeImage" class="btn btn-submit" value="Submit">
 </form>
  </div>
 
  <div class="details">
      <h2>My details </h2>
      <form action="">
-  <label for="#username">Username </label>
-    <input type="text" id="username" name="username" :placeholder="user.username">
+  <label for="usernameInfo">Username </label>
+    <input type="text" id="usernameInfo" name="username" :placeholder="user.username">
      <input type="submit"  class="btn btn-submit2" value="Change">
 
      </form>
@@ -49,7 +49,8 @@
   <label for="#username" class="bio-title">Bio </label>
   <br>
   <p v-if="this.$store.state.user.bio != 'null'">{{ this.$store.state.user.bio }}</p>
-    <textarea name="bio" id="" cols="55" rows="7"  v-model="bio" > </textarea>
+  <label for="textarea">Edit your bio</label>
+    <textarea name="bio" id="textarea" cols="55" rows="7"  v-model="bio"> </textarea>
     <br>
      <input type="submit"  class="btn btn-submit2" value="Change" @click="changeImage">
 
@@ -180,11 +181,11 @@ $color-secondary: 	#3bb78f;
          
      }
      .bio-title{
-         color: $color-primary ;
+         color: #1e8665 ;
      }
     }
    .danger{
-       background-color: red;
+       background-color: rgb(155, 22, 22);
        height: 2rem;
        border-radius: 20px;
        float: right;

@@ -18,8 +18,9 @@
        </div>
        </div>
        <form action="" class="type-comment">
-           <input type="text" v-model="this.newComment" placeholder='Type your comment...' class="comment-input">
-           <input type="submit" @click="postComment" class="comment-button">
+           
+           <input type="text" v-model="this.newComment" placeholder='Type your comment...' class="comment-input" aria-label="Comment">
+           <input type="submit" @click="postComment" class="comment-button" value="Submit">
        </form>
     </div>
 </template>

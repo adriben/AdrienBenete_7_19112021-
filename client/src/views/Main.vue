@@ -6,16 +6,18 @@
 
          <div class="the-wall">
          <form action="">
-         <input type="text" :placeholder="'What\'s up' + ' ' + user.username" class='write-post' v-model="newPost">
-         <label class="custom-button">
-         <input type="file"
+
+         <input type="text" :placeholder="'What\'s up' + ' ' + user.username" class='write-post' v-model="newPost" id="post" aria-label="post">
+         
+           <div class="custom-button">
+         <input type="file" 
        id="post-picture" name="postPicture"
-       accept="image/png, image/jpeg">
+       accept="image/png, image/jpeg" aria-label="post">
        <i class="far fa-image"></i>
-       
-       </label>
+       </div>
+      
        <br>
-         <input type="submit" @click="postPost" class="btn-submit" >
+         <input type="submit" @click="postPost" class="btn-submit" value="Submit">
          </form>
          <p class="error-message">{{ errorMessage }}</p>
  
@@ -45,6 +47,7 @@
                      <div v-if="this.$store.state.user.userId === post.User.id || this.$store.state.user.isAdmin" class="personal-icone">
                         
                     <router-link :to="{ name: 'Modification', params: { postId: post.id } }" class="link button-pencil">
+                    Edit
                     <i class="fas fa-pencil-alt"></i>
                       </router-link>
                        <Delete-button :postId="post.id"></Delete-button>
@@ -188,7 +191,7 @@ $color-secondary: 	#3bb78f;
     
     i{
         font-size: 250%;
-        padding: 1rem 1rem 0 0 ;
+        // padding: 1rem 1rem 0 0 ;
         color: $color-primary;
         &:hover{
           cursor: pointer;
@@ -276,7 +279,7 @@ $color-secondary: 	#3bb78f;
          padding: .5rem;
      }
  .user-signature{
-     color: $color-primary;
+     color: #2aa77f;
      padding-bottom: 2rem;   
  }
 
@@ -288,7 +291,7 @@ $color-secondary: 	#3bb78f;
     position: absolute;
     padding-top: .7rem;
      right: 50px;
-      color: $color-primary;
+      color: #1a8664
  }
  
 }

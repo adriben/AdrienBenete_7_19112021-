@@ -11,11 +11,6 @@
                 <router-link to="/team" class="link" >
                     <li><i class="fas fa-users"></i></li>
                 </router-link>
-
-                <router-link to="/notifications" class="link" >
-               <li><i class="fas fa-bell"></i></li>
-
-                </router-link>
                
                 <router-link to="/userinfos" class="link">
 
