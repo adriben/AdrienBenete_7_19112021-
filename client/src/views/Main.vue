@@ -299,5 +299,52 @@ $color-secondary: 	#3bb78f;
  }
  
 }
+
+@media screen and (max-width: 800px){
+.main-page{
+.write-post{
+    margin-top: 12rem;
+    width: 25rem;
+    
+}
+li{
+    width: 500px;
+
+  img{
+      width: 500px;
+  }
+  @media screen and (max-width: 600px){
+      width: 400px;
+      img{
+          width: 400px;
+      }
+  }
+  @media screen and (max-width: 500px){
+      
+    
+          width: 300px;
+     
+      img{
+          width: 300px;
+      }
+  }
+}
+
+
+}
+ 
+}
+
+@media screen and (max-width: 450px){
+.main-page{
+.write-post{
+    
+    width: 15rem;
+    
+}
+
+}
+ 
+}
 </style>
 

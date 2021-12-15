@@ -116,6 +116,27 @@ export default {
   }
  
 }
+@media screen and (max-width: 1150px){
+
+  .first-page{
+   grid-template-columns: 1fr;
+  }
+ .home-picture{
+   display: none;
+ }
+}
+
+@media screen and (max-width: 520px){
+     .home{
+      padding: 0;
+      margin: 0;
+       width:100%;
+       height: 60rem;
+       border: none;
+       box-shadow: none;
+       background-color: rgba($color: #f3f8ee, $alpha: 1.0);
+     }
+}
 
 </style>
 
