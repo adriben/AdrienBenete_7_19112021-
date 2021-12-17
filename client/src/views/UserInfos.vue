@@ -44,16 +44,11 @@
 
       <div class="details">
         <h2>My details</h2>
-        <form action="">
-          <label for="usernameInfo">Username </label>
-          <input
-            type="text"
-            id="usernameInfo"
-            name="username"
-            :placeholder="user.username"
-          />
-          <input type="submit" class="btn btn-submit2" value="Change" />
-        </form>
+          
+          <h3 >
+              {{ user.username }}
+          </h3>
+        
         <div class="select-role">
           <label>Your role: </label>
           <select type="select" class="select">
