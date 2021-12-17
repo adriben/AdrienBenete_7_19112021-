@@ -61,6 +61,7 @@ exports.login = (req, res) => {
     });
 };
 
+//UPDATE or put infos in the user database
 exports.changeInfo= (req, res) => {
   const userId = req.body.userId
 
@@ -80,7 +81,7 @@ exports.changeInfo= (req, res) => {
 .catch(err => res.status(400).json({ err }))
 };
 
-
+//to get all the users
 exports.getall = async (req, res) => {
   const users = await db.User.findAll({
     include: [db.Post]
@@ -88,6 +89,7 @@ exports.getall = async (req, res) => {
  res.send({ users })
 }
 
+//to get only one user's information
 exports.getOneUser = async(req, res) => {
 
   db.User.findOne({
@@ -98,6 +100,7 @@ exports.getOneUser = async(req, res) => {
   .catch(err => res.status(400).json({ err }))
 }
 
+//delete the account and all his posts and comment of the user totaly from the database
 exports.deleteAccount = async(req, res) => {
   db.User.destroy({
     where: {

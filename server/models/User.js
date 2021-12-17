@@ -1,54 +1,50 @@
-module.exports = (sequelize, DataTypes) =>{
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define("User", {
+    id: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    username: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+      unique: true,
+    },
+    email: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+      unique: true,
+    },
+    password: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+    },
+    image: {
+      type: DataTypes.STRING(500),
+    },
+    bio: {
+      type: DataTypes.STRING(500),
+    },
+    role: {
+      type: DataTypes.STRING(100),
+    },
+    isAdmin: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
+  });
 
-    const User = sequelize.define("User", {
-        id: {
-        type: DataTypes.INTEGER(11),
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        },
-        username: {
-            type: DataTypes.STRING(50),
-            allowNull: false,
-            unique: true
-        },
-        email:{
-            type: DataTypes.STRING(50),
-            allowNull: false,
-            unique: true
-        },
-        password:{
-            type: DataTypes.STRING(100),
-            allowNull: false
-        },
-        image: {
-            type: DataTypes.STRING(500)
-        },
-        bio: {
-            type: DataTypes.STRING(500),
-        },
-        role: {
-            type: DataTypes.STRING(100)
-        },
-        isAdmin: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: false
-        }
-    }
-    )
-    
-    User.associate = models =>{
-        User.hasMany(models.Post, {
-            onDelete: "CASCADE",
-            hooks:true 
-        })
-    }
-        
-
-    
-    User.sync().then(() => {
-      console.log('User table created');
+  User.associate = (models) => {
+    User.hasMany(models.Post, {
+      onDelete: "CASCADE",
+      hooks: true,
     });
-return User
-}
+  };
+
+  User.sync().then(() => {
+    console.log("User table created");
+  });
+  return User;
+};

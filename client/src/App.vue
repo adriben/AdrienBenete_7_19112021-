@@ -1,68 +1,50 @@
 <template>
-  
-    
-    <router-view/>
-    
-
-  
+  <router-view />
 </template>
 
 <script>
-
-
-
-export default ({
-  name: 'app',
-  components: {
-    
-  }
-  })
+export default {
+  name: "app",
+  components: {},
+};
 </script>
 
-
 <style lang="scss">
-// background-color: ;
-// background-image: linear-gradient(315deg, #fbfbfb 0%, #f9886c 74%);
-$color-primary: 	#3bb78f;
-$color-secondary: 	#3bb78f;
-body{
-  box-sizing:border-box;
+
+$color-primary: #3bb78f;
+body {
+  box-sizing: border-box;
   margin: 0;
 }
 #app {
-
-  background-color: rgba($color: #f3f8ee, $alpha: 1.0);
-  font-family: 'Oswald', Helvetica, Arial, sans-serif;
+  background-color: rgba($color: #f3f8ee, $alpha: 1);
+  font-family: "Oswald", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   display: flex;
- padding-bottom: 17rem;
+  padding-bottom: 17rem;
   justify-content: center;
-    .btn-submit{
-        height: 2rem;
-        width: 16rem;
-        border-radius: 10px;
-        background-color: $color-primary;
-        &:hover{
-          cursor: pointer;
-          
-        }
+  .btn-submit {
+    height: 2rem;
+    width: 16rem;
+    border-radius: 10px;
+    background-color: $color-primary;
+    &:hover {
+      cursor: pointer;
     }
-    .btn-submit2{
-      color: black;
-      height: 2rem;
-        width: 10rem;
-        border-radius: 10px;
-        background-color: $color-primary;
-        &:hover{
-          cursor: pointer;
-          
-        }
-        
+  }
+  .btn-submit2 {
+    color: black;
+    height: 2rem;
+    width: 10rem;
+    border-radius: 10px;
+    background-color: $color-primary;
+    &:hover {
+      cursor: pointer;
     }
-    
+  }
 }
 
 #nav {

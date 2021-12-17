@@ -1,7 +1,7 @@
 const db = require('../models');
 const fs = require('fs')
 
-
+//create a post
 exports.create = async (req, res) => {
     
     if (req.file){
@@ -30,6 +30,8 @@ exports.create = async (req, res) => {
 
 };
 
+//GEt all posts
+
 exports.showAllPosts = async (req, res) => {
     
     db.Post.findAll({
@@ -39,6 +41,7 @@ exports.showAllPosts = async (req, res) => {
     .catch(err => res.status(400).json({ err }))
 };
 
+//to show only one selected post
 exports.showOnePost =  (req, res) => {
     db.Post.findOne({
         where: {
@@ -51,6 +54,7 @@ exports.showOnePost =  (req, res) => {
 
 }
 
+      //uptade a post
 exports.updateOnePost =  (req, res) => {
 
     if(req.file){
@@ -60,7 +64,6 @@ exports.updateOnePost =  (req, res) => {
           { where: { id: req.params.id },
          })
       } 
-
 db.Post.update(
           { content: req.body.content},
           { where: { id: req.params.id } })
@@ -68,6 +71,7 @@ db.Post.update(
       .catch(err => res.status(400).json({ err }))
 };
 
+//delete post
 exports.deletePost  = async (req, res) => {
     db.Post.findOne({
         where: {
