@@ -48,6 +48,7 @@ export default createStore({
     logUser: async function (state, user) {
       state.user = {}
       instance.defaults.headers.common['Authorization'] = user.accessToken;
+      localStorage.setItem('user', JSON.stringify(user));
       
       
       state.user.userId = user.id;
@@ -58,10 +59,13 @@ export default createStore({
      
     },
     changeInfo: function(state, infos){
-      let user = JSON.parse(localStorage.getItem("user"));
-      user.imageUrl = infos.image
-      localStorage.setItem('user', JSON.stringify(user));
-
+      console.log(infos);
+      if(infos.image != null){
+        let user = JSON.parse(localStorage.getItem("user"));
+        user.imageUrl = infos.image
+        localStorage.setItem('user', JSON.stringify(user));
+      }
+  
       state.user.imageProfile = infos.image
       state.user.bio = infos.bio
       state.user.role = infos.role
@@ -183,6 +187,7 @@ export default createStore({
     commit;
     await instance.get(`/user/userInfo/${userId}`)
     .then((response) => {
+      console.log(response.data);
     
       commit("changeInfo", response.data.user)
     })
