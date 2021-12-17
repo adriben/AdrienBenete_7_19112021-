@@ -1,4 +1,5 @@
 import { createStore } from 'vuex';
+import router  from '../router/index';
 
 const axios = require('axios');
 const instance = axios.create({
@@ -100,6 +101,9 @@ export default createStore({
        
       commit('logUser', response.data)
       response.data.bpi
+     }).then(()=>{
+       console.log('je suis la');
+      router.push('/main')
      })
       })
       .catch(err => {
@@ -138,6 +142,7 @@ export default createStore({
       "Authorization": "Bearer " + user.accessToken 
   }})
      .then((response) => {
+       console.log(response.data);
       response.data.bpi
     })
     .catch(err => {
@@ -174,6 +179,7 @@ export default createStore({
     commit;
     await instance.get(`/user/userInfo/${userId}`)
     .then((response) => {
+      console.log(response.data.user);
       commit("changeInfo", response.data.user)
     })
     .catch(err => {

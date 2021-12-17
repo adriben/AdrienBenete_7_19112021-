@@ -52,9 +52,10 @@ export default {
         email: this.email,
         username: this.username, 
         password: this.password
-      }).then(()=> {
-        this.$router.push('/main')
       })
+      // .then(()=> {
+      //   this.$router.push('/main')
+      // })
       } else if(this.confirmedPassword != this.password){
         this.errorMessage = 'Both password must match'
       } else{

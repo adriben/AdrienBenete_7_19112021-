@@ -15,7 +15,10 @@ exports.signup = async (req, res) => {
         password: await bcrypt.hash(req.body.password, salt)
    })
    .then(()=>  res.status(201).send({ message: "user successfully created"}))
-   .catch(err => res.status(400).json({ err }))
+   .catch(err => {
+     
+    res.status(400).json({ err })
+   })
     
 };
 
