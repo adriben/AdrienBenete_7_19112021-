@@ -96,7 +96,6 @@ export default {
       })      
      },
        getUserInfo: async function(){
-           console.log('nous allons recuperer les infos');
            let userId = this.$store.state.user.userId;
            this.$store.dispatch('getOneUserInfos', userId)
        },
