@@ -55,6 +55,8 @@
 
 <script>
 import moment from "moment";
+import { mapState } from "vuex";
+
 
 export default {
   name: "Comment",
@@ -69,8 +71,11 @@ export default {
       errorMessage: "",
     };
   },
+  computed: {
+    ...mapState(["user"]),
+  },
   methods: {
-    postComment: async function (event) {
+    postComment:  function (event) { //method to post a comment with the store
       event.preventDefault();
       if (this.newComment) {
         this.$store
@@ -91,7 +96,7 @@ export default {
         }, 2000);
       }
     },
-    getComments: async function () {
+    getComments: async function () { //method to get a comment with fetch
       await fetch(`http://localhost:5000/api/posts/${this.postId}/comment`)
         .then((response) => {
           return response.json();
@@ -217,6 +222,7 @@ $color-secondary: #3bb78f;
       color: red;
     }
   }
+  
   @keyframes slow-display {
     0% {
       transform: translateY(60px);
@@ -231,4 +237,24 @@ $color-secondary: #3bb78f;
     }
   }
 }
+@media screen and (max-width: 800px) {
+   .comment-icone{
+      left: 185px;
+   }
+ 
+  }
+
+  @media screen and (max-width: 600px) {
+   .comment-icone{
+      left: 135px;
+   }
+ 
+  }
+  @media screen and (max-width: 500px) {
+   .comment-icone{
+      left: 115px;
+   }
+ 
+  }
+
 </style>

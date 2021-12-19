@@ -91,6 +91,34 @@ export default {
 .red {
   color: #3bb78f;
 }
+
+@media screen and (max-width: 800px) {
+   .fa-heart{
+      left: 300px;
+   }
+ 
+  }
+  @media screen and (max-width: 800px) {
+   .fa-heart{
+      left: 305px;
+   }
+ 
+  }
+
+  @media screen and (max-width: 600px) {
+   .fa-heart{
+      left: 230px;
+   }
+ 
+  }
+   @media screen and (max-width: 500px) {
+   .fa-heart{
+      left: 180px;
+   }
+ 
+  }
+
+
 @keyframes slow-appearance {
   0% {
     opacity: 0.2;

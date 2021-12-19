@@ -122,6 +122,7 @@ export default {
       background-color: #3bb78f;
       border-radius: 30px;
       height: 2rem;
+      cursor: pointer;
     }
   }
 }

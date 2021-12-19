@@ -117,10 +117,10 @@ export default {
   },
   mounted: async function () {
     this.getPosts();
-    if (this.$store.state.user.userId === -1) {
+    if (this.$store.state.user.userId === -1 || this.$store.state.user.userId == undefined ) {
       this.$router.push("/");
       return;
-    }
+    } 
   },
 
   data() {
@@ -152,7 +152,9 @@ export default {
         });
     },
     postPost: async function (event) {
+       
       event.preventDefault();
+       console.log(this.$store.state.user.userId);
       const imageFile = document.querySelector("input[type=file]").files[0];
       if (this.newPost != "" || imageFile) {
         const formData = new FormData();
@@ -322,11 +324,23 @@ $color-secondary: #3bb78f;
 }
 
 @media screen and (max-width: 800px) {
+
+   .like-number{
+       left: 350px;
+   }
+  .comment-number {
+        display: none;
+      }
+   
+
   .main-page {
+      .like
     .write-post {
       margin-top: 12rem;
       width: 25rem;
     }
+   
+    
     li {
       width: 500px;
 
@@ -335,12 +349,19 @@ $color-secondary: #3bb78f;
       }
       @media screen and (max-width: 600px) {
         width: 400px;
+        
         img {
           width: 400px;
         }
+        .like-number{
+       left: 270px;
+   }
       }
       @media screen and (max-width: 500px) {
         width: 300px;
+        .like-number{
+       left: 220px;
+   }
 
         img {
           width: 300px;
@@ -349,6 +370,14 @@ $color-secondary: #3bb78f;
     }
   }
 }
+@media screen and (max-width: 600px) {
+    .main-page{
+    .write-post {
+      width: 25rem;
+    }
+    }
+       
+   }
 
 @media screen and (max-width: 450px) {
   .main-page {

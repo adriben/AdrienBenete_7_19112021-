@@ -34,7 +34,7 @@
         </router-link>
 
         <router-link to="/" class="link header-link">
-          <li class="header-link">
+          <li class="header-link" @click="clearStorage">
             <i class="fas fa-power-off" @click="clearStorage"></i
             ><span class="legende">Logout</span>
           </li>
@@ -55,8 +55,13 @@ export default {
     imageSrc: String,
   },
   methods: {
-    clearStorage() {
-      this.$store.commit("logout");
+    clearStorage(e) {
+      e.preventDefault()
+    
+      this.$store.dispatch("logout")
+      .then(() =>{
+        this.$router.push('/')
+      })
     },
   },
 };

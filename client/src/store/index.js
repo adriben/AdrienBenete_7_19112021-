@@ -6,7 +6,7 @@ const instance = axios.create({
   baseURL: "http://localhost:5000/api",
 });
 
-let user = localStorage.getItem("user");
+let user =  JSON.parse(localStorage.getItem("user"));
 if (!user) {
   user = {
     userId: -1,
@@ -14,8 +14,10 @@ if (!user) {
   };
 } else {
   try {
-    user = JSON.parse(user);
     instance.defaults.headers.common["Authorization"] = user.accessToken;
+    user = JSON.parse(user);
+    console.log(user);
+    
   } catch (ex) {
     user = {
       userId: -1,
@@ -45,17 +47,22 @@ export default createStore({
     },
     logUser: async function (state, user) {
       state.user = {};
+     
       instance.defaults.headers.common["Authorization"] = user.accessToken;
       localStorage.setItem("user", JSON.stringify(user));
+      
 
       state.user.userId = user.id;
       state.user.username = user.username;
       state.user.token = user.accessToken;
       state.user.imageProfile = user.imageUrl;
       state.user.isAdmin = user.isAdmin;
+
+
+      
+      
     },
     changeInfo: function (state, infos) {
-      console.log(infos);
       if (infos.image != null) {
         let user = JSON.parse(localStorage.getItem("user"));
         user.imageUrl = infos.image;
@@ -74,7 +81,9 @@ export default createStore({
         token: "",
         imageProfile: "",
       };
-      localStorage.clear();
+      console.log(state.user.userId);
+      localStorage.clear()
+      
     },
 
     addLikes: function (state, likes) {
@@ -101,12 +110,12 @@ export default createStore({
             .post("/user/login", userInfos)
             .then((response) => {
               commit("setStatus", "connected");
-
               commit("logUser", response.data);
               response.data.bpi;
             })
             .then(() => {
               router.push("/main");
+              user = JSON.parse(localStorage.getItem("user"));
             });
         })
         .catch((err) => {
@@ -118,13 +127,13 @@ export default createStore({
       await instance
         .post("/user/login", userInfos)
         .then((response) => {
-          commit("setStatus", "connected");
 
           commit("logUser", response.data);
           response.data.bpi;
+        }).then(() => {
+         user = JSON.parse(localStorage.getItem("user"));
         })
         .catch((err) => {
-          this.$router.push("/");
           commit("setStatus", "error_login");
           console.log(err);
         });
@@ -149,7 +158,6 @@ export default createStore({
           },
         })
         .then((response) => {
-          console.log(response.data);
           response.data.bpi;
         })
         .catch((err) => {
@@ -157,6 +165,7 @@ export default createStore({
         });
     },
     likePost: async ({ commit }, likeInfos) => {
+      console.log(likeInfos);
       commit("clearLikes");
 
       await instance
@@ -170,6 +179,7 @@ export default createStore({
     },
 
     postComment: async ({ commit }, commentInfos) => {
+      console.log(user.id);
       commit;
       await instance
         .post(`/posts/${commentInfos.postId}/comment`, commentInfos, {
@@ -190,8 +200,6 @@ export default createStore({
       await instance
         .get(`/user/userInfo/${userId}`)
         .then((response) => {
-          console.log(response.data);
-
           commit("changeInfo", response.data.user);
         })
         .catch((err) => {
@@ -238,6 +246,11 @@ export default createStore({
           response.data.bpi;
         });
     },
+    logout: async ({ commit }) => {
+      commit("logout")
+      
+      
+    }
   },
 
   modules: {},
