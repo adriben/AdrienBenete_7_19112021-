@@ -2,6 +2,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const db = require("../models");
+require('dotenv').config();
 
 //USER SIGNUP
 exports.signup = async (req, res) => {
@@ -41,7 +42,7 @@ exports.login = (req, res) => {
           message: "Invalid Password!",
         });
       }
-      let token = jwt.sign({ id: user.id }, "ghuf342fkoy78gderlokA6", {
+      let token = jwt.sign({ id: user.id }, process.env.TOKEN, {
         expiresIn: 86400, // 24 hours
       });
       res.status(200).send({
