@@ -56,12 +56,11 @@ export default {
   },
   methods: {
     clearStorage(e) {
-      e.preventDefault()
-    
-      this.$store.dispatch("logout")
-      .then(() =>{
-        this.$router.push('/')
-      })
+      e.preventDefault();
+
+      this.$store.dispatch("logout").then(() => {
+        this.$router.push("/");
+      });
     },
   },
 };

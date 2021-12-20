@@ -6,7 +6,7 @@ const instance = axios.create({
   baseURL: "http://localhost:5000/api",
 });
 
-let user =  JSON.parse(localStorage.getItem("user"));
+let user = JSON.parse(localStorage.getItem("user"));
 if (!user) {
   user = {
     userId: -1,
@@ -16,8 +16,6 @@ if (!user) {
   try {
     instance.defaults.headers.common["Authorization"] = user.accessToken;
     user = JSON.parse(user);
-    console.log(user);
-    
   } catch (ex) {
     user = {
       userId: -1,
@@ -47,20 +45,15 @@ export default createStore({
     },
     logUser: async function (state, user) {
       state.user = {};
-     
+
       instance.defaults.headers.common["Authorization"] = user.accessToken;
       localStorage.setItem("user", JSON.stringify(user));
-      
 
       state.user.userId = user.id;
       state.user.username = user.username;
       state.user.token = user.accessToken;
       state.user.imageProfile = user.imageUrl;
       state.user.isAdmin = user.isAdmin;
-
-
-      
-      
     },
     changeInfo: function (state, infos) {
       if (infos.image != null) {
@@ -81,9 +74,7 @@ export default createStore({
         token: "",
         imageProfile: "",
       };
-      console.log(state.user.userId);
-      localStorage.clear()
-      
+      localStorage.clear();
     },
 
     addLikes: function (state, likes) {
@@ -127,11 +118,11 @@ export default createStore({
       await instance
         .post("/user/login", userInfos)
         .then((response) => {
-
           commit("logUser", response.data);
           response.data.bpi;
-        }).then(() => {
-         user = JSON.parse(localStorage.getItem("user"));
+        })
+        .then(() => {
+          user = JSON.parse(localStorage.getItem("user"));
         })
         .catch((err) => {
           commit("setStatus", "error_login");
@@ -165,7 +156,6 @@ export default createStore({
         });
     },
     likePost: async ({ commit }, likeInfos) => {
-      console.log(likeInfos);
       commit("clearLikes");
 
       await instance
@@ -179,7 +169,6 @@ export default createStore({
     },
 
     postComment: async ({ commit }, commentInfos) => {
-      console.log(user.id);
       commit;
       await instance
         .post(`/posts/${commentInfos.postId}/comment`, commentInfos, {
@@ -247,10 +236,8 @@ export default createStore({
         });
     },
     logout: async ({ commit }) => {
-      commit("logout")
-      
-      
-    }
+      commit("logout");
+    },
   },
 
   modules: {},
