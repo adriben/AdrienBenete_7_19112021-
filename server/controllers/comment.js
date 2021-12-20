@@ -1,7 +1,6 @@
 const db = require("../models");
 
 exports.createComment = async (req, res) => {
-
   const newComment = await db.Comment.create({
     content: req.body.content,
     userId: req.body.userId,

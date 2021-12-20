@@ -95,9 +95,17 @@ export default {
   }
   ul {
     padding-top: 3rem;
-    display: flex;
+    display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    @media screen and (max-width: 800px) {}
+    @media screen and (max-width: 1600px) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    @media screen and (max-width: 1200px) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @media screen and (max-width: 800px) {
+      grid-template-columns: 1fr
+    }
   }
   li {
     animation: arriving-from-left 500ms ease-out;

@@ -156,7 +156,7 @@ $color-secondary: #3bb78f;
 .user-infos {
   width: 100%;
   h1 {
-    padding-top: 7rem;
+    padding-top: 8rem;
   }
 }
 .info-container {
@@ -194,6 +194,18 @@ $color-secondary: #3bb78f;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    @media screen and (max-width: 900px) {
+      
+      width: 420px;
+      border-radius: 0;
+      margin-left: 5rem;
+    } 
+    @media screen and (max-width: 500px) {
+      width: 250px;
+    margin-right: 5rem;
+     
+    }
+
 
     #username {
       height: 2rem;
@@ -223,4 +235,31 @@ $color-secondary: #3bb78f;
     color: white;
   }
 }
+
+@media screen and (max-width: 900px) {
+      .info-container{
+        
+        flex-direction: column;
+        margin: 0;
+        .image-details{
+          margin-left: 0rem;
+          margin-right: 0;
+        }
+        #textarea{
+          width: 150px;
+        }
+      }
+    }
+
+    @media screen and (max-width: 500px) {
+      
+      .image-details{
+        
+         width: 250px;
+  img{
+     width: 10rem;
+  }
+        
+    }
+    }
 </style>
