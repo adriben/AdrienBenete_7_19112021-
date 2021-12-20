@@ -44,11 +44,11 @@
 
       <div class="details">
         <h2>My details</h2>
-          
-          <h3 >
-              {{ user.username }}
-          </h3>
-        
+
+        <h3>
+          {{ user.username }}
+        </h3>
+
         <div class="select-role">
           <label>Your role: </label>
           <select type="select" class="select">
@@ -195,17 +195,14 @@ $color-secondary: #3bb78f;
     border-bottom-left-radius: 0;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     @media screen and (max-width: 900px) {
-      
       width: 420px;
       border-radius: 0;
       margin-left: 5rem;
-    } 
+    }
     @media screen and (max-width: 500px) {
       width: 250px;
-    margin-right: 5rem;
-     
+      margin-right: 5rem;
     }
-
 
     #username {
       height: 2rem;
@@ -237,29 +234,25 @@ $color-secondary: #3bb78f;
 }
 
 @media screen and (max-width: 900px) {
-      .info-container{
-        
-        flex-direction: column;
-        margin: 0;
-        .image-details{
-          margin-left: 0rem;
-          margin-right: 0;
-        }
-        #textarea{
-          width: 150px;
-        }
-      }
+  .info-container {
+    flex-direction: column;
+    margin: 0;
+    .image-details {
+      margin-left: 0rem;
+      margin-right: 0;
     }
-
-    @media screen and (max-width: 500px) {
-      
-      .image-details{
-        
-         width: 250px;
-  img{
-     width: 10rem;
+    #textarea {
+      width: 150px;
+    }
   }
-        
+}
+
+@media screen and (max-width: 500px) {
+  .image-details {
+    width: 250px;
+    img {
+      width: 10rem;
     }
-    }
+  }
+}
 </style>

@@ -56,7 +56,6 @@ export default createStore({
       state.user.token = user.accessToken;
       state.user.imageProfile = user.imageUrl;
       state.user.isAdmin = user.isAdmin;
-      console.log(user);
     },
     changeInfo: function (state, infos) {
       if (infos.image != null) {

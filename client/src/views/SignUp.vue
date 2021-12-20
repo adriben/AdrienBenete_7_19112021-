@@ -12,6 +12,7 @@
           v-model="email"
           name="email"
           id="email"
+          required
         />
         <label for="usernameSignup">Your username</label>
         <input
@@ -20,6 +21,7 @@
           v-model="username"
           name="usernameSignup"
           id="usernameSignup"
+          required
         />
         <label for="passwordSignup">Password</label>
         <input
@@ -65,17 +67,33 @@ export default {
   methods: {
     signIn: async function (event) {
       event.preventDefault();
-      if (
+      let validEmail = new RegExp(
+        /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@(([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+      if (!validEmail.test(this.email)) {
+        this.errorMessage = "Please input a valid email address";
+      } else if (this.password.length <= 5) {
+        this.errorMessage = "The password must contain at least 5 characters";
+      } else if (this.username.length < 2) {
+        this.errorMessage = "The username must contain at leat 2 characters";
+      } else if (
         this.username != "" &&
         this.email != "" &&
         this.password != "" &&
         this.confirmedPassword === this.password
       ) {
-        this.$store.dispatch("createAccount", {
-          email: this.email,
-          username: this.username,
-          password: this.password,
-        });
+        this.$store
+          .dispatch("createAccount", {
+            email: this.email,
+            username: this.username,
+            password: this.password,
+          })
+          .then(() => {
+            if (this.$store.state.status === "error_login") {
+              this.errorMessage =
+                "This email/username has been used already, please select an other one";
+            }
+          });
       } else if (this.confirmedPassword != this.password) {
         this.errorMessage = "Both password must match";
       } else {
