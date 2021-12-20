@@ -54,12 +54,6 @@ Soyez sur d'avoir installé MYSQl sur votre machine
 ```
 git clone https://github.com/adriben/AdrienBenete_7_19112021-.git
 ```
-### Frontend:
-```
-cd client
-npm install 
-npm run serve
-```
 ###  Ajouter un fichier .ENV à la racine du dossier 'server', copiez collez les informations si dessous et changez DB_USER et DB_PASS avec les informations de votre propre base de données:
 ```
 DB_HOST = localhost     
@@ -70,7 +64,12 @@ DB_DIALECT= mysql
 TOKEN= ghuf342fkoy78gderlokA6
 
 ```
-
+### Frontend:
+```
+cd client
+npm install 
+npm run serve
+```
 ### Backend:
 ```
 cd server
