@@ -14,7 +14,7 @@ Make sure you have MySQL installed on your computer
 git clone https://github.com/adriben/AdrienBenete_7_19112021-.git
 ```
 
-## Add a .ENV file in the 'server' directory root, copy paste the following and change DB_USER and DB_PASS with your infos:
+###  Add a .ENV file in the 'server' directory root, copy paste the following and change DB_USER and DB_PASS with your infos:
 ```
 DB_HOST = localhost     
 DB_NAME= socialnetwork
@@ -60,7 +60,7 @@ cd client
 npm install 
 npm run serve
 ```
-## Ajouter un fichier .ENV à la racine du dossier 'server', copiez collez les informations si dessous et changez DB_USER et DB_PASS avec les informations de votre propre base de données:
+###  Ajouter un fichier .ENV à la racine du dossier 'server', copiez collez les informations si dessous et changez DB_USER et DB_PASS avec les informations de votre propre base de données:
 ```
 DB_HOST = localhost     
 DB_NAME= socialnetwork
