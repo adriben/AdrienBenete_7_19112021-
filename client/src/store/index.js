@@ -7,7 +7,9 @@ const instance = axios.create({
 });
 
 let user = JSON.parse(localStorage.getItem("user"));
+
 if (!user) {
+  
   user = {
     userId: -1,
     token: "",
@@ -15,7 +17,6 @@ if (!user) {
 } else {
   try {
     instance.defaults.headers.common["Authorization"] = user.accessToken;
-    user = JSON.parse(user);
   } catch (ex) {
     user = {
       userId: -1,
@@ -23,6 +24,7 @@ if (!user) {
     };
   }
 }
+
 
 export default createStore({
   state: {
@@ -54,6 +56,7 @@ export default createStore({
       state.user.token = user.accessToken;
       state.user.imageProfile = user.imageUrl;
       state.user.isAdmin = user.isAdmin;
+      console.log(user);
     },
     changeInfo: function (state, infos) {
       if (infos.image != null) {

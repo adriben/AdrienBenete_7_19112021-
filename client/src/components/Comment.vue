@@ -41,6 +41,7 @@
         placeholder="Type your comment..."
         class="comment-input"
         aria-label="Comment"
+        id="comment-input"
       />
       <input
         type="submit"
@@ -168,6 +169,7 @@ $color-secondary: #3bb78f;
   font-size: 150%;
   cursor: pointer;
 }
+
 .comment {
   width: 650px;
   height: fit-content;
@@ -245,11 +247,16 @@ $color-secondary: #3bb78f;
 }
 
 @media screen and (max-width: 600px) {
+  #comment-input{
+    width: fit-content;
+  }
   .comment-icone {
     left: 135px;
   }
 }
 @media screen and (max-width: 500px) {
+
+  
   .comment-icone {
     left: 115px;
   }

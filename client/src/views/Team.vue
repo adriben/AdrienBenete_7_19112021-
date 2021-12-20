@@ -53,6 +53,13 @@ export default {
   },
   mounted: async function () {
     this.getUsers();
+    if (
+      this.$store.state.user.userId === -1 ||
+      this.$store.state.user.userId == undefined
+    ) {
+      this.$router.push("/");
+      return;
+    }
   },
   methods: {
     getUsers: async function () {
@@ -88,8 +95,9 @@ export default {
   }
   ul {
     padding-top: 3rem;
-    display: grid;
+    display: flex;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    @media screen and (max-width: 800px) {}
   }
   li {
     animation: arriving-from-left 500ms ease-out;
@@ -130,4 +138,14 @@ export default {
     opacity: 1;
   }
 }
+
+@media screen and (max-width: 800px) {
+  h1 {
+    margin-top: 7rem;
+  }
+  ul{
+    grid-template-columns: 1fr;
+  }
+}
+
 </style>

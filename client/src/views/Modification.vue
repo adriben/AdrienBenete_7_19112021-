@@ -65,6 +65,14 @@ export default {
   },
   mounted: async function () {
     this.getPostInfo();
+     if (
+      this.$store.state.user.userId === -1 ||
+      this.$store.state.user.userId == undefined
+    ) {
+      this.$router.push("/");
+      return;
+    }
+    
   },
   methods: {
     getPostInfo: async function () {

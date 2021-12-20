@@ -108,6 +108,13 @@ export default {
   },
   mounted: function () {
     this.getUserInfo();
+    if (
+      this.$store.state.user.userId === -1 ||
+      this.$store.state.user.userId == undefined
+    ) {
+      this.$router.push("/");
+      return;
+    }
   },
   methods: {
     changeImage: function (event) {
