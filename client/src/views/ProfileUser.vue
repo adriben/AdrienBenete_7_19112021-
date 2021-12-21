@@ -1,3 +1,4 @@
+<!--section where we can see an user profile after a click on the page TEAM-->
 <template>
   <div class="user-profile">
     <TheHeader userName="$user.username"></TheHeader>

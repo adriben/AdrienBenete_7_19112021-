@@ -1,3 +1,4 @@
+<!--section where we can modify a post-->
 <template>
   <div class="modifications">
     <The-header></The-header>
@@ -65,14 +66,13 @@ export default {
   },
   mounted: async function () {
     this.getPostInfo();
-     if (
+    if (
       this.$store.state.user.userId === -1 ||
       this.$store.state.user.userId == undefined
     ) {
       this.$router.push("/");
       return;
     }
-    
   },
   methods: {
     getPostInfo: async function () {
@@ -109,31 +109,30 @@ export default {
 <style scoped lang="scss">
 .modifications {
   width: 100%;
-  
+
   img {
     width: 600px;
     max-height: 600px;
     object-fit: cover;
-    @media screen and (max-width: 630px){
-    width: 480px;
-  }
-  @media screen and (max-width: 600px){
-    width: 380px;
-  }
-  @media screen and (max-width: 500px){
-    width: 280px;
-  }
+    @media screen and (max-width: 630px) {
+      width: 480px;
+    }
+    @media screen and (max-width: 600px) {
+      width: 380px;
+    }
+    @media screen and (max-width: 500px) {
+      width: 280px;
+    }
   }
   .post {
     padding-top: 15rem;
-    
 
     .post-content {
       font-size: 110%;
       margin-top: 1.5rem;
-      @media screen and (max-width: 500px){
-    width: 280px;
-  }
+      @media screen and (max-width: 500px) {
+        width: 280px;
+      }
     }
   }
   .error-message {
@@ -141,6 +140,4 @@ export default {
     font-size: 140%;
   }
 }
-
- 
 </style>

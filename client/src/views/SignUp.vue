@@ -1,3 +1,5 @@
+<!--section where the new user can create an account -->
+
 <template>
   <div class="first-page">
     <div class="home">

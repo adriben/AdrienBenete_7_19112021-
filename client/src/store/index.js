@@ -2,14 +2,14 @@ import { createStore } from "vuex";
 import router from "../router/index";
 
 const axios = require("axios");
-const instance = axios.create({
+const instance = axios.create({        //instation of the base URL for the calls
   baseURL: "http://localhost:5000/api",
 });
 
 let user = JSON.parse(localStorage.getItem("user"));
 
 if (!user) {
-  
+  //if there is nothing in local storage then the default userID is -1
   user = {
     userId: -1,
     token: "",
@@ -25,8 +25,8 @@ if (!user) {
   }
 }
 
-
 export default createStore({
+  //create a store with the user when he login,
   state: {
     status: "",
     user: {
@@ -69,14 +69,14 @@ export default createStore({
       state.user.role = infos.role;
     },
     logout: function (state) {
-      state.user = {};
+      state.user = {}; //on the logout we modify the userId so it become -1 again
       state.user = {
         userId: -1,
         username: "",
         token: "",
         imageProfile: "",
       };
-      localStorage.clear();
+      localStorage.clear(); //delete everything from localstorage
     },
 
     addLikes: function (state, likes) {
@@ -187,7 +187,7 @@ export default createStore({
     },
 
     getOneUserInfos: async ({ commit }, userId) => {
-      commit;
+      commit;                                        //fonction to get user infos in userInfos view
       await instance
         .get(`/user/userInfo/${userId}`)
         .then((response) => {

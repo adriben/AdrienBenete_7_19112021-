@@ -1,4 +1,6 @@
-<template>
+<!--section where we can see all the other user profiles-->
+
+<template>  
   <div class="team">
     <TheHeader userName="$user.username"></TheHeader>
     <h1>The Team</h1>
@@ -104,7 +106,7 @@ export default {
       grid-template-columns: 1fr 1fr;
     }
     @media screen and (max-width: 800px) {
-      grid-template-columns: 1fr
+      grid-template-columns: 1fr;
     }
   }
   li {
@@ -151,9 +153,8 @@ export default {
   h1 {
     margin-top: 7rem;
   }
-  ul{
+  ul {
     grid-template-columns: 1fr;
   }
 }
-
 </style>

@@ -1,3 +1,4 @@
+<!--sfirst page of the aplication, where the users can login-->
 <template>
   <div class="first-page">
     <div class="home">

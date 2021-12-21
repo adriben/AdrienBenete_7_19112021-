@@ -1,3 +1,4 @@
+<!--MAIN section with the "wall" and all the posts from different users-->
 <template>
   <div class="main-page">
     <TheHeader userName="$user.username"></TheHeader>

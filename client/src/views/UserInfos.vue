@@ -1,3 +1,5 @@
+<!--section where we can see the user's own profile-->
+
 <template>
   <div class="user-infos">
     <TheHeader userName="$user.username"></TheHeader>
@@ -108,7 +110,7 @@ export default {
   },
   mounted: function () {
     this.getUserInfo();
-    if (
+    if (  //if the user is not connected his userId is -1 in the store
       this.$store.state.user.userId === -1 ||
       this.$store.state.user.userId == undefined
     ) {
@@ -117,7 +119,7 @@ export default {
     }
   },
   methods: {
-    changeImage: function (event) {
+    changeImage: function (event) { //method to update the profile of the user
       event.preventDefault();
       this.$store
         .dispatch("changeInfos", {
@@ -165,7 +167,7 @@ $color-secondary: #3bb78f;
   align-items: center;
   justify-content: center;
 
-  .image-details {
+  .image-details { //left section of the page where the picture is located
     border-radius: 10px;
     padding: 2rem;
     margin-left: 3rem;
@@ -183,7 +185,7 @@ $color-secondary: #3bb78f;
       padding-top: 2rem;
     }
   }
-  .details {
+  .details { //right section of the page
     border-radius: 10px;
     padding: 2rem;
     margin-right: 5rem;

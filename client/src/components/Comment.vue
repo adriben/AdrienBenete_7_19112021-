@@ -156,13 +156,13 @@ $color-secondary: #3bb78f;
   border: 1px solid rgba(128, 128, 128, 0.281);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.05), 2px 2px 5px rgba(0, 0, 0, 0.1);
   animation: slow-display 300ms ease-out;
-  @media screen and (max-width: 800px){
+  @media screen and (max-width: 800px) {
     width: 500px;
   }
-  @media screen and (max-width: 600px){
+  @media screen and (max-width: 600px) {
     width: 400px;
   }
-  @media screen and (max-width: 500px){
+  @media screen and (max-width: 500px) {
     width: 290px;
   }
 
@@ -185,16 +185,15 @@ $color-secondary: #3bb78f;
   display: flex;
   margin: 0rem 0 0.6rem -2rem;
   border-radius: 20px;
-  @media screen and (max-width: 800px){
+  @media screen and (max-width: 800px) {
     width: 480px;
   }
-  @media screen and (max-width: 600px){
+  @media screen and (max-width: 600px) {
     width: 380px;
   }
-  @media screen and (max-width: 500px){
+  @media screen and (max-width: 500px) {
     width: 280px;
   }
-  
 
   .fa-times-circle {
     font-size: 140%;
@@ -266,7 +265,7 @@ $color-secondary: #3bb78f;
 }
 
 @media screen and (max-width: 600px) {
-  #comment-input{
+  #comment-input {
     width: fit-content;
   }
   .comment-icone {
@@ -274,8 +273,6 @@ $color-secondary: #3bb78f;
   }
 }
 @media screen and (max-width: 500px) {
-
-  
   .comment-icone {
     left: 115px;
   }
