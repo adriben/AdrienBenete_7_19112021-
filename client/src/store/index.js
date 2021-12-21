@@ -126,7 +126,7 @@ export default createStore({
           response.data.bpi;
         })
         .then(() => {
-          user = JSON.parse(localStorage.getItem("user"));
+          user = ls.get("user");
         })
         .catch((err) => {
           commit("setStatus", "error_login");
