@@ -1,12 +1,14 @@
 import { createStore } from "vuex";
 import router from "../router/index";
+import ls from 'localstorage-slim'; //cryptage des donnes dans le localstorage
+ls.config.encrypt = true;
 
 const axios = require("axios");
 const instance = axios.create({        //instation of the base URL for the calls
   baseURL: "http://localhost:5000/api",
 });
 
-let user = JSON.parse(localStorage.getItem("user"));
+let user = ls.get("user");
 
 if (!user) {
   //if there is nothing in local storage then the default userID is -1
@@ -49,7 +51,7 @@ export default createStore({
       state.user = {};
 
       instance.defaults.headers.common["Authorization"] = user.accessToken;
-      localStorage.setItem("user", JSON.stringify(user));
+      ls.set("user", user); //cryptage des donnes dans le localstorage
 
       state.user.userId = user.id;
       state.user.username = user.username;
@@ -59,9 +61,9 @@ export default createStore({
     },
     changeInfo: function (state, infos) {
       if (infos.image != null) {
-        let user = JSON.parse(localStorage.getItem("user"));
+        let user = ls.get("user");
         user.imageUrl = infos.image;
-        localStorage.setItem("user", JSON.stringify(user));
+        ls.set("user", user);
       }
 
       state.user.imageProfile = infos.image;
@@ -108,7 +110,7 @@ export default createStore({
             })
             .then(() => {
               router.push("/main");
-              user = JSON.parse(localStorage.getItem("user"));
+              user = ls.get("user");
             });
         })
         .catch((err) => {
