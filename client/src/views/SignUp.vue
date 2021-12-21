@@ -74,7 +74,7 @@ export default {
       );
       if (!validEmail.test(this.email)) {
         this.errorMessage = "Please input a valid email address";
-      } else if (this.password.length <= 5) {
+      } else if (this.password.length < 5) {
         this.errorMessage = "The password must contain at least 5 characters";
       } else if (this.username.length < 2) {
         this.errorMessage = "The username must contain at leat 2 characters";
