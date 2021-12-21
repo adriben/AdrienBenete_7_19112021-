@@ -5,7 +5,7 @@
     <h1>{{ this.user.username }}'s details</h1>
 
     <div class="details-container">
-      <img :src="this.user.image" alt="profile picture" />
+      <img v-if="this.user.image" :src="this.user.image" alt="profile picture" />
       <h2>{{ user.role }}</h2>
       <h3>{{ user.email }}</h3>
       <p v-if="user.bio != 'null'">{{ user.bio }}</p>
